@@ -89,23 +89,23 @@
 	        if [ $1 -ne 2 ]; then
 	            old_directory=$(pwd);
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
-	            cd $new_directory 1;
+	            cs $new_directory;
 	            nano ~/Coding/Scripts/linuxCheatSheet.txt;
 
 	            echo 'Enter gitc commit message';
 		    read var1;
 	            gitc $var1;
-	            cd $old_directory 1;
+	            cs $old_directory;
 	        fi;
 	        if [ $1 -eq 2 ]; then
 	            old_directory=$(pwd);
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
-	            cd $new_directory 1;
+	            cs $new_directory;
 
 	            echo 'Enter gitc commit message';
 	            read var1;
 	            gitc $var1;
-	            cd $old_directory 1;
+	            cs $old_directory;
 	        fi;
 	    fi
 	} #ncheat
