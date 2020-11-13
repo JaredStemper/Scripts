@@ -39,7 +39,7 @@ Cheatsheet for basic Linux commands
                 fuser /path/to/.nfs||other file                    #identifies process using files
                 top                                                #displays and active list of all Linux processes
                 ps -ef | grep firefox                              #reports a snapshot of the current processes and then greps results for task
-                        #returns#   given_PID ?        Sl     current_time /usr/lib/firefox-3.5.3/firefox
+                   #returns:	given_PID ? Sl current_time /usr/lib/firefox-3.5.3/firefox
                 ps                                                 #reports a snapshot of the current processes.
                 ps -ef | grep firefox                              #find running task from snapshot using grep
              ##screenshot program

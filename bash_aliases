@@ -90,11 +90,10 @@
 	            old_directory=$(pwd);
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
 	            cs $new_directory;
+
 	            nano ~/Coding/Scripts/linuxCheatSheet.txt;
 
-	            echo 'Enter gitc commit message';
-		    read var1;
-	            gitc $var1;
+	            echo 'Enter gitc commit message'; read var1; gitc $var1;
 	            cs $old_directory;
 	        fi;
 	        if [ $1 -eq 2 ]; then
@@ -102,9 +101,7 @@
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
 	            cs $new_directory;
 
-	            echo 'Enter gitc commit message';
-	            read var1;
-	            gitc $var1;
+	            echo 'Enter gitc commit message'; read var1; gitc $var1;
 	            cs $old_directory;
 	        fi;
 	    fi
