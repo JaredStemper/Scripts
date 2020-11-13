@@ -2,6 +2,7 @@
 Cheatsheet for basic Linux commands
 ==========================================
 
+
 ###General Linux:
         #OS configs
                 neofetch                                   #nice gui system properties
@@ -527,6 +528,3 @@ Cheatsheet for basic Linux commands
         ##You can smooth out slow/fast video with the ​minterpolate video filter. This is also known as "motion interpolation" or "optical flow". 
                 ffmpeg -i videoThing.mp4 -filter:v "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120'" newVideoThing.mp4
 ###ffmpeg
-
-
-
