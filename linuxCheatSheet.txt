@@ -1,3 +1,38 @@
+###random commands
+   #separate workstations
+        ctrl + alt + arrow key to switch between them
+        ctrl + alt + shift + arrow key to move a window between them
+        ctrl + l to clear screen #can also use bash command $clear
+###applications
+   ##edit starting placement of app
+        nano /usr/share/applications/gnome-terminal.desktop
+        Exec=gnome-terminal --geometry 80x24+1000+900      #defines new location with new flag --geometry
+   ##start an application in background () &> &
+        $application &
+   ##stop process from dying if hangup or no input
+        nohup $process
+   ##break process from shell (avoid killing process with killing terminal)     
+        ($application &> /dev/null &); exit                #starts application in background and separates process from shell; then kills shell
+                #( $application ) runs $application from a subshell
+                #$application &   starts application in background
+                #"&> /dev/null" redirects both stdout and stderr to the null device
+###grep/regex:
+        grep -P "#[a-z ()-]+" acheatSheet.txt | grep -P "sudo (g)" | grep -P "/dev[/]?sda[0-2]" > text.txt
+                        # grep [-P pearl style] "[regex/search string]" file.name | <- pipes it to whatever else you do (such as a secondary grep to further specifyk
+        sudo grep -F -a -C100 'searchString' /dev/sda1 > filename.txt       #looks for a recently deleted file --- very useful but not fool proof!! Memory still might be overwritten
+        sudo chown user filename                           #change owners of file
+###PDFs:
+        #how to use grep for single/multiple pdfs
+        find /path -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "your pattern"' \; #needs a path and pattern, but that's it
+
+        libreoffice --convert-to "pdf" file.txt            #creates/takes text file and then converts to pdf
+        convert xc:none -page Letter a.pdf                 #creates empty pdf file
+
+        #combine pdfs
+        magick -density 300 1.pdf 2.pdf a-third.pdf  final-combined.pdf                   #combine pdfs
+        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf pdf1.pdf pdf2.pdf #combine pdfs
+
+
 
 ###Pics/Monitor:
         xrandr --output eDP-1 --rotate normal              #rotates screen to the normal position (can be changed to left/right)
