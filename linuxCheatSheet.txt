@@ -1,6 +1,84 @@
 
 
 
+
+###redhat linux machine shennanigans
+
+	#turn volume to 100%, and then text-to-voice what you want
+        amixer -c 0 set Master 0DB && amixer -c 0 set Speaker+LO 0DB && amixer -c 0 set PCM 0DB && amixer set Master unmute && amixer set Speaker unmute
+        spd-say “hello” -p -100 -r -100 -t female2
+
+        #sets background to a file image
+        gsettings set org.gnome.desktop.background picture-uri file:///home//seclabu3/Downloads/slowloris.gif;
+
+        #modifies the current background image to be stretched, filled, etc. 
+        gsettings set org.gnome.desktop.background picture-options 'stretched';
+
+	#bash script to loop through a number of hosts and modify wallpapers
+		USER=user
+		PASSWORD="pass"
+		
+		hostlst='hostname@host.com hostname2@host.com'
+		
+		#loop to go through each machine
+		for i in $hostlst; do
+			#sftp to put file into target computer
+			ftp -inv $HOST <<EOF
+			user $USER $PASSWORD
+			cd /home/seclabu3/Downloads
+			mput .slowloris.gif
+			bye
+			EOF
+			
+			spawn ssh $i "cd /home/seclabu3/Downloads/"
+			expect "password:"
+			send "$PASSWORD"
+		done
+###redhat linux machine shennanigans
+
+###change background image and image settings
+        gsettings set org.gnome.desktop.background picture-uri file:///home//seclabu3/Downloads/slowloris.gif;
+        gsettings set org.gnome.desktop.background picture-options 'stretched';
+###change background image and image settings
+
+
+###Shortcuts/hotkeys cont.
+   #create the keybinding by editing (adding to-) the list that is returned by the command:
+        gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings
+   #The returned list looks like (if it were only one shortcut currently):
+        ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+   #Apply the edited list by the command:
+        gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[<altered_list>]"
+   #set properties
+        #set name
+                gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'shortcu tName'
+        #set command
+                gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'xdg-open ~/Luddy.linkedin'
+        #set binding
+                gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Alt>1q'
+        #list of binding names
+                Super key:                 <Super>
+                Control key:               <Primary> or <Control>
+                Alt key:                   <Alt>
+                Shift key:                 <Shift>
+                numbers:                   1 (just the number)
+                Spacebar:                  space
+                Slash key:                 slash
+                Asterisk key:              asterisk (so it would need `<Shift>` as well)
+                Ampersand key:             ampersand (so it would need <Shift> as well)
+                Caps_Lock
+
+                a few numpad keys:
+                Numpad divide key (`/`):   KP_Divide
+                Numpad multiply (Asterisk):KP_Multiply
+                Numpad number key(s):      KP_1
+                Numpad `-`:                KP_Subtract
+
+                #fn does not have a binding key, as fn keys alter the keyboard signal before it reaches the computer. 
+###Shortcuts/hotkeys cont.
+
+
+
 ###bpython
   ##install bpython (via a package manager, or pip install bpython) and get a better drop-in replacement for the python REPL 
   ##Syntax highlighting, autocompletion, inline documentation as you type commands, autoindentation, etc
@@ -8,10 +86,12 @@
         sudo python3 pip -m install bpython  
         #call it with
         bpython
+###bpython
 
 
 
-###ffmpeg -  free/open-source project for handling video/audio/multimedia
+###ffmpeg
+  #free/open-source project for handling video/audio/multimedia
   ##documentation: http://ffmpeg.org/ffmpeg.html#TOC53*
   ##rotate video
         ffmpeg -i videoThing.mp4 -vf "transpose=1" newVideoThing.mp4
@@ -29,6 +109,7 @@
                 ffmpeg -i videoThing.mp4 -r 16 -filter:v "setpts=0.25*PTS" newVideoThing.mp4
         ##You can smooth out slow/fast video with the ​minterpolate video filter. This is also known as "motion interpolation" or "optical flow". 
                 ffmpeg -i videoThing.mp4 -filter:v "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120'" newVideoThing.mp4
+###ffmpeg
 
 
 
