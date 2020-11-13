@@ -1,3 +1,63 @@
+           ##shortcuts/hotkeys
+                xev | grep keysym                                  #find what keys are simulated when pressing stuff (e.g. fn+brightnessUp==F3)
+                        remap fn stuff with xmodmap                #can map custom keys using fn
+                        xmodmap -e 'keysym XF86AudioPrev = Home'
+                further details below in "Shortcuts/hotkeys cont"
+
+                locate keybindings | xargs grep -H -i f1           #searches for keybinding files with f1 in them
+
+                gnome-tweak-tool is a well made GUI for doing many simplified changes
+          ##background settings change 
+                sudo lightdm-gtk-greeter-settings                               #background settings GUI config
+                gedit sudo gedit /usr/share/gnome-shell/theme/ubuntu.css        #ctl+f for lockDialogGroup and edit file. If chaning from purple background, change from resource:/// to file:///
+        sudo -i                                            #log in as root << be careful with that
+        su jared                                           #log in as user jared
+        rm file.txt
+        rm -r etc                                          #removes a full directory
+        cp file.txt copy_file.txt
+        cp -a /folder/. /destinationfolder/                #copies the contents of one folder to another.
+                -a is a recursive flag that preserves all file attributes
+                . is a cp syntax that allow it to copy all files and folders, including hidden ones
+        cat > txtFile                                              #directs input (typed words) into file
+        #append
+                cat file1 >> file2                                 #appends the output to the named file or creates the named file if it does not exist
+                cat file1 file2 > file3                            #concatenates two or more files to one. Will overwrite existing file!
+                        cat *.txt >> newfile.txt                   #no limit to source files when appending in this method
+                cat file1 | tee -a file2 file3 file4               #appends file contents to as many files as you like
+                        -a, --append: to append to the given files, does not overwrite
+                cat -e -t -v Makefile                              #cats file with \t marking tabs and $ signifying endlines. Useful for debugging tabs/spaces issues
+
+        mv file.txt home/jared/Downloads
+        mv -t DESTINATION file1 file2 file3
+        man [command]                                      #shows detailed manuals for command
+        man -f [command]                                   #equivalent to the 'whois' command, it displays a short of what the command does inside of the terminal
+        history -d NUMBER                                  #deletes ~single~ target line at number
+                #Ctrl + R to search previous commands in the terminal
+                for i in {1..LAST_RUN}; do history -d LINE_TO_DELETE; done
+                        deletes at a certain line repeatedly LAST_RUN many times
+        echo 'Hello' >newFile.txt                          #create a new text file (with given input)
+        ln -s targetfile optionalNameChange                #creates symlinked (-s) file in pwd
+        rm targetfile                                      #for deleting regular files as well as links
+
+        #shred
+                shred -s 10 - > fileNameInCurrentDir               #writes 10 random bytes of data to stdout and redirects it to a file
+                shred existing-File                                #overwrites file with random garbage data
+
+
+        xdg-open filename.png                              #opens a file (equivalent of double-clicking on it)
+        xclip -sel clip < ~/filename.txt                   #copies contents of file to clipboard
+        tar -xzvf archive.tar.gz                           #decompress a tar.gz file
+                -x extract
+                -c create an archive
+                -z compress archive with gzip
+                -v display progress in terminal while creating archive "verbose" mode
+                -f allows you to specify the filename
+                --exclude allows you to exclude an directory/file in the process
+                        Ex. tar -czvf archive.tar.gz /home/ubuntu --exclude=/home/ubuntu/Downloads --exclude=/home/ubuntu/.cache
+
+                Ex. of a similar format to extract the contents of the archive to a specific directory: tar -xzvf archive.tar.gz -C /tmp
+
+
 ###tips and tricks
         tldr package (e.g. man)                         #gives succinct explanation of tool command and a short list of common uses and examples
         ^incorrect^correct                              #caret used to replace misspelling in previous command
