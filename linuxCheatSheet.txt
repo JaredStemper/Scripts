@@ -2,7 +2,7 @@
 Cheatsheet for basic Linux commands
 ==========================================
 
-###General Linux:
+#General Linux
         #OS configs
                 neofetch                                   #nice gui system properties
                 uname -or                                  #kernel detection
@@ -23,7 +23,7 @@ Cheatsheet for basic Linux commands
                 ping www.example.com
                 tracepath www.example.com                          #replacement for traceroute. No privs needed except to send UDP packets
                 ssh endpoint -t  "cd path; bash"                   #runs a command into a non-interactive shell directly after sshing in
-                scp /local/file r_host:path/remote/file            #Copy a local file to a remote host:
+                scp /local/file r_host:path/remote/file            #Copy a local file to a remote host
 
         #system
                 systemctl reboot --firmware-setup                  #boot directly into firmware setup (boot order BIOS system info). also shift, ESC, f2, del, are all common hotkeys to enter the BIOS during system setup, but the delay is currently set to zero, so you need to hold it down immediately
@@ -34,21 +34,21 @@ Cheatsheet for basic Linux commands
                 dconf-editor                                       #Graphical editor for gsettings and dconf
                 gparted                                            #GNOME partition editor for viewing, creating, reorganizing, and deleting disk partitions
                 dpkg -l                                            #list all installed packages dpkg==debian package manager
-           ##tasks
-             ##find
+           #tasks
+             #find
                 fuser /path/to/.nfs||other file                    #identifies process using files
                 top                                                #displays and active list of all Linux processes
                 ps -ef | grep firefox                              #reports a snapshot of the current processes and then greps results for task
                    #returns:	given_PID ? Sl current_time /usr/lib/firefox-3.5.3/firefox
                 ps                                                 #reports a snapshot of the current processes.
                 ps -ef | grep firefox                              #find running task from snapshot using grep
-             ##screenshot program
+             #screenshot program
                 flameshot gui                                      #advanced screen shot program. fire flame spark screenshot
-             ##kill
+             #kill
                 kill -9 given_PID                                     #kill task
 
 
-           ##shortcuts/hotkeys
+           #shortcuts/hotkeys
                 xev | grep keysym                                  #find what keys are simulated when pressing stuff (e.g. fn+brightnessUp==F3)
                         remap fn stuff with xmodmap                #can map custom keys using fn
                         xmodmap -e 'keysym XF86AudioPrev = Home'
@@ -57,7 +57,7 @@ Cheatsheet for basic Linux commands
                 locate keybindings | xargs grep -H -i f1           #searches for keybinding files with f1 in them
 
                 gnome-tweak-tool is a well made GUI for doing many simplified changes
-          ##background settings change 
+          #background settings change 
                 sudo lightdm-gtk-greeter-settings                               #background settings GUI config
                 gedit sudo gedit /usr/share/gnome-shell/theme/ubuntu.css        #ctl+f for lockDialogGroup and edit file. If chaning from purple background, change from resource:/// to file:///
         sudo -i                                            #log in as root << be careful with that
@@ -109,10 +109,10 @@ Cheatsheet for basic Linux commands
                         Ex. tar -czvf archive.tar.gz /home/ubuntu --exclude=/home/ubuntu/Downloads --exclude=/home/ubuntu/.cache
                 Ex. of a similar format to extract the contents of the archive to a specific directory: tar -xzvf archive.tar.gz -C /tmp
 	#tar
-###General Linux:
+#General Linux
 
 
-###tips and tricks
+#tips and tricks
         tldr package (e.g. man)                         #gives succinct explanation of tool command and a short list of common uses and examples
         ^incorrect^correct                              #caret used to replace misspelling in previous command
 
@@ -144,11 +144,11 @@ Cheatsheet for basic Linux commands
                 % sort < biglist > slist
         #sorting
 
-        ###latex        
+        #latex        
         pdflatex file.tex #then hit enter and run
-###tips and tricks
+#tips and tricks
 
-###xargs
+#xargs
         ls | grep -E "pattern" | xargs -d '\n' -I{} echo {}
         somecommand | xargs -s 50000 echo | xargs -I '{}' -s 100000 rm '{}'
                 -d delimiter is: '\n'. can be anything (e.g. ' ', '.',etc)
@@ -156,7 +156,7 @@ Cheatsheet for basic Linux commands
                 -s option to increase the amount of buffer space that xargs uses
         ls | grep -E "*-[A-Za-z0-9]*.mp3" | xargs -d '\n' -I{} echo {}          #trying to figure out how to remove the junk characters after song download on youtube-dl
 
-###nano
+#nano
         alt+x disables help menu (text on bottom of screen)
         /etc/nanorc is location of nano config file (one of them anyways)
                 still testing, but apparently "unbind ^J main" can be appended to your nanorc file to disable all justifying
@@ -168,38 +168,38 @@ Cheatsheet for basic Linux commands
         alt+e to redo action
         ctrl+shift+_ to go to line number/column number
         ctrl+c for current position
-###nano
+#nano
 
-###hotkeys
+#hotkeys
    #separate workstations
         ctrl + alt + arrow key to switch between them
         ctrl + alt + shift + arrow key to move a window between them
         ctrl + l to clear screen #can also use bash command $clear
-###hotkeys
+#hotkeys
 
-###applications
-   ##edit starting placement of app
+#applications
+   #edit starting placement of app
         nano /usr/share/applications/gnome-terminal.desktop
         Exec=gnome-terminal --geometry 80x24+1000+900      #defines new location with new flag --geometry
-   ##start an application in background () &> &
+   #start an application in background () &> &
         $application &
-   ##stop process from dying if hangup or no input
+   #stop process from dying if hangup or no input
         nohup $process
-   ##break process from shell (avoid killing process with killing terminal)     
+   #break process from shell (avoid killing process with killing terminal)     
         ($application &> /dev/null &); exit                #starts application in background and separates process from shell; then kills shell
                 #( $application ) runs $application from a subshell
                 #$application &   starts application in background
                 #"&> /dev/null" redirects both stdout and stderr to the null device
-###applications
+#applications
 
-###grep/regex:
+#grep/regex
         grep -P "#[a-z ()-]+" acheatSheet.txt | grep -P "sudo (g)" | grep -P "/dev[/]?sda[0-2]" > text.txt
         # grep [-P pearl style] "[regex/search string]" file.name | <- pipes it to whatever else you do (such as a secondary grep to further specifyk
         sudo grep -F -a -C100 'searchString' /dev/sda1 > filename.txt       #looks for a recently deleted file --- very useful but not fool proof!! Memory still might be overwritten
         sudo chown user filename                           #change owners of file
-###grep/regex:
+#grep/regex
 
-###PDFs:
+#PDFs
         #how to use grep for single/multiple pdfs
         find /path -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "your pattern"' \; #needs a path and pattern, but that's it
 
@@ -209,15 +209,15 @@ Cheatsheet for basic Linux commands
         #combine pdfs
         magick -density 300 1.pdf 2.pdf a-third.pdf  final-combined.pdf                   #combine pdfs
         gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf pdf1.pdf pdf2.pdf #combine pdfs
-###PDFs:
+#PDFs
 
-###Pics/Monitor:
+#Pics/Monitor
         xrandr --output eDP-1 --rotate normal              #rotates screen to the normal position (can be changed to left/right)
         feh 'file.png'                                     # opens picture from terminal
         img2pdf img.png img2.png -o newPdf.pdf             #creates pdf file of given list of pictures (EX for multiple: img2pdf page*.png -o newPdf.pdf
-###Pics/Monitor:
+#Pics/Monitor
 
-###Github:
+#Github
         git add -A .      or git add --all :/
         git commit -m 'commit message from terminal'
         git commit -a or --all                           #adds all TRACKED changes
@@ -225,31 +225,27 @@ Cheatsheet for basic Linux commands
         git checkout master/<branch name>                #changes to given branch
         git reset --hard origin/master                   #take remote repo from master branch
         git stash [stash/drop]
-###Github:
+#Github
 
-###Scripting:
-   ##Aliases:
+#Scripting
+   #Aliases
         #to add aliases, cd into .bash_aliases || .bashrc || .bash_profile
         #after adding a new alias, use: source ~/.bash_aliases for whichever file you added it to
                 #source is a bash shell built-in command that executes the content of the file passed as argument, in the CURRENT shell. 
                 #It has a synonym in . (period)
         alias newCommand="cd /really/long\ and\ spaced/directory"      #can use either " or ' with no difference when setting the alias
         #also can be used to shorten current commands e.g....
-        alias mlp="pwd"                              #pwd shows the path of the current directory, and now can be called with only the command: p
+        alias mlp="pwd"                              #pwd shows the path of the current directory, and now can be called with only the command p
         #to ignore an alias for a commmand
         $ ls    vs    $ \ls
         #Other examples include:
                 alias ls='ls -al /etc'              #to temporarily disable the alias, simply use the \ key e.g. '\ls' to use the normal ls command
                 alias pl="mlp; newCommand"
                 alias dir="ls -al | grep ^d         #displays all sub-directories (with permissions) that are within the current directory
-   ##Aliases:
-
-   ###Bash:                                              #File endings are typically .sh,.bash,.ksh
-        ##general
-                chmod +0755 /path/to/yourscript.sh                    #Give w/r/execute permission to your script
-                ./path/to/yourscript.sh                             #And to run your script
-                bash bashFile   or  ./bashfilename.bash
-           ##for loops
+   #Aliases
+   #functions
+		declare {-F}				#prints all available functions declared in the current shell. with -F the code will NOT appear
+           #for loops
                 for n in {1..5}; do <COMMAND>; done
                         iterates through 1 - 5 and repeats the processes between do and done before exiting
                 #!/bin/bash
@@ -258,7 +254,7 @@ Cheatsheet for basic Linux commands
                 echo "$i";
                 done
 
-           ##if statements
+           #if statements
                 count=5
                 if [ $count == 5 ]
                 then
@@ -268,9 +264,10 @@ Cheatsheet for basic Linux commands
                 echo "$count"
                 else
                 echo "count is not 4 or 5"
-                ##fi denotes the end of a complex expression in base scripting language
+                #fi denotes the end of a complex expression in base scripting language
                 fi
-           ##case statements
+           #if statements
+           #case statements
                 case "$count" in
                 5)
                 echo "count is five"
@@ -281,47 +278,55 @@ Cheatsheet for basic Linux commands
                 *)
                 echo "none of the above"
                 esac                     #esac (case backwards) denotes the end of a case statement
-   ###Bash:                                              #File endings are typically .sh,.bash,.ksh
-###Scripting:
+           #case statements
+   #functions
+   #Bash                                              
+	#File endings are typically .sh,.bash,.ksh
+        #general
+                chmod +0755 /path/to/yourscript.sh			#Give w/r/execute permission to your script
+                ./path/to/yourscript.sh					#And to run your script
+                bash bashFile   or  ./bashfilename.bash
+   #Bash
+#Scripting
 
-###starting applications || setting window size location place placement 
+#starting applications || setting window size location place placement 
         setwindow <application> <horizontal-position> <vertical-position> <horizontal-size (%)> <vertical-size (%)>
                 from: https://askubuntu.com/questions/613973/how-can-i-start-up-an-application-with-a-pre-defined-window-size-and-position
                 e.g. $setwindow gnome-terminal 0 0 50 100
-###starting applications || setting window size location place placement 
+#starting applications || setting window size location place placement 
 
 
-###Apache2
-   ##On/Off:
+#Apache2
+   #On/Off
         sudo service apache2 start
         sudo service apache2 restart
         sudo service apache2 stop
-   ##Data:
+   #Data
         sudo systemctl status apache2                      #
         vi /etc/apache2/mods-enabled/status.conf           #
         ps -eo comm,etime,user | grep apache2              #gives runtime
-###Apache2
+#Apache2
 
-###iphone 
-   ##pictures:
+#iphone 
+   #pictures
         sudo apt install ifuse
         sudo apt install shotwell
         sudo apt install libimobiledevice-utils
         idevicepair validate
-   ##if ^ returns an error then -> 
+   #if ^ returns an error then -> 
         idevicepair pair
-   ##after success ->
+   #after success ->
         mkdir ~/pics && ifuse ~/pics
-###iphone 
+#iphone 
 
-###encryption
-   ##using crypt  (uses key cipher (weeeeeaaaaakkkk))
+#encryption
+   #using crypt  (uses key cipher (weeeeeaaaaakkkk))
         sudo apt-get install crypt
         cat my.txt | crypt > my.cpy         #encrypts
         cat my.cpy                          #verify encryption
         cat my.cpy | crypt > my.file.txt    #decrypt
                 enigma PASSWORD < my.cpy            #Under FreeBSD you can use enigma (same command with different name – the crypt utility, also known as enigma), to displays the previously created file on the terminal
-   ##using ccrypt (based on AES, but 256-bit block size)
+   #using ccrypt (based on AES, but 256-bit block size)
         sudo apt-get install ccrypt
         ccrypt filename                     #encrypt
         ccrypt –d encryptedfilename         #decrypt
@@ -332,13 +337,13 @@ Cheatsheet for basic Linux commands
                 -u, –unixcrypt: Simulate the old unix crypt command. 
 			Note: the cipher used by unix crypt has been broken and is not secure. Please use this option only to decrypt existing files. If filename arguments are given, decrypt the files to stdout. Otherwise, run as a filter. 
 			Note that for the unix crypt format, there is no easy way to detect whether a given key matches or not; thus, for safety, this mode does not overwrite files.
-###encryption
+#encryption
 
 
-###MacOS VM on linux virtbox   
+#MacOS VM on linux virtbox   
     #(instructions were adapted from https://www.pcsteps.com/2157-mac-os-x-virtual-machine-vmware-player/#Setting_up_macOS_High_Sierra)
 
-    ##create a MacOS ISO (high sierra is given case)
+    #create a MacOS ISO (high sierra is given case)
         #using another mac device, go to https://apps.apple.com/us/app/macos-high-sierra/id1246284741?mt=12 to begin installation of macOS installer
         It will appear in your applications folder. Run the following commands to convert it into an ISO image
         # Create High Sierra DMG Disk Image
@@ -361,9 +366,9 @@ Cheatsheet for basic Linux commands
 
         #if there is a problem with "createinstallmedia" tool, follow this tutorial to fix it:
         https://techsviewer.com/how-to-download-full-macos-catalina-installer-and-mojave/
-   ##convert ISO image to VDMK
+   #convert ISO image to VDMK
         VBoxManage convertfromraw fullfilepath.ISO fullfilepath.VMDK #change to .VDI if wanted
-   ##create machine
+   #create machine
         "macOS." On "Type" we choose "Mac OS X, " and as for the version, we have to select "macOS 10.13 High Sierra (64-bit)."\
 
         On the next screen, if we have the RAM to spare, we allocate at least 4096MB RAM.
@@ -371,7 +376,7 @@ Cheatsheet for basic Linux commands
         On the last screen, choose the last option to use an existing hard disk drive.
 
         Click on the folder icon and navigate to the Virtual Machine Disk Format (.VMDK) file, and open it
-   ##edit machine settings
+   #edit machine settings
         At the "System" section, uncheck the Floppy drive from the boot order and make sure the Chipset is IHC9
 
         On the "Processor" tab, allocate two Processors, or more if we have a Core i7 CPU with threads to spare
@@ -383,7 +388,7 @@ Cheatsheet for basic Linux commands
         Go back to "General" and write down the exact name given to the virtual machine
 
         Save the changes with OK and close VirtualBox completely. It is vital that Virtualbox isn't running for the next part
-   ##manipulate virtualMachine backend to make it think you are a mac device
+   #manipulate virtualMachine backend to make it think you are a mac device
         #if using windows, use: cd "C:\Program Files\Oracle\VirtualBox\"
         #then, change code snippets to start with VBoxManage.exe
         VBoxManage modifyvm "macOS" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
@@ -397,10 +402,10 @@ Cheatsheet for basic Linux commands
         VBoxManage setextradata "macOS" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 
         VBoxManage setextradata "macOS" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
-   ##create a fixed-size partition of memory
+   #create a fixed-size partition of memory
         Settings -> Storage tab, add new storage attachment (hover over buttons to see which one is correct).
 
-   ##Start machine
+   #Start machine
         After waiting for some code to pass, for a loading screen to pass, and for a grey screen to pass...
 
         Go to disk utility; choose the fixed partition created in the last step
@@ -414,12 +419,12 @@ Cheatsheet for basic Linux commands
         Accept the agreement and then choose the fixed-partition disk.
 
 	#After this, your vm will fail to boot properly and then begin the loading process again
-###MacOS VM on linux virtbox   
+#MacOS VM on linux virtbox   
 
 
 
 
-###redhat linux machine shennanigans
+#redhat linux machine shennanigans
 
 	#turn volume to 100%, and then text-to-voice what you want
         amixer -c 0 set Master 0DB && amixer -c 0 set Speaker+LO 0DB && amixer -c 0 set PCM 0DB && amixer set Master unmute && amixer set Speaker unmute
@@ -451,20 +456,20 @@ Cheatsheet for basic Linux commands
 			expect "password:"
 			send "$PASSWORD"
 		done
-###redhat linux machine shennanigans
+#redhat linux machine shennanigans
 
-###change background image and image settings
+#change background image and image settings
         gsettings set org.gnome.desktop.background picture-uri file:///home//seclabu3/Downloads/slowloris.gif;
         gsettings set org.gnome.desktop.background picture-options 'stretched';
-###change background image and image settings
+#change background image and image settings
 
 
-###Shortcuts/hotkeys cont.
-   #create the keybinding by editing (adding to-) the list that is returned by the command:
+#Shortcuts/hotkeys cont.
+   #create the keybinding by editing (adding to-) the list that is returned by the command
         gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings
-   #The returned list looks like (if it were only one shortcut currently):
+   #The returned list looks like (if it were only one shortcut currently)
         ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
-   #Apply the edited list by the command:
+   #Apply the edited list by the command
         gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[<altered_list>]"
    #set properties
         #set name
@@ -492,36 +497,36 @@ Cheatsheet for basic Linux commands
                 Numpad `-`:                KP_Subtract
 
                 #fn does not have a binding key, as fn keys alter the keyboard signal before it reaches the computer. 
-###Shortcuts/hotkeys cont.
+#Shortcuts/hotkeys cont.
 
 
 
-###bpython
-  ##install bpython (via a package manager, or pip install bpython) and get a better drop-in replacement for the python REPL 
-  ##Syntax highlighting, autocompletion, inline documentation as you type commands, autoindentation, etc
+#bpython
+  #install bpython (via a package manager, or pip install bpython) and get a better drop-in replacement for the python REPL 
+  #Syntax highlighting, autocompletion, inline documentation as you type commands, autoindentation, etc
         #to install
         sudo python3 pip -m install bpython  
         #call it with
         bpython
-###bpython
+#bpython
 
-###ffmpeg
+#ffmpeg
   #free/open-source project for handling video/audio/multimedia
-  ##documentation: http://ffmpeg.org/ffmpeg.html#TOC53*
-  ##rotate video
+  #documentation: http://ffmpeg.org/ffmpeg.html#TOC53*
+  #rotate video
         ffmpeg -i videoThing.mp4 -vf "transpose=1" newVideoThing.mp4
         #0 = 90CounterCLockwise and Vertical Flip (default) 
         #1 = 90Clockwise 
         #2 = 90CounterClockwise 
         #3 = 90Clockwise and Vertical Flip      
-  ##flip horizontal
+  #flip horizontal
         ffmpeg -i in.avi -vf "hflip" out.avi
-  ##speed up video  
+  #speed up video  
         ffmpeg -i videoThing.mp4 -filter:v "setpts=0.5*PTS" newVideoThing.mp4
-        ##Note that this method will drop frames to achieve the desired speed
-        ####Avoid dropped frames by specifying a higher output frame rate than the input
-        ####For example, to go from an input of 4 FPS to one that is sped up to 4x that (16 FPS):
+        #Note that this method will drop frames to achieve the desired speed
+        #Avoid dropped frames by specifying a higher output frame rate than the input
+        #For example, to go from an input of 4 FPS to one that is sped up to 4x that (16 FPS):
                 ffmpeg -i videoThing.mp4 -r 16 -filter:v "setpts=0.25*PTS" newVideoThing.mp4
-        ##You can smooth out slow/fast video with the ​minterpolate video filter. This is also known as "motion interpolation" or "optical flow". 
+        #You can smooth out slow/fast video with the ​minterpolate video filter. This is also known as "motion interpolation" or "optical flow". 
                 ffmpeg -i videoThing.mp4 -filter:v "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120'" newVideoThing.mp4
-###ffmpeg
+#ffmpeg
