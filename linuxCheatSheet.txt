@@ -1,4 +1,49 @@
 
+   ###Bash:                                              #File endings are typically .sh,.bash,.ksh
+        ##general
+                chmod +0755 /path/to/yourscript.sh                    #Give w/r/execute permission to your script
+                ./path/to/yourscript.sh                             #And to run your script
+                bash bashFile   or  ./bashfilename.bash
+           ##for loops
+                for n in {1..5}; do <COMMAND>; done
+                        iterates through 1 - 5 and repeats the processes between do and done before exiting
+                #!/bin/bash
+                lst='a b c d e'
+                for i in $lst; do
+                echo "$i";
+                done
+
+           ##if statements
+                count=5
+                if [ $count == 5 ]
+                then
+                echo "$count"
+                elif [ $count = 4 ]
+                then
+                echo "$count"
+                else
+                echo "count is not 4 or 5"
+                ##fi denotes the end of a complex expression in base scripting language
+                fi
+           ##case statements
+                case "$count" in
+                5)
+                echo "count is five"
+                ;;
+                6)
+                echo "count is six"
+                ;;
+                *)
+                echo "none of the above"
+                esac                     #esac (case backwards) denotes the end of a case statement
+
+###starting applications || setting window size location place placement 
+        setwindow <application> <horizontal-position> <vertical-position> <horizontal-size (%)> <vertical-size (%)>
+                from: https://askubuntu.com/questions/613973/how-can-i-start-up-an-application-with-a-pre-defined-window-size-and-position
+                e.g. $setwindow gnome-terminal 0 0 50 100
+###starting applications || setting window size location place placement 
+
+
 ###Apache2
    ##On/Off:
         sudo service apache2 start
