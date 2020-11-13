@@ -1,0 +1,34 @@
+
+
+
+###bpython
+  ##install bpython (via a package manager, or pip install bpython) and get a better drop-in replacement for the python REPL 
+  ##Syntax highlighting, autocompletion, inline documentation as you type commands, autoindentation, etc
+        #to install
+        sudo python3 pip -m install bpython  
+        #call it with
+        bpython
+
+
+
+###ffmpeg -  free/open-source project for handling video/audio/multimedia
+  ##documentation: http://ffmpeg.org/ffmpeg.html#TOC53*
+  ##rotate video
+        ffmpeg -i videoThing.mp4 -vf "transpose=1" newVideoThing.mp4
+        #0 = 90CounterCLockwise and Vertical Flip (default) 
+        #1 = 90Clockwise 
+        #2 = 90CounterClockwise 
+        #3 = 90Clockwise and Vertical Flip      
+  ##flip horizontal
+        ffmpeg -i in.avi -vf "hflip" out.avi
+  ##speed up video  
+        ffmpeg -i videoThing.mp4 -filter:v "setpts=0.5*PTS" newVideoThing.mp4
+        ##Note that this method will drop frames to achieve the desired speed
+        ####Avoid dropped frames by specifying a higher output frame rate than the input
+        ####For example, to go from an input of 4 FPS to one that is sped up to 4x that (16 FPS):
+                ffmpeg -i videoThing.mp4 -r 16 -filter:v "setpts=0.25*PTS" newVideoThing.mp4
+        ##You can smooth out slow/fast video with the ​minterpolate video filter. This is also known as "motion interpolation" or "optical flow". 
+                ffmpeg -i videoThing.mp4 -filter:v "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120'" newVideoThing.mp4
+
+
+
