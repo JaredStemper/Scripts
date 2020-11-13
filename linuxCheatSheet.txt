@@ -1,3 +1,53 @@
+==========================================
+Cheatsheet for basic Linux commands
+==========================================
+
+###General Linux:
+        #OS configs
+                neofetch                                   #nice gui system properties
+                uname -or                                  #kernel detection
+                lsb_release -irc                           #a way to check the release version (with it the codename of the distribution)
+                ls /sys/firmware/efi/                      # if the folder does not exist, then you are using BIOS. i could see it, thus i am using UEFI
+        #To find the vendor and model name of the processor, search the /proc/cpuinfo file with the grep command.       
+                cat /proc/cpuinfo | grep vendor | uniq
+                             ...  | grep 'model name' | ...
+        #architecture
+                sudo lshw                                  #pretty much tells you everything
+                lscpu                                      #reports the architecture
+                cat /proc/cpuinfo | grep -i 'core id'      #shows a unique id for each core in a single processor. Counting the core id would give a clear indication of the number of actual cores on the processor
+                xdpyinfo | grep dimensions                 #shows dimensions of screen
+        #bluetooth
+                dmesg | grep -i blue                       #shows if you have bluetooth capabilities
+                lsusb | grep Bluetooth                     #this will not work if your bluetooth device is using UART, not USB (if part of a SOC)
+        #network
+                ping www.example.com
+                tracepath www.example.com                          #replacement for traceroute. No privs needed except to send UDP packets
+                ssh endpoint -t  "cd path; bash"                   #runs a command into a non-interactive shell directly after sshing in
+                scp /local/file r_host:path/remote/file            #Copy a local file to a remote host:
+
+        #system
+                systemctl reboot --firmware-setup                  #boot directly into firmware setup (boot order BIOS system info). also shift, ESC, f2, del, are all common hotkeys to enter the BIOS during system setup, but the delay is currently set to zero, so you need to hold it down immediately
+                #to run command at startup start up put in the file: /etc/rc.local
+                lspci                                              #lists information about all PCI buses in the system and all devices connected to them
+                fdisk -l                                           #displays all partioned devices (e.g. usb sticks/drive) (inlcuding those not mounted)
+                speedtest-cli                                      #performs a speedtest in terminal using speedtest.net API
+                dconf-editor                                       #Graphical editor for gsettings and dconf
+                gparted                                            #GNOME partition editor for viewing, creating, reorganizing, and deleting disk partitions
+                dpkg -l                                            #list all installed packages dpkg==debian package manager
+           ##tasks
+             ##find
+                fuser /path/to/.nfs||other file                    #identifies process using files
+                top                                                #displays and active list of all Linux processes
+                ps -ef | grep firefox                              #reports a snapshot of the current processes and then greps results for task
+                        #returns#   given_PID ?        Sl     current_time /usr/lib/firefox-3.5.3/firefox
+                ps                                                 #reports a snapshot of the current processes.
+                ps -ef | grep firefox                              #find running task from snapshot using grep
+             ##screenshot program
+                flameshot gui                                      #advanced screen shot program. fire flame spark screenshot
+             ##kill
+                kill -9 given_PID                                     #kill task
+
+
            ##shortcuts/hotkeys
                 xev | grep keysym                                  #find what keys are simulated when pressing stuff (e.g. fn+brightnessUp==F3)
                         remap fn stuff with xmodmap                #can map custom keys using fn
@@ -26,6 +76,7 @@
                 cat file1 | tee -a file2 file3 file4               #appends file contents to as many files as you like
                         -a, --append: to append to the given files, does not overwrite
                 cat -e -t -v Makefile                              #cats file with \t marking tabs and $ signifying endlines. Useful for debugging tabs/spaces issues
+        #append
 
         mv file.txt home/jared/Downloads
         mv -t DESTINATION file1 file2 file3
@@ -42,10 +93,12 @@
         #shred
                 shred -s 10 - > fileNameInCurrentDir               #writes 10 random bytes of data to stdout and redirects it to a file
                 shred existing-File                                #overwrites file with random garbage data
-
+        #shred
 
         xdg-open filename.png                              #opens a file (equivalent of double-clicking on it)
         xclip -sel clip < ~/filename.txt                   #copies contents of file to clipboard
+
+	#tar
         tar -xzvf archive.tar.gz                           #decompress a tar.gz file
                 -x extract
                 -c create an archive
@@ -54,8 +107,9 @@
                 -f allows you to specify the filename
                 --exclude allows you to exclude an directory/file in the process
                         Ex. tar -czvf archive.tar.gz /home/ubuntu --exclude=/home/ubuntu/Downloads --exclude=/home/ubuntu/.cache
-
                 Ex. of a similar format to extract the contents of the archive to a specific directory: tar -xzvf archive.tar.gz -C /tmp
+	#tar
+###General Linux:
 
 
 ###tips and tricks
