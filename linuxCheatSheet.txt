@@ -1,8 +1,68 @@
-###random commands
+###tips and tricks
+        tldr package (e.g. man)                         #gives succinct explanation of tool command and a short list of common uses and examples
+        ^incorrect^correct                              #caret used to replace misspelling in previous command
+
+
+	#sed - Stream EDitor - perform operations on a text file and display result
+        sed [option] '{script}' [text file]
+
+                -i directly edit input file (as opposed to using > || >> to write to the file)
+                '2,4 d'  deletes lines 2-4
+                '/^#/ d' deletes all lines that start with # (removes comments from code, or ruins a c program lol)
+                        '/regex/ d' test.ex
+                        '/regex1/,/regex2/ d' removes lines between the two regex
+                -re 's/^# */bob/' replace # with bob (if at start of line, think comments in code)
+
+                's/foo/bar/'             # replaces only 1st instance in a line
+                's/foo/bar/4'            # replaces only 4th instance in a line
+                's/foo/bar/g'            # replaces ALL instances in a line
+	#sed - Stream EDitor - perform operations on a text file and display result
+
+        #sorting
+                 Using < you can redirect the input to come from a file rather than the keyboard. For example, to sort the list of fruit, type
+
+                        % sort < biglist
+
+                and the sorted list will be output to the screen.
+
+                To output the sorted list to a file, type,
+
+                % sort < biglist > slist
+        #sorting
+
+        ###latex        
+        pdflatex file.tex #then hit enter and run
+###tips and tricks
+
+###xargs
+        ls | grep -E "pattern" | xargs -d '\n' -I{} echo {}
+        somecommand | xargs -s 50000 echo | xargs -I '{}' -s 100000 rm '{}'
+                -d delimiter is: '\n'. can be anything (e.g. ' ', '.',etc)
+                -I{}  each line read from the input is buffered internally.   This means that there is an upper limit on the length of input line  that  xargs will accept when used with the -I option.
+                -s option to increase the amount of buffer space that xargs uses
+        ls | grep -E "*-[A-Za-z0-9]*.mp3" | xargs -d '\n' -I{} echo {}          #trying to figure out how to remove the junk characters after song download on youtube-dl
+
+###nano
+        alt+x disables help menu (text on bottom of screen)
+        /etc/nanorc is location of nano config file (one of them anyways)
+                still testing, but apparently "unbind ^J main" can be appended to your nanorc file to disable all justifying
+        ctrl+\ to search and replace
+        ctrl+shift+w to search
+        alt+a to set/unset mark (always used to unset lol)
+                if you highlight text using set, then hitting tab/shift+tab will indent or remove indents from all the lines highlighted!
+        alt+u to undo action
+        alt+e to redo action
+        ctrl+shift+_ to go to line number/column number
+        ctrl+c for current position
+###nano
+
+###hotkeys
    #separate workstations
         ctrl + alt + arrow key to switch between them
         ctrl + alt + shift + arrow key to move a window between them
         ctrl + l to clear screen #can also use bash command $clear
+###hotkeys
+
 ###applications
    ##edit starting placement of app
         nano /usr/share/applications/gnome-terminal.desktop
@@ -16,11 +76,15 @@
                 #( $application ) runs $application from a subshell
                 #$application &   starts application in background
                 #"&> /dev/null" redirects both stdout and stderr to the null device
+###applications
+
 ###grep/regex:
         grep -P "#[a-z ()-]+" acheatSheet.txt | grep -P "sudo (g)" | grep -P "/dev[/]?sda[0-2]" > text.txt
-                        # grep [-P pearl style] "[regex/search string]" file.name | <- pipes it to whatever else you do (such as a secondary grep to further specifyk
+        # grep [-P pearl style] "[regex/search string]" file.name | <- pipes it to whatever else you do (such as a secondary grep to further specifyk
         sudo grep -F -a -C100 'searchString' /dev/sda1 > filename.txt       #looks for a recently deleted file --- very useful but not fool proof!! Memory still might be overwritten
         sudo chown user filename                           #change owners of file
+###grep/regex:
+
 ###PDFs:
         #how to use grep for single/multiple pdfs
         find /path -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "your pattern"' \; #needs a path and pattern, but that's it
@@ -31,14 +95,13 @@
         #combine pdfs
         magick -density 300 1.pdf 2.pdf a-third.pdf  final-combined.pdf                   #combine pdfs
         gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf pdf1.pdf pdf2.pdf #combine pdfs
-
-
+###PDFs:
 
 ###Pics/Monitor:
         xrandr --output eDP-1 --rotate normal              #rotates screen to the normal position (can be changed to left/right)
         feh 'file.png'                                     # opens picture from terminal
-        img2pdf img.png img2.png -o newPdf.pdf             #creates pdf file of given list of pictures (EX for multiple: img2pdf page*.png -o newPdf.pdf)
-
+        img2pdf img.png img2.png -o newPdf.pdf             #creates pdf file of given list of pictures (EX for multiple: img2pdf page*.png -o newPdf.pdf
+###Pics/Monitor:
 
 ###Github:
         git add -A .      or git add --all :/
@@ -48,6 +111,7 @@
         git checkout master/<branch name>                #changes to given branch
         git reset --hard origin/master                   #take remote repo from master branch
         git stash [stash/drop]
+###Github:
 
 ###Scripting:
    ##Aliases:
@@ -64,6 +128,7 @@
                 alias ls='ls -al /etc'              #to temporarily disable the alias, simply use the \ key e.g. '\ls' to use the normal ls command
                 alias pl="mlp; newCommand"
                 alias dir="ls -al | grep ^d         #displays all sub-directories (with permissions) that are within the current directory
+   ##Aliases:
 
    ###Bash:                                              #File endings are typically .sh,.bash,.ksh
         ##general
@@ -102,6 +167,8 @@
                 *)
                 echo "none of the above"
                 esac                     #esac (case backwards) denotes the end of a case statement
+   ###Bash:                                              #File endings are typically .sh,.bash,.ksh
+###Scripting:
 
 ###starting applications || setting window size location place placement 
         setwindow <application> <horizontal-position> <vertical-position> <horizontal-size (%)> <vertical-size (%)>
