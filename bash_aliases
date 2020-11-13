@@ -1,3 +1,4 @@
+
 #standard shortcuts
         #allows for reverse ctrl+r with ctrl+s and a whole bunch of other things
         stty -ixon
