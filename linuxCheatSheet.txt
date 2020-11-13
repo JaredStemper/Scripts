@@ -435,7 +435,7 @@ Cheatsheet for basic Linux commands
 		USER=user
 		PASSWORD="pass"
 		
-		hostlst='hostname@host.com hostname2@host.com'
+		hostlst='hostname@domainName.com hostname2@domainName.com'
 		
 		#loop to go through each machine
 		for i in $hostlst; do

@@ -1,9 +1,36 @@
 #aliases
-	#runs command into non-interactive shell after logging in
-	alias iussh='ssh jaastemp@silo.soic.indiana.edu -t "source ~/.bashrc && source ~/.bash_aliases; bash"'
-	
+        #allows for reverse ctrl+r with ctrl+s and a whoel bunch of other things
+        stty -ixon
+
+	#general terminal laziness/movement shortcuts
+        alias l="clear;ls"
+        alias s="clear;ls -Alh"
+        alias a="clear;ls -A"
+        alias k="clear;ls -lh"
+        alias j="cd ..; l"
+        alias lh="clear; ls -Ad .*"
+
+        #remove screenshots from home
+        alias rmsc="rm './Screenshot from'*"
+
+	#every usage of nano is (S)mooth scrolling and can use the (m)ouse to set cursor
+        alias nano="nano -Sm"
+
+        alias nbash="nano ~/.bash_aliases; src"
+        alias vbash="vim ~/.bash_aliases; src"
+        alias open="xdg-open "
+
 	#executes contents of the file passed as arguments, in the CURRENT shell
 	alias src="source ~/.bashrc && source ~/.bash_aliases"
+
+	#runs command into non-interactive shell after logging in
+	alias iussh='ssh username@domainName.com -t "source ~/.bashrc && source ~/.bash_aliases; bash"'
+
+	#goes to home directory and uses the tree packages to show all directory/files
+	alias dendrite="cd ~; tree"
+
+        #short alias to run the gui of a very well made screenshot editor
+        alias flameshot='flameshot gui'
 
 #functions
         #runs git pull/add/commit/push in one command with the $* argument used as the commit message
