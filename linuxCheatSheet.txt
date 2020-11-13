@@ -1,4 +1,129 @@
 
+###Apache2
+   ##On/Off:
+        sudo service apache2 start
+        sudo service apache2 restart
+        sudo service apache2 stop
+   ##Data:
+        sudo systemctl status apache2                      #
+        vi /etc/apache2/mods-enabled/status.conf           #
+        ps -eo comm,etime,user | grep apache2              #gives runtime
+###Apache2
+
+###iphone 
+   ##pictures:
+        sudo apt install ifuse
+        sudo apt install shotwell
+        sudo apt install libimobiledevice-utils
+        idevicepair validate
+   ##if ^ returns an error then -> 
+        idevicepair pair
+   ##after success ->
+        mkdir ~/pics && ifuse ~/pics
+###iphone 
+
+###encryption
+   ##using crypt  (uses key cipher (weeeeeaaaaakkkk))
+        sudo apt-get install crypt
+        cat my.txt | crypt > my.cpy         #encrypts
+        cat my.cpy                          #verify encryption
+        cat my.cpy | crypt > my.file.txt    #decrypt
+                enigma PASSWORD < my.cpy            #Under FreeBSD you can use enigma (same command with different name – the crypt utility, also known as enigma), to displays the previously created file on the terminal
+   ##using ccrypt (based on AES, but 256-bit block size)
+        sudo apt-get install ccrypt
+        ccrypt filename                     #encrypt
+        ccrypt –d encryptedfilename         #decrypt
+                -e, –encrypt :Encrypt. This is the default mode. If filename arguments are given, encrypt the files and append the suffix .cpt to their names. Otherwise, run as a filter.
+                -d, –decrypt: Decrypt. If filename arguments are given, decrypt the files and strip the suffix .cpt from the filenames, if present. Otherwise, run as a filter.
+                -c, –cat: Decrypt one or more files to standard output. If no filename arguments are given, decrypt as a filter. Implies -l.
+                -x, –keychange: Change the key of encrypted data. In this mode, ccrypt prompts for two passwords: the old one and the new one. If filename arguments are given, modify the files. Otherwise, run as a filter.
+                -u, –unixcrypt: Simulate the old unix crypt command. 
+			Note: the cipher used by unix crypt has been broken and is not secure. Please use this option only to decrypt existing files. If filename arguments are given, decrypt the files to stdout. Otherwise, run as a filter. 
+			Note that for the unix crypt format, there is no easy way to detect whether a given key matches or not; thus, for safety, this mode does not overwrite files.
+###encryption
+
+
+###MacOS VM on linux virtbox   
+    #(instructions were adapted from https://www.pcsteps.com/2157-mac-os-x-virtual-machine-vmware-player/#Setting_up_macOS_High_Sierra)
+
+    ##create a MacOS ISO (high sierra is given case)
+        #using another mac device, go to https://apps.apple.com/us/app/macos-high-sierra/id1246284741?mt=12 to begin installation of macOS installer
+        It will appear in your applications folder. Run the following commands to convert it into an ISO image
+        # Create High Sierra DMG Disk Image
+        hdiutil create -o /tmp/Highsierra -size 7900m -volname highsierra -layout SPUD -fs HFS+J
+
+        # Mount DMG Image to your macOS
+        hdiutil attach /tmp/Highsierra.dmg -noverify -mountpoint /Volumes/Highsierra
+
+        # Create a High Sierra ISO image
+        sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/Highsierra
+
+        # Unmount Disk Image
+        hdiutil detach /volumes/Install\ macOS\ High\ Sierra
+
+        # Convert DMG to ISO
+        hdiutil convert /tmp/Highsierra.dmg -format UDTO -o ~/Desktop/Highsierra
+
+        # Rename and Move ISO Image to Desktop
+        mv ~/Desktop/Highsierra.cdr ~/Desktop/Highsierra.iso
+
+        #if there is a problem with "createinstallmedia" tool, follow this tutorial to fix it:
+        https://techsviewer.com/how-to-download-full-macos-catalina-installer-and-mojave/
+   ##convert ISO image to VDMK
+        VBoxManage convertfromraw fullfilepath.ISO fullfilepath.VMDK #change to .VDI if wanted
+   ##create machine
+        "macOS." On "Type" we choose "Mac OS X, " and as for the version, we have to select "macOS 10.13 High Sierra (64-bit)."\
+
+        On the next screen, if we have the RAM to spare, we allocate at least 4096MB RAM.
+
+        On the last screen, choose the last option to use an existing hard disk drive.
+
+        Click on the folder icon and navigate to the Virtual Machine Disk Format (.VMDK) file, and open it
+   ##edit machine settings
+        At the "System" section, uncheck the Floppy drive from the boot order and make sure the Chipset is IHC9
+
+        On the "Processor" tab, allocate two Processors, or more if we have a Core i7 CPU with threads to spare
+
+        At the "Display" section, set the maximum Video Memory of 128MB.
+
+        On the "Network" section, make sure the network setting is set to NAT
+
+        Go back to "General" and write down the exact name given to the virtual machine
+
+        Save the changes with OK and close VirtualBox completely. It is vital that Virtualbox isn't running for the next part
+   ##manipulate virtualMachine backend to make it think you are a mac device
+        #if using windows, use: cd "C:\Program Files\Oracle\VirtualBox\"
+        #then, change code snippets to start with VBoxManage.exe
+        VBoxManage modifyvm "macOS" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+
+        VBoxManage setextradata "macOS" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac11,3"
+
+        VBoxManage setextradata "macOS" "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
+
+        VBoxManage setextradata "macOS" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Iloveapple"
+
+        VBoxManage setextradata "macOS" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+
+        VBoxManage setextradata "macOS" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+   ##create a fixed-size partition of memory
+        Settings -> Storage tab, add new storage attachment (hover over buttons to see which one is correct).
+
+   ##Start machine
+        After waiting for some code to pass, for a loading screen to pass, and for a grey screen to pass...
+
+        Go to disk utility; choose the fixed partition created in the last step
+
+        Erase partition while choosing a memory format (suggested is journaled, but as long as you use something with GUID it will work)
+
+        Go back to start (either HostKey+Q or in one of the top left tabs on the screen)
+
+        Choose a new installation of high sierra
+
+        Accept the agreement and then choose the fixed-partition disk.
+
+	#After this, your vm will fail to boot properly and then begin the loading process again
+###MacOS VM on linux virtbox   
+
 
 
 
