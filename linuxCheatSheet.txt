@@ -2,7 +2,6 @@
 Cheatsheet for basic Linux commands
 ==========================================
 
-
 ###General Linux:
         #OS configs
                 neofetch                                   #nice gui system properties
@@ -505,8 +504,6 @@ Cheatsheet for basic Linux commands
         #call it with
         bpython
 ###bpython
-
-
 
 ###ffmpeg
   #free/open-source project for handling video/audio/multimedia
