@@ -87,7 +87,7 @@ Cheatsheet for basic Linux commands
                 for i in {1..LAST_RUN}; do history -d LINE_TO_DELETE; done
                         deletes at a certain line repeatedly LAST_RUN many times
         echo 'Hello' >newFile.txt                          #create a new text file (with given input)
-        ln -s targetfile optionalNameChange                #creates symlinked (-s) file in pwd
+        ln -s targetfile optionalNameChange                #creates symbolic link (symlink) (-s) file in pwd
         rm targetfile                                      #for deleting regular files as well as links
 
         #shred
