@@ -1,4 +1,35 @@
 
+###Pics/Monitor:
+        xrandr --output eDP-1 --rotate normal              #rotates screen to the normal position (can be changed to left/right)
+        feh 'file.png'                                     # opens picture from terminal
+        img2pdf img.png img2.png -o newPdf.pdf             #creates pdf file of given list of pictures (EX for multiple: img2pdf page*.png -o newPdf.pdf)
+
+
+###Github:
+        git add -A .      or git add --all :/
+        git commit -m 'commit message from terminal'
+        git commit -a or --all                           #adds all TRACKED changes
+        git push origin <branch name>
+        git checkout master/<branch name>                #changes to given branch
+        git reset --hard origin/master                   #take remote repo from master branch
+        git stash [stash/drop]
+
+###Scripting:
+   ##Aliases:
+        #to add aliases, cd into .bash_aliases || .bashrc || .bash_profile
+        #after adding a new alias, use: source ~/.bash_aliases for whichever file you added it to
+                #source is a bash shell built-in command that executes the content of the file passed as argument, in the CURRENT shell. 
+                #It has a synonym in . (period)
+        alias newCommand="cd /really/long\ and\ spaced/directory"      #can use either " or ' with no difference when setting the alias
+        #also can be used to shorten current commands e.g....
+        alias mlp="pwd"                              #pwd shows the path of the current directory, and now can be called with only the command: p
+        #to ignore an alias for a commmand
+        $ ls    vs    $ \ls
+        #Other examples include:
+                alias ls='ls -al /etc'              #to temporarily disable the alias, simply use the \ key e.g. '\ls' to use the normal ls command
+                alias pl="mlp; newCommand"
+                alias dir="ls -al | grep ^d         #displays all sub-directories (with permissions) that are within the current directory
+
    ###Bash:                                              #File endings are typically .sh,.bash,.ksh
         ##general
                 chmod +0755 /path/to/yourscript.sh                    #Give w/r/execute permission to your script
