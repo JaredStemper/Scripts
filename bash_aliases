@@ -171,7 +171,17 @@
 #standard shortcuts
 #misc
 	#shortcut to using the https://github.com/chubin/cheat.sh cheat sheet
-	alias cht='curl cht.sh/python/'
+        function cht() {
+                if [ $# -eq 1 ]; then
+			curl cht.sh/python/$1
+                fi;
+                if [ $# -eq 2 ]; then
+			curl cht.sh/python/$1/$2
+                fi;
+                if [ $# -eq 3 ]; then
+			curl cht.sh/$1/$2/$3
+                fi;
+        } #cht
 
 	#system stuff (uses Python file TODO: included in this repo)
         alias screenSize='cd /home/jared/Downloads/cheats/scripts; python3 screenSize.py'
