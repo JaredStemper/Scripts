@@ -34,6 +34,7 @@ Cheatsheet for basic Linux commands
                 dconf-editor                                       #Graphical editor for gsettings and dconf
                 gparted                                            #GNOME partition editor for viewing, creating, reorganizing, and deleting disk partitions
                 dpkg -l                                            #list all installed packages dpkg==debian package manager
+		sensors -f					   #display CPU temperature
            #tasks
              #find
                 fuser /path/to/.nfs||other file                    #identifies process using files
