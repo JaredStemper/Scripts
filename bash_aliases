@@ -1,4 +1,3 @@
-
 #standard shortcuts
         #allows for reverse ctrl+r with ctrl+s and a whole bunch of other things
         stty -ixon
@@ -14,9 +13,10 @@
         #remove screenshots from home
         alias rmsc="rm './Screenshot from'*"
 
-	#every usage of nano is (S)mooth scrolling and can use the (m)ouse to set cursor
-        alias nano="nano -Sm"
+	#every usage of nano is (S)mooth scrolling, can use the (m)ouse to set cursor, and is ($)oft-wrapped
+        alias nano="nano -Sm$"
 
+	alias lbash="nano ~/.bash_aliases; src"
         alias vbash="vim ~/Coding/Scripts/bash_aliases; src"
         alias open="xdg-open "
 
@@ -135,7 +135,7 @@
                         cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function() [\w\-]*\(\)";
                 fi;
                 if [ $# -eq 1 ]; then
-                        cat ~/Coding/Scripts/bash_aliases | grep -Pzo "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
+                        cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
                 fi;
         } #gf
         #searches for a string in a pdf
@@ -170,16 +170,35 @@
         } #gls
 #standard shortcuts
 #misc
+	#returns returnValue=1 if the given input is a number
+        function isNumber() {
+		re='^[0-9\.]+$'
+		returnValue=0
+		if [[ $1 =~ $re ]] ; then
+		   returnValue=1
+		fi
+	} #isNumber
 	#function to quickly use the https://github.com/chubin/cheat.sh cheat sheet
         function cht() {
 		if [ $# -eq 1 ]; then
 			p1=$(echo $1 | sed 's/ *$//')	#strips all whitespaces to avoid two separate curl commands (e.g. curl cht.sh/python/ global)
 			curl cht.sh/python/$p1
                 fi;
-                if [ $# -eq 2 ]; then
+                if [ $# -eq 2 ]; then	        
 			p1=$(echo $1 | sed 's/ *$//')
 			p2=$(echo $2 | sed 's/ *$//')
-			curl cht.sh/python/$p1/$p2
+
+		        #test if number or letter
+			isNumber $2	
+
+			#if number, show the corresponding python query (shows next option)
+			if [ $returnValue -eq 1 ]; then
+				curl cht.sh/python/$p1/$p2
+	                fi;
+			#if not a number, use $1 to access other programming languages
+			if [ $returnValue -eq 0 ]; then
+				curl cht.sh/$p1/$p2
+	                fi;
                 fi;
                 if [ $# -eq 3 ]; then
 			p1=$(echo $1 | sed 's/ *$//')
