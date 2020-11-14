@@ -170,6 +170,9 @@
         } #gls
 #standard shortcuts
 #misc
+	#shortcut to using the https://github.com/chubin/cheat.sh cheat sheet
+	alias cht='curl cht.sh/python/'
+
 	#system stuff (uses Python file TODO: included in this repo)
         alias screenSize='cd /home/jared/Downloads/cheats/scripts; python3 screenSize.py'
 
