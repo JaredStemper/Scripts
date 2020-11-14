@@ -170,16 +170,22 @@
         } #gls
 #standard shortcuts
 #misc
-	#shortcut to using the https://github.com/chubin/cheat.sh cheat sheet
+	#function to quickly use the https://github.com/chubin/cheat.sh cheat sheet
         function cht() {
-                if [ $# -eq 1 ]; then
-			curl cht.sh/python/$1
+		if [ $# -eq 1 ]; then
+			p1=$(echo $1 | sed 's/ *$//')	#strips all whitespaces to avoid two separate curl commands (e.g. curl cht.sh/python/ global)
+			curl cht.sh/python/$p1
                 fi;
                 if [ $# -eq 2 ]; then
-			curl cht.sh/python/$1/$2
+			p1=$(echo $1 | sed 's/ *$//')
+			p2=$(echo $2 | sed 's/ *$//')
+			curl cht.sh/python/$p1/$p2
                 fi;
                 if [ $# -eq 3 ]; then
-			curl cht.sh/$1/$2/$3
+			p1=$(echo $1 | sed 's/ *$//')
+			p2=$(echo $2 | sed 's/ *$//')
+			p3=$(echo $3 | sed 's/ *$//')
+			curl cht.sh/$p1/$p2/$p3
                 fi;
         } #cht
 
