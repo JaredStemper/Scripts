@@ -146,6 +146,12 @@ Cheatsheet for basic Linux commands
 
         #latex        
         pdflatex file.tex #then hit enter and run
+
+	#https://github.com/chubin/cheat.sh cheat sheet 
+	curl cht.sh/python/dictionary						#get examples and description of a tool through the repository of answers or automatic searching in stackoverflow
+	curl cht.sh/python/dictionary/1						#views additional answer (1,2,3,etc.)
+	\?Q									#only code, no comments (e.g. curl cht.sh/python/dictionary\?Q)
+	
 #tips and tricks
 
 #xargs
