@@ -237,6 +237,12 @@ Cheatsheet for basic Linux commands
         git checkout master/<branch name>                #changes to given branch
         git reset --hard origin/master                   #take remote repo from master branch
         git stash [stash/drop]
+	
+	#view git issues https://npmjs.org/package/git-issues
+		npm install -g git-issues	#to install git-issues
+		git issues			#view all open issues in git
+		git issues -s closed		#view all closed issues in git
+
 #Github
 
 #Scripting

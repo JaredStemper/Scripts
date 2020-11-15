@@ -14,7 +14,7 @@
         alias rmsc="rm './Screenshot from'*"
 
 	#every usage of nano is (S)mooth scrolling, can use the (m)ouse to set cursor, is ($)oft-wrapped, and does not show help men(u)
-        alias nano="nano -Sm$x"
+        alias nano="nano -xSm$"
 
 	alias lbash="nano ~/.bash_aliases; src"
         alias vbash="vim ~/Coding/Scripts/bash_aliases; src"
