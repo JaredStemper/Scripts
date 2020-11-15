@@ -98,7 +98,7 @@
 	            nano ~/Coding/Scripts/linuxCheatSheet.txt;
 
 	            echo 'Enter gitc commit message'; read var1; gitc $var1;
-	            cs $old_directory;
+	            cd $old_directory;
 	        fi;
 	        if [ $1 -eq 2 ]; then
 	            old_directory=$(pwd);
@@ -106,7 +106,8 @@
 	            cs $new_directory;
 
 	            echo 'Enter gitc commit message'; read var1; gitc $var1;
-	            cs $old_directory;
+	            echo $old_directory;
+		    cd $old_directory;
 	        fi;
 	    fi
 	} #ncheat
