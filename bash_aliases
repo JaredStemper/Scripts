@@ -115,21 +115,21 @@
         #grep the cheat sheet (different arguments allow for more precise parsing)
         function gcheat() {
                 if [ $# -eq 0 ]; then
-                        cat ~/Downloads/cheats/acheatSheet.txt;
+                        cat ~/Coding/Scripts/linuxCheatSheet.txt;
                 fi;
                 if [ $# -eq 1 ]; then
-                        cat ~/Downloads/cheats/acheatSheet.txt | grep $1;
+                        cat ~/Coding/Scripts/linuxCheatSheet.txt | grep $1;
                 fi;
                 if [ $# -eq 2 ]; then
-                        cat ~/Downloads/cheats/acheatSheet.txt | grep -A $2 $1;
+                        cat ~/Coding/Scripts/linuxCheatSheet.txt | grep -A $2 $1;
                 fi;
                 if [ $# -eq 3 ]; then
                         if [ $3 -eq 0]; then
-                                cat ~/Downloads/cheats/acheatSheet.txt | grep $1 $2;
+                                cat ~/Coding/Scripts/linuxCheatSheet.txt | grep $1 $2;
                         fi;
                         if [ $# -ne 0 ]; then
-                                cat ~/Downloads/cheats/acheatSheet.txt | grep $1;
-                                cat ~/Downloads/cheats/acheatSheet.txt | grep $2;
+                                cat ~/Coding/Scripts/linuxCheatSheet.txt | grep $1;
+                                cat ~/Coding/Scripts/linuxCheatSheet.txt | grep $2;
                         fi;
                 fi;
         } #gcheat
