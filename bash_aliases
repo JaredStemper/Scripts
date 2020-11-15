@@ -23,6 +23,9 @@
 	#executes contents of the file passed as arguments, in the CURRENT shell
 	alias src="source ~/.bashrc && source ~/.bash_aliases && source ~/Coding/Scripts/bash_aliases"
 
+	#sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
+	alias rm=trash
+
         #runs git pull/add/commit/push in one command with the $* argument used as the commit message
         function gitc() {  
                 git pull; git add --all :/; git commit -m "$*"; git push
