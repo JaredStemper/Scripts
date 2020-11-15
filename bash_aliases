@@ -132,7 +132,13 @@
         #grep a functions full contents 
         function gf() {
                 if [ $# -eq 0 ]; then
-                        cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function() [\w\-]*\(\)";
+
+#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\s\S]*?\(\) {" | awk '{ gsub("#","mmm") print }'
+#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\s\S]*?\(\) {" | sed s/#/\
+#			 \#/ && echo ""
+
+#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\S\s]*";
+                        cat ~/Coding/Scripts/bash_aliases | grep -Po "[ \t]*#.*?\n[\t ]*function() [\w\-]*\(\)";
                 fi;
                 if [ $# -eq 1 ]; then
                         cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
