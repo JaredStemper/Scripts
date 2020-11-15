@@ -117,6 +117,11 @@ Cheatsheet for basic Linux commands
         tldr package (e.g. man)                         #gives succinct explanation of tool command and a short list of common uses and examples
         ^incorrect^correct                              #caret used to replace misspelling in previous command
 
+        #sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
+                #other commands in the trash-cli package are trash-list, trash-empty, and restore-trash
+        alias rm=trash
+
+        unalias $someAlias
 
 	#sed - Stream EDitor - perform operations on a text file and display result
         sed [option] '{script}' [text file]
