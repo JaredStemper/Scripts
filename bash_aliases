@@ -197,6 +197,18 @@
                         ls $3 | grep $1 "$2"
                 fi;
         } #gls
+        #greps the unit test file for a specific target and then runs it
+        function atest() {
+                if [ $# -eq 0 ]; then
+			cd /home/jared/Coding/practice/amazon;
+			/home/jared/Coding/practice/amazon/autoTest;
+                fi;
+                if [ $# -eq 1 ]; then
+			cd /home/jared/Coding/practice/amazon;
+			$(cat /home/jared/Coding/practice/amazon/autoTest | grep -Pzo "(?<=#$1[\W\w])python3[\w -.]*");
+                fi;
+        } #atest
+
 #standard shortcuts
 #misc
 	#returns returnValue=1 if the given input is a number
@@ -324,6 +336,4 @@
         alias sheets="cd /home/jared/Downloads/SheetMusic/; open .; exit"
         alias syn="cd /home/jared/Classwork/synopsys"
 	alias practice="cd /home/jared/Coding/practice"
-		alias pr="cd /home/jared/Coding/practice"
-		alias prac="cd /home/jared/Coding/practice"
 #local bash shortcuts
