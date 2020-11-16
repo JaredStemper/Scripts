@@ -18,7 +18,8 @@
 
 	alias lbash="nano ~/.bash_aliases; src"
         alias vbash="vim ~/Coding/Scripts/bash_aliases; src"
-        alias open="xdg-open "
+        alias nnbash="nano ~/.bash_aliases; src"
+	alias open="xdg-open "
 
 	#executes contents of the file passed as arguments, in the CURRENT shell
 	alias src="source ~/.bashrc && source ~/.bash_aliases && source ~/Coding/Scripts/bash_aliases"

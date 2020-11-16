@@ -97,7 +97,15 @@ Cheatsheet for basic Linux commands
         #shred
 
         xdg-open filename.png                              #opens a file (equivalent of double-clicking on it)
-        xclip -sel clip < ~/filename.txt                   #copies contents of file to clipboard
+
+	#xclip
+		xclip -sel clip < ~/filename.txt                   #copies contents of file to clipboard
+		# Only copy the content to the X clipboard
+		cat file | xclip
+		# If you want to paste somewhere else other than a X application, try
+		cat file | xclip -selection clipboard
+	#xclip
+
 
 	#tar
         tar -xzvf archive.tar.gz                           #decompress a tar.gz file
