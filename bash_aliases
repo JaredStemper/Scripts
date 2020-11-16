@@ -205,7 +205,7 @@
                 fi;
                 if [ $# -eq 1 ]; then
 			cd /home/jared/Coding/practice/amazon;
-			$(cat /home/jared/Coding/practice/amazon/autoTest | grep -Pzo "(?<=#$1[\W\w])python3[\w -.]*");
+			$(grep -Pzo "(?<=#$1[\W\w])python3[\w -.]*" /home/jared/Coding/practice/amazon/autoTest);
                 fi;
         } #atest
 
@@ -336,4 +336,5 @@
         alias sheets="cd /home/jared/Downloads/SheetMusic/; open .; exit"
         alias syn="cd /home/jared/Classwork/synopsys"
 	alias practice="cd /home/jared/Coding/practice"
+	alias at="cd /home/jared/Coding/practice/amazon";
 #local bash shortcuts
