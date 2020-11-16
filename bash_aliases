@@ -27,6 +27,11 @@
 	#sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
 	alias rm=trash
 
+	#xclip to X clipboard shortcut
+	alias x="xclip"
+	#xclip to clipboard shortcut
+	alias xx="xclip -selection clipboard"
+
         #runs git pull/add/commit/push in one command with the $* argument used as the commit message
         function gitc() {  
                 git pull; git add --all :/; git commit -m "$*"; git push
@@ -114,6 +119,19 @@
 	} #ncheat
 
         #grep the cheat sheet (different arguments allow for more precise parsing)
+        function galias() {
+                if [ $# -eq 0 ]; then
+                        cat ~/Coding/Scripts/bash_aliases | grep "alias";
+                fi;
+                if [ $# -eq 1 ]; then
+                        cat ~/Coding/Scripts/bash_aliases | grep $1;
+                fi;
+                if [ $# -eq 2 ]; then
+                        cat ~/Coding/Scripts/bash_aliases | grep $1 $2;
+                fi;
+        } #gcheat
+
+        #grep the cheat sheet (different arguments allow for more precise parsing)
         function gcheat() {
                 if [ $# -eq 0 ]; then
                         cat ~/Coding/Scripts/linuxCheatSheet.txt;
@@ -134,6 +152,7 @@
                         fi;
                 fi;
         } #gcheat
+
         #grep a functions full contents 
         function gf() {
                 if [ $# -eq 0 ]; then
@@ -304,4 +323,7 @@
                 alias pgit="cd ~/Coding/Scripts"
         alias sheets="cd /home/jared/Downloads/SheetMusic/; open .; exit"
         alias syn="cd /home/jared/Classwork/synopsys"
+	alias practice="cd /home/jared/Coding/practice"
+		alias pr="cd /home/jared/Coding/practice"
+		alias prac="cd /home/jared/Coding/practice"
 #local bash shortcuts
