@@ -200,11 +200,11 @@
         #greps the unit test file for a specific target and then runs it
         function atest() {
                 if [ $# -eq 0 ]; then
-			cd /home/jared/Coding/practice/amazon;
+			cs /home/jared/Coding/practice/amazon;
 			/home/jared/Coding/practice/amazon/autoTest;
                 fi;
                 if [ $# -eq 1 ]; then
-			cd /home/jared/Coding/practice/amazon;
+			cs /home/jared/Coding/practice/amazon;
 			$(grep -Pzo "(?<=#$1[\W\w])python3[\w -.]*" /home/jared/Coding/practice/amazon/autoTest);
                 fi;
         } #atest
