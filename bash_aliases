@@ -1,4 +1,5 @@
 #standard shortcuts
+
         #allows for reverse ctrl+r with ctrl+s and a whole bunch of other things
         stty -ixon
 
@@ -104,7 +105,7 @@
 	            nano ~/Coding/Scripts/linuxCheatSheet.txt;
 
 	            echo 'Enter gitc commit message'; read var1; gitc $var1;
-	            cd $old_directory;
+	            cs $old_directory;
 	        fi;
 	        if [ $1 -eq 2 ]; then
 	            old_directory=$(pwd);
@@ -112,8 +113,7 @@
 	            cs $new_directory;
 
 	            echo 'Enter gitc commit message'; read var1; gitc $var1;
-	            echo $old_directory;
-		    cd $old_directory;
+		    cs $old_directory;
 	        fi;
 	    fi
 	} #ncheat

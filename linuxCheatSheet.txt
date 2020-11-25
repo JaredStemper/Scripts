@@ -3,6 +3,7 @@ Cheatsheet for basic Linux commands
 ==========================================
 
 #General Linux
+
         #OS configs
                 neofetch                                   #nice gui system properties
                 uname -or                                  #kernel detection
