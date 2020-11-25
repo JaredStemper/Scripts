@@ -86,7 +86,7 @@
 	            cs $new_directory;
 
 	            echo 'Enter gitc commit message'; read var1; gitc $var1;
-	            cs $old_director;
+	            cs $old_directory;
 	        fi;
 	    fi
 	} #nbash
