@@ -192,11 +192,38 @@ Cheatsheet for basic Linux commands
         ctrl+c for current position
 #nano
 
+#vim
+	#basics
+	ESC to exit from current mode
+	normal mode: (hit i to enter)
+		:w - save
+		:q! - quit without saving
+		:wq - save and quit (q also works to close a singular screen of vim)
+		space - go to next character; backspace - go to previous character 
+		e - go to end of current/next word; b - go to beginning of current/previous word
+		j - go down a line; k - go up a line
+	#basics
+
+	#search
+	(used in normal mode)
+	:,+2s/\[0:4\]/.find(',')/g	searches from current position +2 lines and replaces all instances of "[0:4]" with .find(',')
+		(equivalent to ":.,.+2s" but the . is unnecessary
+		other useful ranges:		
+		    % for the whole file.
+		    '<,'> for the lines of visually selected block. 
+			This might get you more than you want of the visual selection starts or ends in the middle of a line. 
+			The whole line is included.
+		    'a,'b from mark a to mark b.
+		    .,$ from the current line to the end of the file.
+	#search
+
+#vim
 #hotkeys
-   #separate workstations
+   #workstations
         ctrl + alt + arrow key to switch between them
         ctrl + alt + shift + arrow key to move a window between them
         ctrl + l to clear screen #can also use bash command $clear
+   #workstations
 #hotkeys
 
 #applications
