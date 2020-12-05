@@ -193,6 +193,8 @@ Cheatsheet for basic Linux commands
 #nano
 
 #vim
+	set autoindent noexpandtab tabstop=4 shiftwidth=4 softabstop=-1		#use tabs instead of spaces
+
 	#basics
 	ESC to exit from current mode
 	normal mode: (hit i to enter)
