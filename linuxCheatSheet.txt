@@ -211,6 +211,45 @@ Cheatsheet for basic Linux commands
 		=%		Reindent a braced or bracketed block (cursor on brace)
 		<%		Decrease indent of a braced or bracketed block (cursor on brace)
 		]p		Paste text, aligning indentation with surroundings
+
+		0		move cursor to beginning of curr line
+		$		move cursor to end of current line
+		^		jump to the first non-whitespace character in the line
+		I		start inserting text at beginning of curr line
+		A		start appending text to the end of the curr line
+		O		add blank line above cursor, enter insert mode
+		o		add blank line below cursor, enter insert mode
+		J		join line below cursor with the curr linbe
+		1G		jump to first line in file
+		8G		jump to specific line in file
+		G		jump to last line in file
+		CTRL + U	Scroll up half a page
+		CTRL + D	Scroll down half a page
+
+		#windows
+		(window is a viewport onto a file (buffer). you can use mutl. windows on one buffer, or several windows on diff buffers)
+		vim -o file1 file2 file2	uppercase o to to open windows vertically
+
+		:sp		split window
+		:vs		split window vertically
+		:sp fileName	open a file in new window
+
+		CTRL+w w	move between opened windows
+		CTRL+w j	move one window down
+		CTRL+w k	move one window up
+		CTRL+w h	move one window to the left
+		CTRL+w l	move one window to the right
+		CTRL+w =	resize windows to be equal size
+		CTRL+w q	close active window (can also just use :q)
+
+		<c-w> v		splits window vertically
+		<c-w> s		splits window horizontally
+		:new / :vnew	open new windows with blank buffers
+		<c-w> </>	changes width of active pane (can be used w number: <c-w> 20 >)
+		<c-w> o		makes current window the only window (no way to go back though...)
+					alternative is :vsplit .
+		#windows
+
 	#basics
 
 	#search
