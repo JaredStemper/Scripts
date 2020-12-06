@@ -193,67 +193,92 @@ Cheatsheet for basic Linux commands
 #nano
 
 #vim
+	vi ~/.vimrc
+	set all			list all current vim settings
+	set			list vim settings set in vim config/runtime
+
 	set autoindent noexpandtab tabstop=4 shiftwidth=4 softabstop=-1		#use tabs instead of spaces
 	set syntax=python	set syntax to specific language
-
-	#basics
+	set nu/nu!		turn on/off line numbers
+	set rnu/nornu		turn on/off relative line numbers
 	ESC to exit from current mode
 	(shift+i or i to enter insert mode)
+	#open
+		vi +$lineNumber file				start vim at specific line number
+		vi +/searchTermHere file.c			start vim at location of first instance of search (escape characters with \ )
+		vim -o file1 file2 file2			uppercase o to to open windows vertically (default is horizontal)
+	#open
 	#normal
 	normal mode: (press escape to enter
-		:w		save
-		:q!		quit without saving
-		:wq		save and quit (q also works to close a singular screen of vim)
+		#saving
+			:w		save
+			:q!		quit without saving
+			:wq		save and quit (q also works to close a singular screen of vim)
+			:w file		save the file as filename
+		#saving
+		#modify
+			A		start appending text to the end of the curr line
+			a		insert text after the current cursor location
+			O		Create a new line for text above the current cursor location (goes to insert mode)
+			o		Create a new line for the text below the current cursor location (goes to insert mode)
 
-		space		go to next character
-		backspace	go to previous character 
-		e		go to end of current/next word
-		b		go to beginning of current/previous word
-		j		go down a line; k - go up a line
-	
+			I		insert text at the beginning of the line
+			i		insert text before the current cursor location
+					
+			r		Replace the character under the cursor
+			cc		Remove the whole line and start Insert mode.
+			s		Remove the character under the cursor and start Insert mode.
+			X		delete the character before the current location
+			x		delete the character under the current location
+		#modify	
 		#indent
-		5>>		indent 5 lines (from current)
-		>%		Increase indent of a braced or bracketed block (place cursor on brace first)
-		=%		Reindent a braced or bracketed block (cursor on brace)
-		<%		Decrease indent of a braced or bracketed block (cursor on brace)
-		]p		Paste text, aligning indentation with surroundings
+			5>>		indent 5 lines (from current)
+			>%		Increase indent of a braced or bracketed block (place cursor on brace first)
+			=%		Reindent a braced or bracketed block (cursor on brace)
+			<%		Decrease indent of a braced or bracketed block (cursor on brace)
+			]p		Paste text, aligning indentation with surroundings
 		#indent
-
 		#copy
-		yy		copy the current line, including the newline character.
-		3yy		copy three lines, starting from the line where the cursor is positioned.
-		y$		copy everything from the cursor to the end of the line.
-		y^		copy everything from the cursor to the start of the line.
-		yw		copy to the start of the next word.
-		yiw		copy the current word.
-		y%		copy to the matching character. By default supported pairs are (), {}, and []. Useful to copy text between matching brackets
+			yy		copy the current line, including the newline character.
+			3yy		copy three lines, starting from the line where the cursor is positioned.
+			y$		copy everything from the cursor to the end of the line.
+			y^		copy everything from the cursor to the start of the line.
+			yw		copy to the start of the next word.
+			yiw		copy the current word.
+			y%		copy to the matching character. By default supported pairs are (), {}, and []. Useful to copy text between matching brackets
 		#copy
-		
 		#navigation
-		0		move cursor to beginning of curr line
-		$		move cursor to end of current line
-		^		jump to the first non-whitespace character in the line
-		I		start inserting text at beginning of curr line
-		A		start appending text to the end of the curr line
-		O		add blank line above cursor, enter insert mode
-		o		add blank line below cursor, enter insert mode
-		J		join line below cursor with the curr linbe
-		1G		jump to first line in file
-		8G		jump to specific line in file
-		G		jump to last line in file
+			0		move cursor to beginning of curr line
 
-		/		search forward
-		?		search backwards
-		*		if cursor is on word, jumps to next instance of the word
-		#		if cursor is one word, jump to previous instance of the word
-			can use n/N to cycle through matches of */#/?/'/'
+			$		move cursor to end of current line
+			^		jump to the first non-whitespace character in the line
 
-		CTRL + U	Scroll up half a page
-		CTRL + D	Scroll down half a page
-		CTRL + E	Scroll page up without moving cursor
-		CTRL + Y	Scroll page down without moving cursor
+			J		join line below cursor with the curr linbe
+			1G		jump to first line in file
+			8G		jump to specific line in file
+			G		jump to last line in file
+
+			/		search forward
+			?		search backwards
+			*		if cursor is on word, jumps to next instance of the word
+			#		if cursor is one word, jump to previous instance of the word
+				can use n/N to cycle through matches of */#/?/'/'
+
+			CTRL + U	Scroll up half a page
+			CTRL + D	Scroll down half a page
+			CTRL + E	Scroll page up without moving cursor
+			CTRL + Y	Scroll page down without moving cursor
+			#marks
+				:marks		display the name, line/column of each mark set
+				m followed by a letter (e.g.  ma sets mark a at the current position (line and column))
+				If you set mark 'a', any mark in the current file that was previously identified as 'a' is removed. (case sensitive)
+				` (backtick) followed by a mark-letter will take you directly to the set mark
+				' (single quote) takes you to the beginning of the line at the mark
+				Note: marks do not take you across files, unless you use the global marks (capitals)
+					editing file 2, and have mark A set in file 1 and use `A, Vim will close the current file and take you to mark A in file 1. 
+					If file 2 has unsaved changes, Vim will complain that you haven’t written the file since the last change, and refuse to open the new file.
+			#marks
 		#navigation
-
 		#window
 		(window is a viewport onto a file (buffer). you can use mutl. windows on one buffer, or several windows on diff buffers)
 			vim -o file1 file2 file2	uppercase o to to open windows vertically (default is horizontal)
