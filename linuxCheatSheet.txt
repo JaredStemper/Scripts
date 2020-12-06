@@ -197,8 +197,10 @@ Cheatsheet for basic Linux commands
 
 	#basics
 	ESC to exit from current mode
+	(shift+i or i to enter insert mode)
+
 	#normal
-	normal mode: (hit i to enter)
+	normal mode: (press escape to enter
 		:w		save
 		:q!		quit without saving
 		:wq		save and quit (q also works to close a singular screen of vim)
@@ -230,39 +232,55 @@ Cheatsheet for basic Linux commands
 		CTRL + D	Scroll down half a page
 	#normal
 	#visual
-	visual mode: (v to enter)
-		#select entire function
-		python:
-			]]		select continuous block of python code below cursor
-			[[		select continuous block of python code above cursor
-		Note: both latter approaches require you to be on the line with the function name
-		if curlyboi on the same line:
-		   e.g.	function tick() {
-			        // ... 
-			}
-			f{ or $		select entire fuction, including definition
-			V%d		visual line, move to matching pair, delete
-		if curlyboi on next line:
-		   e.g.	function tick() 
-			{
-			        // ... 
-			}
-			J		join the current line with the line below (also puts your cursor at the last character on the resulting line., {, just the one we need for the next command
-			V%d		visual line, move to matching pair, delete
+	visual mode: (v to enter) or (ctrl+v)
+		#character
+		#character
+		#line
+			#select entire function
+			python:
+				]]		select continuous block of python code below cursor
+				[[		select continuous block of python code above cursor
+			Note: both latter approaches require you to be on the line with the function name
+			if curlyboi on the same line:
+			   e.g.	function tick() {
+				        // ... 
+				}
+				f{ or $		select entire fuction, including definition
+				V%d		visual line, move to matching pair, delete
+			if curlyboi on next line:
+			   e.g.	function tick() 
+				{
+				        // ... 
+				}
+				J		join the current line with the line below (also puts your cursor at the last character on the resulting line., {, just the one we need for the next command
+				V%d		visual line, move to matching pair, delete
+				
+				or
 			
-			or
-		
-			Vj%d
+				Vj%d
 
-		alternate:
-			v{o}d
-			v		enter visual mode
-			{		move to first brace in function (press more than once if necessary
-			o		exchange cursor from top to bottom of function
-			d		delete selected text
-			y		copy/yank selected text
+			alternate:
+				v{o}d
+				v		enter visual mode
+				{		move to first brace in function (press more than once if necessary
+				o		exchange cursor from top to bottom of function
+				d		delete selected text
+				y		copy/yank selected text
+			#select entire function
+		#line
+		#block
+			#comment
+			comment selection
+				put cursor on first # or //, go down to last commented line and press x (deletes all # characters vertically)
+			uncomment selection
+				select until the last line; 
+				Shift+I		switch to INSERT mode
+				add chosen comment character (#, //). This will add a hash to the first line.
+				Esc (give it a second)		insert a # character on all other selected lines
 
-		#select entire function
+			#comment
+		#block
+	
 	#visual
 		#windows
 		(window is a viewport onto a file (buffer). you can use mutl. windows on one buffer, or several windows on diff buffers)
