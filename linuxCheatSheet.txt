@@ -197,6 +197,7 @@ Cheatsheet for basic Linux commands
 
 	#basics
 	ESC to exit from current mode
+	#normal
 	normal mode: (hit i to enter)
 		:w		save
 		:q!		quit without saving
@@ -227,7 +228,42 @@ Cheatsheet for basic Linux commands
 		G		jump to last line in file
 		CTRL + U	Scroll up half a page
 		CTRL + D	Scroll down half a page
+	#normal
+	#visual
+	visual mode: (v to enter)
+		#select entire function
+		python:
+			]]		select continuous block of python code below cursor
+			[[		select continuous block of python code above cursor
+		Note: both latter approaches require you to be on the line with the function name
+		if curlyboi on the same line:
+		   e.g.	function tick() {
+			        // ... 
+			}
+			f{ or $		select entire fuction, including definition
+			V%d		visual line, move to matching pair, delete
+		if curlyboi on next line:
+		   e.g.	function tick() 
+			{
+			        // ... 
+			}
+			J		join the current line with the line below (also puts your cursor at the last character on the resulting line., {, just the one we need for the next command
+			V%d		visual line, move to matching pair, delete
+			
+			or
+		
+			Vj%d
 
+		alternate:
+			v{o}d
+			v		enter visual mode
+			{		move to first brace in function (press more than once if necessary
+			o		exchange cursor from top to bottom of function
+			d		delete selected text
+			y		copy/yank selected text
+
+		#select entire function
+	#visual
 		#windows
 		(window is a viewport onto a file (buffer). you can use mutl. windows on one buffer, or several windows on diff buffers)
 		vim -o file1 file2 file2	uppercase o to to open windows vertically
