@@ -228,6 +228,13 @@ Cheatsheet for basic Linux commands
 		1G		jump to first line in file
 		8G		jump to specific line in file
 		G		jump to last line in file
+
+		/		search forward
+		?		search backwards
+		*		if cursor is on word, jumps to next instance of the word
+		#		if cursor is one word, jump to previous instance of the word
+			can use n/N to cycle through matches of */#/?/'/'
+
 		CTRL + U	Scroll up half a page
 		CTRL + D	Scroll down half a page
 		CTRL + E	Scroll page up without moving cursor
