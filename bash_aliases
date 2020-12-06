@@ -65,9 +65,9 @@
         } #cs
 	
 	#used to modify the cheatsheet with additional params to automatically push with gitc
-	function nbash() { 
+	function vbash() { 
 	    if [ $# -eq 0 ]; then
-	        nano ~/Coding/Scripts/bash_aliases; src;
+	        vim ~/Coding/Scripts/bash_aliases; src;
 	    fi;
 	    if [ $# -eq 1 ]; then
 	        if [ $1 -ne 2 ]; then
@@ -75,7 +75,7 @@
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
 
 	            cs $new_directory;
-	            nano ~/Coding/Scripts/bash_aliases; src;
+	            vim ~/Coding/Scripts/bash_aliases; src;
 
 	            echo 'Enter gitc commit message'; read var1; gitc $var1;
 	            cs $old_directory;
@@ -89,12 +89,12 @@
 	            cs $old_directory;
 	        fi;
 	    fi
-	} #nbash
+	} #vbash
 
 	#used to modify the cheatsheet with additional params to automatically push with gitc
-	function ncheat() { 
+	function vcheat() { 
 	    if [ $# -eq 0 ]; then
-	        nano ~/Coding/Scripts/linuxCheatSheet.txt;
+	        vim ~/Coding/Scripts/linuxCheatSheet.txt;
 	    fi;
 	    if [ $# -eq 1 ]; then
 	        if [ $1 -ne 2 ]; then
@@ -102,7 +102,7 @@
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
 	            cs $new_directory;
 
-	            nano ~/Coding/Scripts/linuxCheatSheet.txt;
+	            vim ~/Coding/Scripts/linuxCheatSheet.txt;
 
 	            echo 'Enter gitc commit message'; read var1; gitc $var1;
 	            cs $old_directory;
@@ -116,7 +116,7 @@
 		    cs $old_directory;
 	        fi;
 	    fi
-	} #ncheat
+	} #vcheat
 
         #grep the cheat sheet (different arguments allow for more precise parsing)
         function galias() {

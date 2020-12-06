@@ -210,13 +210,24 @@ Cheatsheet for basic Linux commands
 		e		go to end of current/next word
 		b		go to beginning of current/previous word
 		j		go down a line; k - go up a line
-
+	
+		#indent
 		5>>		indent 5 lines (from current)
 		>%		Increase indent of a braced or bracketed block (place cursor on brace first)
 		=%		Reindent a braced or bracketed block (cursor on brace)
 		<%		Decrease indent of a braced or bracketed block (cursor on brace)
 		]p		Paste text, aligning indentation with surroundings
+		#indent
 
+		#copy
+		yy - Yank (copy) the current line, including the newline character.
+		3yy - Yank (copy) three lines, starting from the line where the cursor is positioned.
+		y$ - Yank (copy) everything from the cursor to the end of the line.
+		y^ - Yank (copy) everything from the cursor to the start of the line.
+		yw - Yank (copy) to the start of the next word.
+		yiw – Yank (copy) the current word.
+		y% - Yank (copy) to the matching character. By default supported pairs are (), {}, and []. Useful to copy text between matching brackets
+		#copy
 		0		move cursor to beginning of curr line
 		$		move cursor to end of current line
 		^		jump to the first non-whitespace character in the line
@@ -711,7 +722,7 @@ Cheatsheet for basic Linux commands
                 Numpad number key(s):      KP_1
                 Numpad `-`:                KP_Subtract
 
-                #fn does not have a binding key, as fn keys alter the keyboard signal before it reaches the computer. 
+                #fn does not have a binding key, as fn keys alter the keyboard signal before it reaches the processor. 
 #Shortcuts/hotkeys cont.
 
 
