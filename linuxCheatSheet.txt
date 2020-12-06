@@ -194,11 +194,11 @@ Cheatsheet for basic Linux commands
 
 #vim
 	set autoindent noexpandtab tabstop=4 shiftwidth=4 softabstop=-1		#use tabs instead of spaces
+	set syntax=python	set syntax to specific language
 
 	#basics
 	ESC to exit from current mode
 	(shift+i or i to enter insert mode)
-
 	#normal
 	normal mode: (press escape to enter
 		:w		save
@@ -220,14 +220,16 @@ Cheatsheet for basic Linux commands
 		#indent
 
 		#copy
-		yy - Yank (copy) the current line, including the newline character.
-		3yy - Yank (copy) three lines, starting from the line where the cursor is positioned.
-		y$ - Yank (copy) everything from the cursor to the end of the line.
-		y^ - Yank (copy) everything from the cursor to the start of the line.
-		yw - Yank (copy) to the start of the next word.
-		yiw – Yank (copy) the current word.
-		y% - Yank (copy) to the matching character. By default supported pairs are (), {}, and []. Useful to copy text between matching brackets
+		yy		copy the current line, including the newline character.
+		3yy		copy three lines, starting from the line where the cursor is positioned.
+		y$		copy everything from the cursor to the end of the line.
+		y^		copy everything from the cursor to the start of the line.
+		yw		copy to the start of the next word.
+		yiw		copy the current word.
+		y%		copy to the matching character. By default supported pairs are (), {}, and []. Useful to copy text between matching brackets
 		#copy
+		
+		#navigation
 		0		move cursor to beginning of curr line
 		$		move cursor to end of current line
 		^		jump to the first non-whitespace character in the line
@@ -250,6 +252,7 @@ Cheatsheet for basic Linux commands
 		CTRL + D	Scroll down half a page
 		CTRL + E	Scroll page up without moving cursor
 		CTRL + Y	Scroll page down without moving cursor
+		#navigation
 
 		#window
 		(window is a viewport onto a file (buffer). you can use mutl. windows on one buffer, or several windows on diff buffers)
@@ -287,7 +290,7 @@ Cheatsheet for basic Linux commands
 			:tab drop {file}	open {file} in a new tab, or jump to a window/tab containing the file if there is one
 			#close
 			:tabfind {file}   open a new tab with filename given, searching the 'path' to find it
-				The :tabfind command uses Vim's 'path' option to determine which directories should be searched when opening the specified file. 
+				The :tabfind command uses Vims 'path' option to determine which directories should be searched when opening the specified file. 
 				For example, the following tells Vim to look in the directory containing the current file (.),
 				then the current directory (empty text between two commas), then each directory under the current directory ('**')
 					:set path=.,,**
@@ -310,15 +313,16 @@ Cheatsheet for basic Linux commands
 
 			Ctrl-PgDn     go to next tab	 (also works in insert mode)
 			Ctrl-PgUp     go to previous tab (also works in insert mode)
-
 			#navigation
 		#tab
 	#normal
 	#visual
 	visual mode: (v to enter) or (ctrl+v)
 		#character
+		(use v to enter) (default)
 		#character
 		#line
+		(use shift+v to enter)
 			#select entire function
 			python:
 				]]		select continuous block of python code below cursor
@@ -353,6 +357,9 @@ Cheatsheet for basic Linux commands
 		#line
 		#block
 		(use ctrl+v to enter)
+			#remove characters
+				highlight all lines to delete from; press x or use the delete key
+			#remove characters
 			#comment
 			comment selection
 				put cursor on first # or //, go down to last commented line and press x (deletes all # characters vertically)
@@ -461,7 +468,7 @@ Cheatsheet for basic Linux commands
         #Other examples include:
                 alias ls='ls -al /etc'              #to temporarily disable the alias, simply use the \ key e.g. '\ls' to use the normal ls command
                 alias pl="mlp; newCommand"
-                alias dir="ls -al | grep ^d         #displays all sub-directories (with permissions) that are within the current directory
+                alias dir="ls -al | grep ^d"         #displays all sub-directories (with permissions) that are within the current directory
    #Aliases
    #functions
 		declare {-F}				#prints all available functions declared in the current shell. with -F the code will NOT appear
@@ -613,7 +620,7 @@ Cheatsheet for basic Linux commands
 
         Go back to "General" and write down the exact name given to the virtual machine
 
-        Save the changes with OK and close VirtualBox completely. It is vital that Virtualbox isn't running for the next part
+        Save the changes with OK and close VirtualBox completely. It is vital that Virtualbox isnt running for the next part
    #manipulate virtualMachine backend to make it think you are a mac device
         #if using windows, use: cd "C:\Program Files\Oracle\VirtualBox\"
         #then, change code snippets to start with VBoxManage.exe
