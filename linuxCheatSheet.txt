@@ -758,6 +758,24 @@ Cheatsheet for basic Linux commands
 #Shortcuts/hotkeys cont.
 
 
+#python
+#terminal
+#debug
+#pdb
+native debugger (no need for pip install, but no builtin autocompletion)
+intrusive debug (have to put code in the program)
+	import pdb		
+	# put the following statement where you want the code to stop and step to pdb
+	pdb.set_trace()
+non-intrusive debug (run from terminal)
+	python -m pdf script.py
+#pdb
+
+
+
+
+#debug
+#terminal
 
 #bpython
   #install bpython (via a package manager, or pip install bpython) and get a better drop-in replacement for the python REPL 
@@ -767,6 +785,7 @@ Cheatsheet for basic Linux commands
         #call it with
         bpython
 #bpython
+#python
 
 #ffmpeg
   #free/open-source project for handling video/audio/multimedia
