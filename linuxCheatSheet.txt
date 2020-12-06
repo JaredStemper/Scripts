@@ -234,12 +234,26 @@ Cheatsheet for basic Linux commands
 		CTRL + Y	Scroll page down without moving cursor
 
 		#window
-			:sp myfile.txt		opens file in window on current tab (can be used to view/modify mutliple parts of the same file
-			CTRL+SHIFT+W c		closes current tab
-			CTRL+SHIFT+W T		move window to a new tab
+		(window is a viewport onto a file (buffer). you can use mutl. windows on one buffer, or several windows on diff buffers)
+			vim -o file1 file2 file2	uppercase o to to open windows vertically (default is horizontal)
 
+			:sp {myfile.txt}			horizontal split
+			:vsp {filename} or :vs {filename}	vertical split
 
-		#window
+			CTRL+SHIFT+W c			closes current window
+			Ctrl+W Q			closes current window
+
+			CTRL+SHIFT+W T			move window to a new tab
+			CTRL+W S (upper case)		horizontal splitting
+			CTRL+W v (lower case)		vertical splitting
+			CTRL+W CTRL+W			switch between windows (holding CTRL+W and repeatedly typing W also works)
+			CTRL+W J (xor K, H, L)		switch to adjacent window (intuitively up, down, left, right)
+			CTRL+W =			resize windows to be equal size
+			CTRL+W </>			changes width of active pane (can be used w number: <c-w> 20 >)
+			CTRL+O				makes current window the only window (no way to go back though...)
+								alternative is :vsplit .
+			:new / :vnew	open new windows with blank buffers
+		#windows
 		#tab
 			#open
 			vim -p first.txt second.txt
@@ -334,29 +348,6 @@ Cheatsheet for basic Linux commands
 		#block
 	
 	#visual
-		#windows
-		(window is a viewport onto a file (buffer). you can use mutl. windows on one buffer, or several windows on diff buffers)
-		vim -o file1 file2 file2	uppercase o to to open windows vertically
-
-		:sp		split window
-		:vs		split window vertically
-		:sp fileName	open a file in new window
-
-		CTRL+w w	move between opened windows
-		CTRL+w j	move one window down
-		CTRL+w k	move one window up
-		CTRL+w h	move one window to the left
-		CTRL+w l	move one window to the right
-		CTRL+w =	resize windows to be equal size
-		CTRL+w q	close active window (can also just use :q)
-
-		<c-w> v		splits window vertically
-		<c-w> s		splits window horizontally
-		:new / :vnew	open new windows with blank buffers
-		<c-w> </>	changes width of active pane (can be used w number: <c-w> 20 >)
-		<c-w> o		makes current window the only window (no way to go back though...)
-					alternative is :vsplit .
-		#windows
 
 	#basics
 
