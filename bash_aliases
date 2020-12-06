@@ -292,7 +292,10 @@
 #misc
 
 #local bash shortcuts
+	alias ctodo="nano /home/jared/Coding/todo/"
 	alias ntodo="nano /home/jared/Coding/todo/bashAliases.txt"
+	alias mtodo="nano /home/jared/Coding/todo/misc.txt"
+	
         #classwork
         alias 100="cd /home/jared/Classwork/a100/"
                 alias a100="cd /home/jared/Classwork/a100/"
