@@ -230,6 +230,8 @@ Cheatsheet for basic Linux commands
 		G		jump to last line in file
 		CTRL + U	Scroll up half a page
 		CTRL + D	Scroll down half a page
+		CTRL + E	Scroll page up without moving cursor
+		CTRL + Y	Scroll page down without moving cursor
 	#normal
 	#visual
 	visual mode: (v to enter) or (ctrl+v)
@@ -269,6 +271,7 @@ Cheatsheet for basic Linux commands
 			#select entire function
 		#line
 		#block
+		(use ctrl+v to enter)
 			#comment
 			comment selection
 				put cursor on first # or //, go down to last commented line and press x (deletes all # characters vertically)
