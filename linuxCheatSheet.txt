@@ -230,7 +230,22 @@ Cheatsheet for basic Linux commands
 			s		Remove the character under the cursor and start Insert mode.
 			X		delete the character before the current location
 			x		delete the character under the current location
+			
 		#modify	
+		#search
+		#replace
+		:,+2s/\[0:4\]/.find(',')/g	searches from current position +2 lines and replaces all instances of "[0:4]" with .find(',')
+			(equivalent to ":.,.+2s" but the . is unnecessary
+			other useful ranges:		
+				% for the whole file.
+				'<,'> for the lines of visually selected block. 
+				This might get you more than you want of the visual selection starts or ends in the middle of a line. 
+				The whole line is included.
+				'a,'b from mark a to mark b.
+				.,$ from the current line to the end of the file.
+			note: for regex s/// replaces first instance of every line, s///g replaces all isntances
+		#replace
+		#search
 		#indent
 			5>>		indent 5 lines (from current)
 			>%		Increase indent of a braced or bracketed block (place cursor on brace first)
@@ -273,7 +288,7 @@ Cheatsheet for basic Linux commands
 				m followed by a letter (e.g.  ma sets mark a at the current position (line and column))
 				If you set mark 'a', any mark in the current file that was previously identified as 'a' is removed. (case sensitive)
 				` (backtick) followed by a mark-letter will take you directly to the set mark
-				' (single quote) takes you to the beginning of the line at the mark
+				' (single quote' ) takes you to the beginning of the line at the mark
 				Note: marks do not take you across files, unless you use the global marks (capitals)
 					editing file 2, and have mark A set in file 1 and use `A, Vim will close the current file and take you to mark A in file 1. 
 					If file 2 has unsaved changes, Vim will complain that you haven’t written the file since the last change, and refuse to open the new file.
@@ -400,20 +415,6 @@ Cheatsheet for basic Linux commands
 	#visual
 
 	#basics
-
-	#search
-	(used in normal mode)
-	:,+2s/\[0:4\]/.find(',')/g	searches from current position +2 lines and replaces all instances of "[0:4]" with .find(',')
-		(equivalent to ":.,.+2s" but the . is unnecessary
-		other useful ranges:		
-		    % for the whole file.
-		    '<,'> for the lines of visually selected block. 
-			This might get you more than you want of the visual selection starts or ends in the middle of a line. 
-			The whole line is included.
-		    'a,'b from mark a to mark b.
-		    .,$ from the current line to the end of the file.
-	#search
-
 #vim
 #hotkeys
    #workstations
