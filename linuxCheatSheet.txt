@@ -413,8 +413,17 @@ Cheatsheet for basic Linux commands
 		#block
 	
 	#visual
-
-	#basics
+	#macro
+		#example
+		(this will create a macro to delete every other line in a file (if less than 20000 lines))
+		Start in mode.
+		Go to the beginning of the file by pressing gg.
+		Press qq.
+		Click arrow down and press dd after.
+		Press q.
+		Press 10000@q
+		#example
+	#macro
 #vim
 #hotkeys
    #workstations
