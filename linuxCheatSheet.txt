@@ -201,6 +201,7 @@ Cheatsheet for basic Linux commands
 	set syntax=python	set syntax to specific language
 	set nu/nu!		turn on/off line numbers
 	set rnu/nornu		turn on/off relative line numbers
+
 	ESC to exit from current mode
 	(shift+i or i to enter insert mode)
 	#open
@@ -261,6 +262,7 @@ Cheatsheet for basic Linux commands
 			yw		copy to the start of the next word.
 			yiw		copy the current word.
 			y%		copy to the matching character. By default supported pairs are (), {}, and []. Useful to copy text between matching brackets
+			:14,29y	copy from line number to line number
 		#copy
 		#navigation
 			0		move cursor to beginning of curr line
@@ -269,10 +271,11 @@ Cheatsheet for basic Linux commands
 			^		jump to the first non-whitespace character in the line
 
 			J		join line below cursor with the curr linbe
+			gg		jump to first line in file
 			1G		jump to first line in file
 			8G		jump to specific line in file
 			G		jump to last line in file
-
+	
 			/		search forward
 			?		search backwards
 			*		if cursor is on word, jumps to next instance of the word
