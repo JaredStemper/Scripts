@@ -220,11 +220,11 @@ Cheatsheet for basic Linux commands
 		#modify
 			A		start appending text to the end of the curr line
 			a		insert text after the current cursor location
-			O		Create a new line for text above the current cursor location (goes to insert mode)
-			o		Create a new line for the text below the current cursor location (goes to insert mode)
-
 			I		insert text at the beginning of the line
 			i		insert text before the current cursor location
+
+			O		Create a new line for text above the current cursor location (goes to insert mode)
+			o		Create a new line for the text below the current cursor location (goes to insert mode)
 					
 			r		Replace the character under the cursor
 			cc		Remove the whole line and start Insert mode.
