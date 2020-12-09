@@ -223,6 +223,11 @@ Cheatsheet for basic Linux commands
 			I		insert text at the beginning of the line
 			i		insert text before the current cursor location
 
+			D		delete to end of line from cursor
+			d0		delete to beginning of line (eats whitespace)
+			d^		delete to beginning of line (keeps whitespace)
+			<C-U> 	delete to beginning of line from cursor (insert mode)
+
 			O		Create a new line for text above the current cursor location (goes to insert mode)
 			o		Create a new line for the text below the current cursor location (goes to insert mode)
 					
@@ -276,6 +281,12 @@ Cheatsheet for basic Linux commands
 			8G		jump to specific line in file
 			G		jump to last line in file
 	
+			H				move cursor to top of page
+			L				move cursor to bottom of page
+			z or zt			move top of screen to cursor (<CR> == Enter)
+			z. or zz		move center of screen to cursor 
+			z- or zb		move bottom of screen to cursor 
+
 			/		search forward
 			?		search backwards
 			*		if cursor is on word, jumps to next instance of the word
