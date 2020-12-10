@@ -3,6 +3,9 @@
         #allows for reverse ctrl+r with ctrl+s and a whole bunch of other things
         stty -ixon
 
+		#modifies profile/directory description that shows at every command line
+		#export PS1='\u@\W'	#\w == username && \W == working directory (instead of full path)
+		export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;34m\]\W\[\033[00m\]\: '
 	#general terminal laziness/movement shortcuts
         alias l="clear;ls"
         alias s="clear;ls -Alh"

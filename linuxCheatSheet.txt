@@ -123,16 +123,105 @@ Cheatsheet for basic Linux commands
 
 
 #tips and tricks
-        tldr package (e.g. man)                         #gives succinct explanation of tool command and a short list of common uses and examples
-        ^incorrect^correct                              #caret used to replace misspelling in previous command
+	tldr package (e.g. man)                         #gives succinct explanation of tool command and a short list of common uses and examples
+	^incorrect^correct                              #caret used to replace misspelling in previous command
 
-        #sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
-                #other commands in the trash-cli package are trash-list, trash-empty, and restore-trash
-        alias rm=trash
+	#sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
+			#other commands in the trash-cli package are trash-list, trash-empty, and restore-trash
+	alias rm=trash
 
-        unalias $someAlias
+	unalias $someAlias								#used to remove an alias in the current shell. can be used in bashrc/bash_aliases to permanently "remove" an alias
 
-	#sed - Stream EDitor - perform operations on a text file and display result
+	#bash prompt
+		(Note: prepend "export " to all "PS1=" commands to properly set the environment variable
+		(Note: ${debian_chroot:+($debian_chroot)} lets Bash know if you’re using a Debian chroot environment (normally won’t be shown)
+		#color
+			\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
+			Breaks down to:
+				\[\033[01;32m\]\u@\h	set \u@\h to bold green
+				\[\033[00m\]:			set : to normal white
+				\[\033[01;34m\]\w		set \w to bold blue
+				\[\033[00m\]\$			set $ to normal white	
+
+			\[\033[ATTRIBUTE;COLORm\]
+			#color
+				Black: 30
+				Blue: 34
+				Cyan: 36
+				Green: 32
+				Purple: 35
+				Red: 31
+				White: 37
+				Yellow: 33
+
+				e.g. \[\033[32m\] for purple text
+			#color
+			#attributes	 
+				attribute must be added before the color number, separated by a semicolon (;)
+				
+				Normal Text: 0
+				Bold or Light Text: 1 (It depends on the terminal emulator.)
+				Dim Text: 2
+				Underlined Text: 4
+				Blinking Text: 5 (This does not work in most terminal emulators.)
+				Reversed Text: 7 (This inverts the foreground and background colors, so you’ll see black text on a white background if the current text is white text on a black background.)
+				Hidden Text: 8
+			#attributes	 
+			#background
+				Note: can also specify a background color, but you can’t add an attribute to a background color.
+
+				Black: 40
+				Blue: 44
+				Cyan: 46
+				Green: 42
+				Purple: 45
+				Red: 41
+				White: 47
+				Yellow: 43
+				
+				e.g. \[\033[42m\]\[\033[31m\]\u@\[\033[00m\]: to have a green background and red foretext color
+							^background ^foretext	  
+				The background and foreground text colors keep going past the prompt unless you specify color code 00 clear the color information 
+			#background
+
+		#color
+		#use command output
+			PS1="\u@\h on $(uname -s -r) \w\$ "		#puts the output of a command into the prompt
+		#use command output
+		#special characters
+			\a			A bell character 
+			\d			The date, in “Weekday Month Date” format (e.g., “Tue May 26”) 
+							The format is passed to strftime(3) and the result is inserted into the prompt string; 
+							an empty format results in a locale-specific time representation. The braces are required: \D{format}
+			\e			An escape character 
+			\h			The hostname, up to the first ‘.’ 
+			\H			The hostname 
+			\j			The number of jobs currently managed by the shell 
+			\l			The basename of the shell’s terminal device name 
+			\n			A newline 
+			\r			A carriage return 
+			\s			The name of the shell, the basename of $0 (the portion following the final slash) 
+			\t			The time, in 24-hour HH:MM:SS format 
+			\T			The time, in 12-hour HH:MM:SS format 
+			\@			The time, in 12-hour am/pm format 
+			\A			The time, in 24-hour HH:MM format 
+			\u			The username of the current user 
+			\v			The version of Bash (e.g., 2.00) 
+			\V			The release of Bash, version + patchlevel (e.g., 2.00.0) 
+			\w			The current working directory, with $HOME abbreviated with a tilde (uses the $PROMPT_DIRTRIM variable) 
+			\W			The basename of $PWD, with $HOME abbreviated with a tilde 
+			\!			The history number of this command 
+			\#			The command number of this command 
+			\$			If the effective uid is 0, #, otherwise $ 
+			\nnn		The character whose ASCII code is the octal value nnn
+			\\			A backslash 
+			\[			Begin a sequence of non-printing characters. This could be used to embed a terminal control sequence into the prompt 
+			\]			End a sequence of non-printing characters 
+		#special characters
+
+	#bash prompt
+	#sed 
+		(Stream EDitor - perform operations on a text file and display result)	
         sed [option] '{script}' [text file]
 
                 -i directly edit input file (as opposed to using > || >> to write to the file)
@@ -145,24 +234,27 @@ Cheatsheet for basic Linux commands
                 's/foo/bar/'             # replaces only 1st instance in a line
                 's/foo/bar/4'            # replaces only 4th instance in a line
                 's/foo/bar/g'            # replaces ALL instances in a line
+                's/foo/bar/I'            # replaces with case sensitive pattern 
 	#sed - Stream EDitor - perform operations on a text file and display result
 
-        #sorting
-                 Using < you can redirect the input to come from a file rather than the keyboard. For example, to sort the list of fruit, type
+	#sorting
+			 Using < you can redirect the input to come from a file rather than the keyboard. For example, to sort the list of fruit, type
 
-                        % sort < biglist
+					% sort < biglist
 
-                and the sorted list will be output to the screen.
+			and the sorted list will be output to the screen.
 
-                To output the sorted list to a file, type,
+			To output the sorted list to a file, type,
 
-                % sort < biglist > slist
-        #sorting
+			% sort < biglist > slist
+	#sorting
 
-        #latex        
-        pdflatex file.tex #then hit enter and run
+	#latex        
+	pdflatex file.tex #then hit enter and run
+	#latex        
 
-	#cht.sh		#https://github.com/chubin/cheat.sh cheat sheet cheatsheet
+	#cht.sh		
+	(https://github.com/chubin/cheat.sh cheat sheet cheatsheet)
 	curl cht.sh/python/dictionary						#get examples and description of a tool through the repository of answers or automatic searching in stackoverflow
 	curl cht.sh/python/dictionary/1						#views additional answer (1,2,3,etc.)
 	\?Q									#only code, no comments (e.g. curl cht.sh/python/dictionary\?Q)
@@ -174,9 +266,12 @@ Cheatsheet for basic Linux commands
         ls | grep -E "pattern" | xargs -d '\n' -I{} echo {}
         somecommand | xargs -s 50000 echo | xargs -I '{}' -s 100000 rm '{}'
                 -d delimiter is: '\n'. can be anything (e.g. ' ', '.',etc)
-                -I{}  each line read from the input is buffered internally.   This means that there is an upper limit on the length of input line  that  xargs will accept when used with the -I option.
+                -I{}  each line read from the input is buffered internally.
+						This means that there is an upper limit on the length of input line  that  xargs will accept when used with the -I option.
                 -s option to increase the amount of buffer space that xargs uses
-        ls | grep -E "*-[A-Za-z0-9]*.mp3" | xargs -d '\n' -I{} echo {}          #trying to figure out how to remove the junk characters after song download on youtube-dl
+        ls | grep -E "*-[A-Za-z0-9]*.mp3" | xargs -d '\n' -I{} echo {}
+			(Note: this was when i was trying to figure out how to remove the junk characters after song download on youtube-dl
+#xargs
 
 #nano
         alt+x disables help menu (text on bottom of screen)
@@ -198,9 +293,14 @@ Cheatsheet for basic Linux commands
 	set			list vim settings set in vim config/runtime
 
 	set autoindent noexpandtab tabstop=4 shiftwidth=4 softabstop=-1		#use tabs instead of spaces
-	set syntax=python	set syntax to specific language
-	set nu/nu!		turn on/off line numbers
-	set rnu/nornu		turn on/off relative line numbers
+	set syntax=python			set syntax to specific language
+	set nu/nu!					turn on/off line numbers
+	set rnu/nornu				turn on/off relative line numbers
+
+	Note: ignorecase/smartcase affects substitutions!
+	set ignorecase				case-insensitive searching 
+	set smartcase				which will automatically switch to a case-sensitive search if you use any capital letters
+									applies only when set ignorecase is already active
 
 	ESC to exit from current mode
 	(shift+i or i to enter insert mode)
@@ -219,7 +319,7 @@ Cheatsheet for basic Linux commands
 		#saving
 		#modify
 			A		start appending text to the end of the curr line
-			a		insert text after the current cursor location
+			a		insert text after the current cursor location (often used in conjunction with e (moving to the end of the next word))
 			I		insert text at the beginning of the line
 			i		insert text before the current cursor location
 
@@ -244,7 +344,16 @@ Cheatsheet for basic Linux commands
 			
 		#modify	
 		#search
+			ignorecase and smartcase are currently set in .vimrc, so case is ignore by default unless an upercase letter is used
+			for a case sensitive search:	\C (uppercase c) 
+				a case insensitive search:	\c (lowercase c) 
+			e.g. 
+				/copyright		is case insensitive
+				/Copyright		is case sensitive
+				/copyright\C	is case insensitive
+				/copyright\c	is case sensitive
 		#replace
+		Note: ignorecase/smartcase affects substitutions!
 		:,+2s/\[0:4\]/.find(',')/g	searches from current position +2 lines and replaces all instances of "[0:4]" with .find(',')
 			(equivalent to ":.,.+2s" but the . is unnecessary
 			other useful ranges:		
@@ -254,7 +363,7 @@ Cheatsheet for basic Linux commands
 				The whole line is included.
 				'a,'b from mark a to mark b.
 				.,$ from the current line to the end of the file.
-			note: for regex s/// replaces first instance of every line, s///g replaces all isntances
+			note: for regex s/// replaces first instance of every line, s///g replaces all instances
 		#replace
 		#search
 		#indent
@@ -335,7 +444,7 @@ Cheatsheet for basic Linux commands
 			CTRL+O				makes current window the only window (no way to go back though...)
 								alternative is :vsplit .
 			:new / :vnew	open new windows with blank buffers
-		#windows
+		#window
 		#tab
 			#open
 			vim -p first.txt second.txt
@@ -400,7 +509,8 @@ Cheatsheet for basic Linux commands
 				{
 				        // ... 
 				}
-				J		join the current line with the line below (also puts your cursor at the last character on the resulting line., {, just the one we need for the next command
+				J		join the current line with the line below 
+							(also puts your cursor at the last character on the resulting line '{')
 				V%d		visual line, move to matching pair, delete
 				
 				or
@@ -429,10 +539,8 @@ Cheatsheet for basic Linux commands
 				Shift+I		switch to INSERT mode
 				add chosen comment character (#, //). This will add a hash to the first line.
 				Esc (give it a second)		insert a # character on all other selected lines
-
 			#comment
 		#block
-	
 	#visual
 	#macro
 		#example
@@ -446,6 +554,7 @@ Cheatsheet for basic Linux commands
 		#example
 	#macro
 #vim
+
 #hotkeys
    #workstations
         ctrl + alt + arrow key to switch between them
@@ -471,7 +580,7 @@ Cheatsheet for basic Linux commands
 
 #grep/regex
         grep -P "#[a-z ()-]+" acheatSheet.txt | grep -P "sudo (g)" | grep -P "/dev[/]?sda[0-2]" > text.txt
-        # grep [-P pearl style] "[regex/search string]" file.name | <- pipes it to whatever else you do (such as a secondary grep to further specifyk
+        # grep [-P pearl style] "[regex/search string]" file.name | <- pipes it to whatever else you do (such as a secondary grep to further specify
         sudo grep -F -a -C100 'searchString' /dev/sda1 > filename.txt       #looks for a recently deleted file --- very useful but not fool proof!! Memory still might be overwritten
         sudo chown user filename                           #change owners of file
 #grep/regex
