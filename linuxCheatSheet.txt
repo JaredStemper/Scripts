@@ -227,6 +227,11 @@ Cheatsheet for basic Linux commands
 			d0		delete to beginning of line (eats whitespace)
 			d^		delete to beginning of line (keeps whitespace)
 			<C-U> 	delete to beginning of line from cursor (insert mode)
+			dw daw	"delete a word" under your cursor
+
+			cc		delete current line, insert mode, and stay at current whitespace/indentation
+			cw caw	"change a word". deletes word under your cursor and switchces to insert mode
+			c...	Note: c works almost identically to 'd', but switches automatically to insert mode and retain whitespace in some cases
 
 			O		Create a new line for text above the current cursor location (goes to insert mode)
 			o		Create a new line for the text below the current cursor location (goes to insert mode)
@@ -279,9 +284,10 @@ Cheatsheet for basic Linux commands
 			gg		jump to first line in file
 			1G		jump to first line in file
 			8G		jump to specific line in file
-			G		jump to last line in file
+			G		jump to bottom/last line in file
 	
 			H				move cursor to top of page
+			M				move cursor to middle of page
 			L				move cursor to bottom of page
 			z or zt			move top of screen to cursor (<CR> == Enter)
 			z. or zz		move center of screen to cursor 
