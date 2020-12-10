@@ -303,6 +303,7 @@ Cheatsheet for basic Linux commands
 			CTRL + D	Scroll down half a page
 			CTRL + E	Scroll page up without moving cursor
 			CTRL + Y	Scroll page down without moving cursor
+			Ctrl + o	Jump back to previous location
 			#marks
 				:marks		display the name, line/column of each mark set
 				m followed by a letter (e.g.  ma sets mark a at the current position (line and column))
