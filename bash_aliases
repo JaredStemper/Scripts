@@ -4,7 +4,7 @@
         stty -ixon
 
 		#modifies profile/directory description that shows at every command line
-		#export PS1='\u@\W'	#\w == username && \W == working directory (instead of full path)
+		#export PS1='\u@\W'	#\u == username && \W == working directory (instead of full path)
 		export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;34m\]\W\[\033[00m\]\: '
 	#general terminal laziness/movement shortcuts
         alias l="clear;ls"
@@ -127,12 +127,15 @@
         #grep the cheat sheet (different arguments allow for more precise parsing)
         function galias() {
                 if [ $# -eq 0 ]; then
+                        cat ~/.bash_aliases | grep "alias";
                         cat ~/Coding/Scripts/bash_aliases | grep "alias";
                 fi;
                 if [ $# -eq 1 ]; then
+                        cat ~/.bash_aliases | grep $1;
                         cat ~/Coding/Scripts/bash_aliases | grep $1;
                 fi;
                 if [ $# -eq 2 ]; then
+                        cat ~/.bash_aliases | grep $1 $2;
                         cat ~/Coding/Scripts/bash_aliases | grep $1 $2;
                 fi;
         } #gcheat
