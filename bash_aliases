@@ -179,10 +179,10 @@
         #searches for a string in a pdf
         function gpdf() {
                 if [ $# -eq 1 ]; then
-                        find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "$1"' \;
+                        find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color '$1'' \;
                 fi;
                 if [ $# -eq 2 ]; then
-                        find $2 -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "$1"' \;
+                        find $2 -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color '$1'' \;
                 fi;
         } #gpdf
         #gman - searches a man page of a tool for a string
