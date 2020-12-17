@@ -141,6 +141,29 @@
         } #gcheat
 
         #grep the cheat sheet (different arguments allow for more precise parsing)
+        function tcheat() {
+                if [ $# -eq 0 ]; then
+					#return list of groups with tab-ed subsections
+					sort ~/Coding/Scripts/linuxCheatSheet.txt | uniq -d | grep -xf - ~/Coding/Scripts/linuxCheatSheet.txt | grep "#" | grep -f - ~/Coding/Scripts/linuxCheatSheet.txt | awk '!seen[$0]++';
+                fi;
+                if [ $# -eq 1 ]; then
+					#returns a single group and all subsections
+					cat ~/Coding/Scripts/linuxCheatSheet.txt | grep -Pzoi "[ \t]*#$1[\S\s]*#$1\n";
+                fi;
+                if [ $# -eq 2 ]; then
+					if [ "$2" == "0" ]; then
+						#return list of subsections under a group
+						sort ~/Coding/Scripts/linuxCheatSheet.txt | uniq -d | grep -xf - ~/Coding/Scripts/linuxCheatSheet.txt | grep "#" | grep -f - ~/Coding/Scripts/linuxCheatSheet.txt | grep -Pzoi "[ \t]*#$1[\S\s]*#$1" | awk '!seen[$0]++';
+					fi;
+					if [ "$2" !=  "0" ]; then
+						#returns a grep-ed subsection
+						ls;
+						#if nothing found, just returns full section
+					fi;
+                fi;
+		} #tcheat
+
+        #grep the cheat sheet (different arguments allow for more precise parsing)
         function gcheat() {
                 if [ $# -eq 0 ]; then
                         cat ~/Coding/Scripts/linuxCheatSheet.txt;
@@ -165,12 +188,12 @@
         #grep a functions full contents 
         function gf() {
                 if [ $# -eq 0 ]; then
-			cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function() [\w\-]*\(\)";
-#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\s\S]*?\(\) {" | awk '{ gsub("#","mmm") print }'
-#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\s\S]*?\(\) {" | sed s/#/\
-#			 \#/ && echo ""
+					cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function() [\w\-]*\(\)";
+		#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\s\S]*?\(\) {" | awk '{ gsub("#","mmm") print }'
+		#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\s\S]*?\(\) {" | sed s/#/\
+		#			 \#/ && echo ""
 
-#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\S\s]*";
+		#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\S\s]*";
                 fi;
                 if [ $# -eq 1 ]; then
                         cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
@@ -301,9 +324,9 @@
 #misc
 
 #local bash shortcuts
-	alias ctodo="nano /home/jared/Coding/todo/"
-	alias ntodo="nano /home/jared/Coding/todo/bashAliases.txt"
-	alias mtodo="nano /home/jared/Coding/todo/misc.txt"
+	alias ctodo="cd /home/jared/Coding/todo/"
+	alias vtodo="vim /home/jared/Coding/todo/bashAliases.txt"
+	alias mtodo="vim /home/jared/Coding/todo/misc.txt"
 	
         #classwork
         alias 100="cd /home/jared/Classwork/a100/"
