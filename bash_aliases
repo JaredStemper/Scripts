@@ -6,7 +6,7 @@
 		#modifies profile/directory description that shows at every command line
 		#export PS1='\u@\W'	#\u == username && \W == working directory (instead of full path)
 		export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;34m\]\W\[\033[00m\]\: '
-	#general terminal laziness/movement shortcuts
+		#general terminal laziness/movement shortcuts
         alias l="clear;ls"
         alias s="clear;ls -Alh"
         alias a="clear;ls -A"
@@ -148,7 +148,7 @@
                 fi;
                 if [ $# -eq 1 ]; then
 					#returns a single group and all subsections
-					cat ~/Coding/Scripts/linuxCheatSheet.txt | grep -Pzoi "[ \t]*#$1[\S\s]*#$1\n";
+					cat ~/Coding/Scripts/linuxCheatSheet.txt | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n";
                 fi;
                 if [ $# -eq 2 ]; then
 					if [ "$2" == "0" ]; then
@@ -156,9 +156,9 @@
 						sort ~/Coding/Scripts/linuxCheatSheet.txt | uniq -d | grep -xf - ~/Coding/Scripts/linuxCheatSheet.txt | grep "#" | grep -f - ~/Coding/Scripts/linuxCheatSheet.txt | grep -Pzoi "[ \t]*#$1[\S\s]*#$1" | awk '!seen[$0]++';
 					fi;
 					if [ "$2" !=  "0" ]; then
-						#returns a grep-ed subsection
-						ls;
-						#if nothing found, just returns full section
+						#if a word, search forreturns a grep-ed subsection
+						cat ~/Coding/Scripts/linuxCheatSheet.txt | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" | grep -Pzoi "[ \t]*#$2\h*\n[\S\s]*#$2\h*\n"
+						#if nothing found, just returns all subsections of $1
 					fi;
                 fi;
 		} #tcheat
