@@ -1203,3 +1203,62 @@ Cheatsheet for basic Linux commands
 	#You can smooth out slow/fast video with the ​minterpolate video filter. This is also known as "motion interpolation" or "optical flow". 
 	ffmpeg -i videoThing.mp4 -filter:v "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120'" newVideoThing.mp4
 #ffmpeg
+
+#docker
+	#build
+		docker build [options] .			Create an image from a Dockerfile.	
+			-t "app/container_name"    # name
+	#build
+	#run
+		docker run [options] IMAGE			Run a command in an image.	
+			  # see `docker create` for options
+	#run
+	#create
+		docker create [options] IMAGE
+			-a, --attach				# attach stdout/err
+			-i, --interactive			# attach stdin (interactive)
+			-t, --tty					# pseudo-tty
+			--name NAME					# name your image
+			-p, --publish 5000:5000    	# port map
+			--expose 5432				# expose a port to linked containers
+			-P, --publish-all			# publish all ports
+			--link container:alias		# linking
+			-v, --volume `pwd`:/app		# mount (absolute paths needed)
+			-e, --env NAME=hello		# env vars
+			
+		#example
+			$ docker create --name app_redis_1 \
+			  --expose 6379 \
+			  redis:3.0.2
+		#example
+	#create
+	#exec
+		docker exec [options] CONTAINER COMMAND				run commands in a container.	
+			-d, --detach        # run in background
+			-i, --interactive   # stdin
+			-t, --tty           # interactive
+
+		#example
+			docker exec app_web_1 tail logs/development.log
+			docker exec -t -i app_web_1 rails c
+		#example
+	#exec
+	#start
+		docker start [options] CONTAINER			Start/stop a container.	
+			-a, --attach        # attach stdout/err
+			-i, --interactive   # attach stdin
+
+		docker stop [options] CONTAINER
+	#start
+	#manage
+		Manage containers using ps/kill.
+		ps
+		ps -a
+		kill $ID
+	#manage
+	#images
+		docker images -a		show images (-a to include intermediate)
+		docker rmi				Deletes images.
+								docker rmi b750fe78269d
+	#images
+#docker
