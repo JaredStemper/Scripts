@@ -783,6 +783,10 @@ Cheatsheet for basic Linux commands
 		chmod +0755 /path/to/yourscript.sh       #Give w/r/execute permission to your script
 		./path/to/yourscript.sh               #And to run your script
 		bash bashFile   or  ./bashfilename.bash
+		^uniqueCommandTxet^uniqueCommandText
+		!!		replaces with previous command
+					^can also be used for caret substitution when replacing more than one word 
+						!!:gs/foo/bar/
 	#general
 	#bash prompt
 		(Note: prepend "export " to all "PS1=" commands to properly set the environment variable
