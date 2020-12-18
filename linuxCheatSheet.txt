@@ -451,12 +451,12 @@ Cheatsheet for basic Linux commands
 
    ESC to exit from current mode
    (shift+i or i to enter insert mode)
-   #open
+	#open
       vi +$lineNumber file          start vim at specific line number
       vi +/searchTermHere file.c       start vim at location of first instance of search (escape characters with \ )
       vim -o file1 file2 file2         uppercase o to to open windows vertically (default is horizontal)
-   #open
-   #normal
+	#open
+	#normal
 	   normal mode: (press escape to enter
 		#saving
 			:w    save
@@ -488,7 +488,7 @@ Cheatsheet for basic Linux commands
 			s     Remove the character under the cursor and start Insert mode.
 			X     delete the character before the current location
 			x     delete the character under the current location
-		#modify  
+		#modify
 		#search
 			ignorecase and smartcase are currently set in .vimrc, so case is ignore by default unless an upercase letter is used
 			for a case sensitive search:  \C (uppercase c) 
@@ -599,7 +599,7 @@ Cheatsheet for basic Linux commands
 						alternative is :vsplit .
 			:new / :vnew   open new windows with blank buffers
 		#window
-		  #tab
+		#tab
 			 #open
 				 vim -p first.txt second.txt
 				 :tab split  Edit the same file in two tabs.
@@ -619,7 +619,7 @@ Cheatsheet for basic Linux commands
 					then the current directory (empty text between two commas), then each directory under the current directory ('**')
 					   :set path=.,,**
 				 :tabedit {file}   edit specified file in a new tab
-			 #navigation
+			 #tab navigation
 				 :tabs         list all tabs including their displayed windows
 				 :tabm 0       move current tab to first
 				 :tabm         move current tab to last
@@ -637,17 +637,17 @@ Cheatsheet for basic Linux commands
 
 				 Ctrl-PgDn     go to next tab   (also works in insert mode)
 				 Ctrl-PgUp     go to previous tab (also works in insert mode)
-			 #navigation
-		  #tab
-   #normal
-   #visual
+			 #tab navigation
+			#tab
+	#normal
+	#visual
 		visual mode: (v to enter) or (ctrl+v)
 		#character
 			(use v to enter) (default)
 		#character
 		#line
 			(use shift+v to enter)
-			#select entire function
+			#select function
 				python:
 				]]    select continuous block of python code below cursor
 				[[    select continuous block of python code above cursor
@@ -678,7 +678,7 @@ Cheatsheet for basic Linux commands
 				o     exchange cursor from top to bottom of function
 				d     delete selected text
 				y     copy/yank selected text
-			#select entire function
+			#select function
 		#line
 		#block
 			(use ctrl+v to enter)
@@ -688,15 +688,21 @@ Cheatsheet for basic Linux commands
 			#comment
 				comment selection
 				put cursor on first # or //, go down to last commented line and press x (deletes all # characters vertically)
-				uncomment selection
-				select until the last line; 
-				Shift+I     switch to INSERT mode
-				add chosen comment character (#, //). This will add a hash to the first line.
-				Esc (give it a second)     insert a # character on all other selected lines
+				#uncomment
+					uncomment selection
+					select until the last line; 
+					Shift+I     switch to INSERT mode
+					add chosen comment character (#, //). This will add a hash to the first line.
+					Esc (give it a second)     insert a # character on all other selected lines
+				#uncomment
 			#comment
-			#block
-   #visual
+		#block
+	#visual
 	#macro
+		#set name
+			'q' and then a single letter/number to set macro name
+				e.g. '@w'. then 2@w will run that macro twice
+		#set name
 		#example
 			(this will create a macro to delete every other line in a file (if less than 20000 lines))
 			Start in mode.
@@ -719,8 +725,8 @@ Cheatsheet for basic Linux commands
 
 #applications
    #edit starting placement of app
-        nano /usr/share/applications/gnome-terminal.desktop
-        Exec=gnome-terminal --geometry 80x24+1000+900      #defines new location with new flag --geometry
+       nano /usr/share/applications/gnome-terminal.desktop
+       Exec=gnome-terminal --geometry 80x24+1000+900      #defines new location with new flag --geometry
    #start an application in background () &> &
         $application &
    #stop process from dying if hangup or no input
@@ -734,15 +740,17 @@ Cheatsheet for basic Linux commands
 
 
 #PDFs
-        #how to use grep for single/multiple pdfs
+        #single/multiple pdfs grep
         find /path -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "your pattern"' \; #needs a path and pattern, but that's it
+        #single/multiple pdfs grep
 
         libreoffice --convert-to "pdf" file.txt            #creates/takes text file and then converts to pdf
         convert xc:none -page Letter a.pdf                 #creates empty pdf file
 
         #combine pdfs
-        magick -density 300 1.pdf 2.pdf a-third.pdf  final-combined.pdf                   #combine pdfs
+        magick -density 300 1.pdf 2.pdf a-third.pdf  final-combined.pdf                   
         gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf pdf1.pdf pdf2.pdf #combine pdfs
+        #combine pdfs
 #PDFs
 
 #Pics/Monitor
@@ -760,11 +768,12 @@ Cheatsheet for basic Linux commands
 	git reset --hard origin/master                   #take remote repo from master branch
 	git stash [stash/drop]
 
-	#view git issues https://npmjs.org/package/git-issues
-		npm install -g git-issues  #to install git-issues
+	#view git issues
+	 	(https://npmjs.org/package/git-issues)
+	 	npm install -g git-issues  #to install git-issues
 		git issues        #view all open issues in git
 		git issues -s closed    #view all closed issues in git
-	#view git issues https://npmjs.org/package/git-issues
+	#view git issues
 #Github
 
 #bash
@@ -779,53 +788,53 @@ Cheatsheet for basic Linux commands
 		(Note: prepend "export " to all "PS1=" commands to properly set the environment variable
 		(Note: ${debian_chroot:+($debian_chroot)} lets Bash know if you’re using a Debian chroot environment (normally won’t be shown)
 		#color
-		 \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
-		 Breaks down to:
-			\[\033[01;32m\]\u@\h set \u@\h to bold green
-			\[\033[00m\]:        set : to normal white
-			\[\033[01;34m\]\w    set \w to bold blue
-			\[\033[00m\]\$       set $ to normal white   
+			 \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
+			 Breaks down to:
+				\[\033[01;32m\]\u@\h set \u@\h to bold green
+				\[\033[00m\]:        set : to normal white
+				\[\033[01;34m\]\w    set \w to bold blue
+				\[\033[00m\]\$       set $ to normal white   
 
-		 \[\033[ATTRIBUTE;COLORm\]
-		 #color
-			Black: 30
-			Blue: 34
-			Cyan: 36
-			Green: 32
-			Purple: 35
-			Red: 31
-			White: 37
-			Yellow: 33
+			 \[\033[ATTRIBUTE;COLORm\]
+			 #color
+				Black: 30
+				Blue: 34
+				Cyan: 36
+				Green: 32
+				Purple: 35
+				Red: 31
+				White: 37
+				Yellow: 33
 
-			e.g. \[\033[32m\] for purple text
-		 #color
-		 #attributes  
-			attribute must be added before the color number, separated by a semicolon (;)
-			
-			Normal Text: 0
-			Bold or Light Text: 1 (It depends on the terminal emulator.)
-			Dim Text: 2
-			Underlined Text: 4
-			Blinking Text: 5 (This does not work in most terminal emulators.)
-			Reversed Text: 7 (This inverts the foreground and background colors, so you’ll see black text on a white background if the current text is white text on a black background.)
-			Hidden Text: 8
-		 #attributes  
-		 #background
-			Note: can also specify a background color, but you can’t add an attribute to a background color.
+				e.g. \[\033[32m\] for purple text
+			 #color
+			 #attributes  
+				attribute must be added before the color number, separated by a semicolon (;)
+				
+				Normal Text: 0
+				Bold or Light Text: 1 (It depends on the terminal emulator.)
+				Dim Text: 2
+				Underlined Text: 4
+				Blinking Text: 5 (This does not work in most terminal emulators.)
+				Reversed Text: 7 (This inverts the foreground and background colors, so you’ll see black text on a white background if the current text is white text on a black background.)
+				Hidden Text: 8
+			 #attributes  
+			 #background
+				Note: can also specify a background color, but you can’t add an attribute to a background color.
 
-			Black: 40
-			Blue: 44
-			Cyan: 46
-			Green: 42
-			Purple: 45
-			Red: 41
-			White: 47
-			Yellow: 43
-			
-			e.g. \[\033[42m\]\[\033[31m\]\u@\[\033[00m\]: to have a green background and red foretext color
-					 ^background ^foretext     
-			The background and foreground text colors keep going past the prompt unless you specify color code 00 clear the color information 
-		 #background
+				Black: 40
+				Blue: 44
+				Cyan: 46
+				Green: 42
+				Purple: 45
+				Red: 41
+				White: 47
+				Yellow: 43
+				
+				e.g. \[\033[42m\]\[\033[31m\]\u@\[\033[00m\]: to have a green background and red foretext color
+						 ^background ^foretext     
+				The background and foreground text colors keep going past the prompt unless you specify color code 00 clear the color information 
+			 #background
 
 		#color
 		#use command output
@@ -861,7 +870,6 @@ Cheatsheet for basic Linux commands
 		 \[       Begin a sequence of non-printing characters. This could be used to embed a terminal control sequence into the prompt 
 		 \]       End a sequence of non-printing characters 
 		#special characters
-
 	#bash prompt
 	#Scripting
 		#Aliases
@@ -965,7 +973,7 @@ Cheatsheet for basic Linux commands
         cat my.cpy                          #verify encryption
         cat my.cpy | crypt > my.file.txt    #decrypt
                 enigma PASSWORD < my.cpy            #Under FreeBSD you can use enigma (same command with different name – the crypt utility, also known as enigma), to displays the previously created file on the terminal
-   #using crypt
+   #using crypt 
    #using ccrypt
 		(based on AES, but 256-bit block size)
         sudo apt-get install ccrypt
