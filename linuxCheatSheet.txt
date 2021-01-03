@@ -724,18 +724,32 @@ Cheatsheet for basic Linux commands
 #hotkeys
 
 #applications
-   #edit starting placement of app
-       nano /usr/share/applications/gnome-terminal.desktop
-       Exec=gnome-terminal --geometry 80x24+1000+900      #defines new location with new flag --geometry
-   #start an application in background () &> &
-        $application &
-   #stop process from dying if hangup or no input
-        nohup $process
-   #break process from shell (avoid killing process with killing terminal)     
-        ($application &> /dev/null &); exit                #starts application in background and separates process from shell; then kills shell
-                #( $application ) runs $application from a subshell
-                #$application &   starts application in background
-                #"&> /dev/null" redirects both stdout and stderr to the null device
+	#bashtricks	
+		#edit starting placement of app
+			nano /usr/share/applications/gnome-terminal.desktop
+			Exec=gnome-terminal --geometry 80x24+1000+900      #defines new location with new flag --geometry
+		#start an application in background () &> &
+			$application &
+		#stop process from dying if hangup or no input
+			nohup $process
+		#break process from shell (avoid killing process with killing terminal)     
+			# starts application in background and separates process from shell; then kills shell
+			($application &> /dev/null &); exit                
+			runs $application from a subshell
+			( $application ) 
+			# starts application in background
+			$application &   
+			# redirects both stdout and stderr to the null device 
+			"&> /dev/null" 
+	#bashtricks	
+	#misc
+		#vscode 
+			#start vscode from terminal 
+			code	# opens previously used folder	
+			code . || code specific/Folder/	|| code Folder/file.txt
+		#vscode 
+	#misc
+
 #applications
 
 
