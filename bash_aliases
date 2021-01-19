@@ -39,6 +39,9 @@
 	#grabs first commit url from git logs
 	alias lastCommit='git log | head -n 1 | grep -Po "(?<=commit )[a-zA-Z0-9]*"'
 
+	#start webserver
+	alias webserv='sudo bash ~/budget/webserver-launcher.sh '
+
         #runs git pull/add/commit/push in one command with the $* argument used as the commit message
         function gitc() {  
                 git pull; git add --all :/; git commit -m "$*"; git push
