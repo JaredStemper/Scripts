@@ -246,6 +246,31 @@
 
 #standard shortcuts
 #misc
+	#reads contents of m365 pdf and pushes text into schedule.txt
+	function m365schedule() {
+		#find new name of file (pdftotext automatically converts oldFileName.pdf to oldFileName.txt)
+		IFS='.' read -ra ADDR <<< "$1"
+		for i in "${ADDR[@]}"; do
+			newStr="$i.txt"
+			break
+		done
+		unset IFS
+		
+		#convert from pdf to text file
+		pdftotext $1
+		
+		#concatenate contents of new file to schedule.txt
+		echo $newStr >> ../schedule.txt
+		echo \#\#\#\#\#\#\#\#\#\#\#\#\#\#\# >> ../schedule.txt
+		cat $newStr >> ../schedule.txt
+		mv $newStr ../$newStr
+		mv $1 ../archivedWeeks/$1
+
+		#remove garbage character at end of file
+		sed -i '/TO KEEP UP WITH THE NORMAL PACE OF THE CLASS, YOU SHOULD DO THE FOLLOWING/d' ../schedule.txt;
+		sed -i '/THINGS THIS WEEK:/d' ../schedule.txt;
+		sed -i '$ d' ../schedule.txt;
+	} #m365schedule
 	#returns returnValue=1 if the given input is a number
         function isNumber() {
 		re='^[0-9\.]+$'

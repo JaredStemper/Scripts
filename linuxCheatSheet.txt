@@ -1030,7 +1030,7 @@ Cheatsheet for basic Linux commands
 				echo "$i";
 				done
 			#for loops
-			#if statements
+			#ifs
 				count=5
 				if [ $count == 5 ]
 				then
@@ -1042,8 +1042,8 @@ Cheatsheet for basic Linux commands
 				echo "count is not 4 or 5"
 				#fi denotes the end of a complex expression in base scripting language
 				fi
-			#if statements
-			#case statements
+			#ifs
+			#case
 				case "$count" in
 				5)
 				echo "count is five"
@@ -1054,7 +1054,7 @@ Cheatsheet for basic Linux commands
 				*)
 				echo "none of the above"
 				esac                     #esac (case backwards) denotes the end of a case statement
-			#case statements
+			#case
 		#functions
 	#Scripting
 #bash
@@ -1065,6 +1065,84 @@ Cheatsheet for basic Linux commands
                 e.g. $setwindow gnome-terminal 0 0 50 100
 #starting applications || setting window size location place placement 
 
+#tmux
+#TODO
+You can also show sessions using the shortcut ctrl–b–s.
+
+$ tmux ls
+
+
+The session names start at 0 and increment upwards.
+
+$ tmux attach -t 0
+
+tmux a will connect you to the first available session.
+
+$ tmux attach -t session-name
+
+
+
+$ tmux kill-session -t session-name
+
+You can also kill tmux altogether with killall tmux.
+
+Tmux supports both emacs and vim shortcuts,
+
+:set -g mouse on
+:set -g mouse off
+
+
+
+Basics (all come after ctrl+b/ctrl+a)
+
+    ? get help
+
+Session management
+
+    s list sessions
+    $ rename the current session
+    d detach from the current session
+
+Windows
+
+    c create a new window
+    , rename the current window
+    w list windows
+    % split horizontally
+    " split vertically
+    n change to the next window
+    p change to the previous window
+    0 to 9 select windows 0 through 9
+
+Panes
+
+    % create a horizontal pane
+    " create a vertical pane
+    h move to the left pane. *
+    j move to the pane below *
+    l move to the right pane *
+    k move to the pane above *
+    q show pane numbers
+    o toggle between panes
+    } swap with next pane
+    { swap with previous pane
+    ! break the pane out of the window
+    x kill the current pane
+
+
+
+
+
+
+
+$ ctrl–b–d
+
+$ tmux detach
+
+
+
+$ tmux new -s session-name			Creating named sessions lets you reattach more easily.	
+#tmux
 
 #Apache2
    #On/Off
