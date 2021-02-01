@@ -6,6 +6,7 @@
 		#modifies profile/directory description that shows at every command line
 		#export PS1='\u@\W'	#\u == username && \W == working directory (instead of full path)
 		export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;34m\]\W\[\033[00m\]\: '
+		export EDITOR='vim'
 		#general terminal laziness/movement shortcuts
         alias l="clear;ls"
         alias s="clear;ls -Alh"
@@ -192,11 +193,6 @@
         function gf() {
                 if [ $# -eq 0 ]; then
 					cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function() [\w\-]*\(\)";
-		#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\s\S]*?\(\) {" | awk '{ gsub("#","mmm") print }'
-		#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\s\S]*?\(\) {" | sed s/#/\
-		#			 \#/ && echo ""
-
-		#			cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function[\S\s]*";
                 fi;
                 if [ $# -eq 1 ]; then
                         cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";

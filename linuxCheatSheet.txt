@@ -537,6 +537,7 @@ Cheatsheet for basic Linux commands
 			yiw      copy the current word.
 			y%    copy to the matching character. By default supported pairs are (), {}, and []. Useful to copy text between matching brackets
 			:14,29y  copy from line number to line number
+			ctrl+shift click/drag		use this to avoid copying the line numbers and instead copy a block of text using the mouse
 		#copy
 		#navigation
 			0     move cursor to beginning of curr line
