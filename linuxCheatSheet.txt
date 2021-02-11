@@ -593,7 +593,7 @@ Cheatsheet for basic Linux commands
 			CTRL+SHIFT+W T       move window to a new tab
 			CTRL+W S (upper case)      horizontal splitting
 			CTRL+W v (lower case)      vertical splitting
-			CTRL+W CTRL+W        switch between windows (holding CTRL+W and repeatedly typing W also works)
+			CTRL+W W        switch between windows (holding CTRL+W and repeatedly typing W also works)
 			CTRL+W J (xor K, H, L)     switch to adjacent window (intuitively up, down, left, right)
 			CTRL+W =       resize windows to be equal size
 			CTRL+W </>        changes width of active pane (can be used w number: <c-w> 20 >)
