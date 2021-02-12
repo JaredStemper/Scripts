@@ -1058,6 +1058,15 @@ Cheatsheet for basic Linux commands
 			#case
 		#functions
 	#Scripting
+	#profile 
+		#get id
+		dconf dump /org/gnome/terminal/legacy/profiles:/ | awk '/\[:/||/visible-name=/'
+		#get id
+		#set
+		xdotool key shift+F10 r 3		#emulates keypresses. shift+F10 brings up a right click menu. 'r' goes to profiles. '3' == 3rd profile
+		#set
+
+	#profile 
 #bash
 
 #starting applications || setting window size location place placement 
