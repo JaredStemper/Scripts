@@ -1,29 +1,29 @@
 #standard shortcuts
 
-        #allows for reverse ctrl+r with ctrl+s and a whole bunch of other things
-        stty -ixon
+	#allows for reverse ctrl+r with ctrl+s and a whole bunch of other things
+	stty -ixon
 
-		#modifies profile/directory description that shows at every command line
-		#export PS1='\u@\W'	#\u == username && \W == working directory (instead of full path)
-		export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;34m\]\W\[\033[00m\]\: '
-		export EDITOR='vim'
-		#general terminal laziness/movement shortcuts
-        alias l="clear;ls"
-        alias s="clear;ls -Alh"
-        alias a="clear;ls -A"
-        alias k="clear;ls -lh"
-        alias j="cd ..; l"
-        alias lh="clear; ls -Ad .*"
+	#modifies profile/directory description that shows at every command line
+	#export PS1='\u@\W'	#\u == username && \W == working directory (instead of full path)
+	export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;34m\]\W\[\033[00m\]\: '
+	export EDITOR='vim'
+	#general terminal laziness/movement shortcuts
+	alias l="clear;ls"
+	alias s="clear;ls -Alh"
+	alias a="clear;ls -A"
+	alias k="clear;ls -lh"
+	alias j="cd ..; l"
+	alias lh="clear; ls -Ad .*"
 
-        #remove screenshots from home
-        alias rmsc="rm './Screenshot from'*"
+	#remove screenshots from home
+	alias rmsc="rm './Screenshot from'*"
 
 	#every usage of nano is (S)mooth scrolling, can use the (m)ouse to set cursor, is ($)oft-wrapped, and does not show help men(u)
-        alias nano="nano -xSm$"
+	alias nano="nano -xSm$"
 
 	alias lbash="nano ~/.bash_aliases; src"
-        alias vbash="vim ~/Coding/Scripts/bash_aliases; src"
-        alias nnbash="nano ~/.bash_aliases; src"
+	alias vbash="vim ~/Coding/Scripts/bash_aliases; src"
+	alias nnbash="nano ~/.bash_aliases; src"
 	alias open="xdg-open "
 
 	#executes contents of the file passed as arguments, in the CURRENT shell
@@ -43,10 +43,20 @@
 	#start webserver
 	alias webserv='sudo bash ~/budget/webserver-launcher.sh '
 
-        #runs git pull/add/commit/push in one command with the $* argument used as the commit message
-        function gitc() {  
-                git pull; git add --all :/; git commit -m "$*"; git push
-        } #gitc
+	alias light='chp 1'
+	alias dark='chp 2'
+
+	###Functions############################
+
+	#change bash profile
+	function chp(){
+		xdotool key --clearmodifiers Shift+F10 r $1
+	} #chp
+
+	#runs git pull/add/commit/push in one command with the $* argument used as the commit message
+	function gitc() {  
+		git pull; git add --all :/; git commit -m "$*"; git push
+	} #gitc
 
         #automatically uses clear; ls; after "cd"ing. overrides cd
 	function cd() { 

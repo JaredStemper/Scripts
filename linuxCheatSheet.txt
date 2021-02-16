@@ -461,9 +461,10 @@ Cheatsheet for basic Linux commands
 	   normal mode: (press escape to enter
 		#saving
 			:w    save
-			:q!      quit without saving
-			:wq      save and quit (q also works to close a singular screen of vim)
+			:q!      	quit without saving
+			:wq      	save and quit (q also works to close a singular screen of vim)
 			:w file     save the file as filename
+			:e || e!	load the latest version, and :e! will do that even if you have unsaved changes.
 		#saving
 		#modify
 			A     start appending text to the end of the curr line
