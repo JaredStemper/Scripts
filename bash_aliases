@@ -326,7 +326,9 @@
 
   #yt
 	alias songLength='for i in *.mp3; do echo $(ffmpeg -i "$i" 2>&1 | grep -oP "(?<=Duration: )[0-9:]*"), >> test.txt; done'
-	alias songRename='for i in *.mp3; do mv "$i" "`echo $i | sed "s/-[a-zA-Z0-9_]*.mp3/.mp3/"`"; done'
+
+	#removes all text with () around key phrase (e.g. (lyrics))
+	alias songRename='for i in *.mp3; do mv "$i" "`echo $i | sed "s/ ([a-z A-Z0-9_]*video[a-zA-Z0-9_ ]*)//i"`"; done' 
 
 	#youtube-dl ##  --playlist-end ###
         function update-yt() {
