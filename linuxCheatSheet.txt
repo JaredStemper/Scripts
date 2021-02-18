@@ -401,12 +401,36 @@ Cheatsheet for basic Linux commands
 	#other
 		 \K			Keep Out: drop everything that was matched so far from the overall match to be returned	
 						prefix\K\d+		12
-							Perl, PCRE (C, PHP, R…), Python's alternate regex engine, Ruby 2+
+							Perl, PCRE (C, PHP, R…), Python''s alternate regex engine, Ruby 2+
 		\Q…\E	 treat anything between the delimiters as a literal string. Useful to escape metacharacters.	
 						\Q(C++ ?)\E		(C++ ?)
 							Perl, PCRE (C, PHP, R…), Java	
 	#other
 #regex
+
+#youtube-dl
+		#install
+		#update
+			sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl;
+			sudo chmod a+rx /usr/local/bin/youtube-dl;
+		#update
+		#install
+		
+		#automatically set playlist-end value through user input
+		youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-end ${1} --playlist-end ${2} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
+
+		#ffmpeg find song length
+		alias songLength='for i in *.mp3; do echo $(ffmpeg -i "$i" 2>&1 | grep -oP "(?<=Duration: )[0-9:]*"), >> test.txt; done'
+
+		#removes all text with () around key phrase (e.g. (lyrics))
+		alias songRename='for i in *.mp3; do mv "$i" "`echo $i | sed "s/ ([a-z A-Z0-9_]*video[a-zA-Z0-9_ ]*)//i"`"; done'
+
+		#add/modify song metadata (e.g. Title/Artist)
+		alias songRename='ffmpeg -loglevel quiet -i test.mov -codec copy -metadata title="My title" out.mov'
+
+		#ffmpeg modify song metadata (use -codec to avoid losing quality) (can't write the same file)
+		ffmpeg -loglevel quiet -i test.mov -codec copy -metadata title="My title" out.mov
+#youtube-dl
 
 
 #xargs
