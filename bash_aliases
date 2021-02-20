@@ -111,6 +111,24 @@
 	    fi
 	} #vbash
 
+	#make a copy of the given data zoom_0.mp4 into the csc drive with a given name
+	function mvz() { 
+		if [ $# -eq 0 ]; then
+	        echo "please input correct arguments";
+			echo "	 mvz (date of lab with format 01-28) [lab name]";
+	    fi;
+	    if [ $# -eq 1 ]; then
+			old_directory=$(pwd);
+			cs "/home/jared/snap/zoom-client/134/Documents/Zoom"; cs "`gls "$1"`"; cp zoom_0.mp4 /home/jared/Classwork/CSC/materials/zooms/zoom_0.mp4;
+			cs $old_directory;
+		fi;
+	    if [ $# -eq 2 ]; then
+			old_directory=$(pwd);
+			cs "/home/jared/snap/zoom-client/134/Documents/Zoom"; cs "`gls "$1"`"; cp zoom_0.mp4 /home/jared/Classwork/CSC/materials/zooms/$2.mp4;
+			cs $old_directory;
+	    fi
+	} #mvz
+	
 	#used to modify the cheatsheet with additional params to automatically push with gitc
 	function vcheat() { 
 	    if [ $# -eq 0 ]; then
