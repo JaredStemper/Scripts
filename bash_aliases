@@ -226,6 +226,7 @@
                         cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
                 fi;
         } #gf
+
         #searches for a string in a pdf
         function gpdf() {
                 if [ $# -eq 1 ]; then
