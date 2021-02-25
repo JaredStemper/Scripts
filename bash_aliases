@@ -170,7 +170,7 @@
                         cat ~/.bash_aliases | grep $1 $2;
                         cat ~/Coding/Scripts/bash_aliases | grep $1 $2;
                 fi;
-        } #gcheat
+        } #galias
 
         #grep the cheat sheet (different arguments allow for more precise parsing)
         function tcheat() {

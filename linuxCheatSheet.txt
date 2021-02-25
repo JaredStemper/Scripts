@@ -1497,3 +1497,9 @@ $ tmux new -s session-name			Creating named sessions lets you reattach more easi
 								docker rmi b750fe78269d
 	#images
 #docker
+
+#citrix
+		#citrix receiver has an ssl error of "You have not chosen to trust ... the issuer to the server’s security certificate"
+		#root certificates of Firefox can be shared with the Citrix receiver with only one command via symbolic links. The whole works as follows:
+		sudo ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts
+#citrix
