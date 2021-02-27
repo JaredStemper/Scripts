@@ -564,6 +564,12 @@ Cheatsheet for basic Linux commands
 			:14,29y  copy from line number to line number
 			ctrl+shift click/drag		use this to avoid copying the line numbers and instead copy a block of text using the mouse
 		#copy
+		#paste
+			#Put directly from the register without ever entering insert mode, using  "+p
+			" 		means ""use the following register";
+			+ 		refers to the clipboard
+			p 		paste
+		#paste
 		#navigation
 			0     move cursor to beginning of curr line
 
