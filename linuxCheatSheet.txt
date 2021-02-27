@@ -569,6 +569,10 @@ Cheatsheet for basic Linux commands
 			" 		means ""use the following register";
 			+ 		refers to the clipboard
 			p 		paste
+			#alternative method if clipboard is not accessible to vi. 
+			#set paste before entering insert mode
+			:set paste
+			:set nopaste
 		#paste
 		#navigation
 			0     move cursor to beginning of curr line
