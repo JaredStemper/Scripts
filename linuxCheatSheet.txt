@@ -647,25 +647,32 @@ Cheatsheet for basic Linux commands
 					   :set path=.,,**
 				 :tabedit {file}   edit specified file in a new tab
 			 #tab navigation
-				 :tabs         list all tabs including their displayed windows
-				 :tabm 0       move current tab to first
-				 :tabm         move current tab to last
-				 :tabm {i}     move current tab to position i+1
+				:tabs         list all tabs including their displayed windows
+				:tabm 0       move current tab to first
+				:tabm         move current tab to last
+				:tabm {i}     move current tab to position i+1
 
-				 :tabn         go to next tab
-				 :tabp         go to previous tab
-				 :tabfirst     go to first tab
-				 :tablast      go to last tab
+				:tabn         go to next tab
+				:tabp         go to previous tab
+				:tabfirst     go to first tab
+				:tablast      go to last tab
 
-				 gt            go to next tab
-				 gT            go to previous tab
-				 {i}gt         go to tab in position i
+				gt            go to next tab
+				gT            go to previous tab
+				{i}gt         go to tab in position i
 
 
-				 Ctrl-PgDn     go to next tab   (also works in insert mode)
-				 Ctrl-PgUp     go to previous tab (also works in insert mode)
+				Ctrl-PgDn     go to next tab   (also works in insert mode)
+				Ctrl-PgUp     go to previous tab (also works in insert mode)
 			 #tab navigation
 			#tab
+			#case
+				g~			Toggle case "HellO" to "hELLo" with g~ then a movement.			
+				gU			Uppercase "HellO" to "HELLO" with gU then a movement.	
+				gu			Lowercase "HellO" to "hello" with gu then a movement.	
+
+				Alternatively, you can visually select text then press ~ to toggle case, or U to convert to uppercase, or u to convert to lowercase. 
+			#case
 	#normal
 	#visual
 		visual mode: (v to enter) or (ctrl+v)
