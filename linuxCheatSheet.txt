@@ -92,6 +92,12 @@ Cheatsheet for basic Linux commands
 						deletes at a certain line repeatedly LAST_RUN many times
 		echo 'Hello' >newFile.txt                          #create a new text file (with given input)
 		ln -s targetfile optionalNameChange                #creates symbolic link (symlink) (-s) file in pwd
+		#grep
+			grep -H "..."						#output includes filename
+			grep -n "..."						#output includes line number
+			grep --exclude="filename.*"			#pattern to exclude a file or file type from a search 
+													(can be used repeatedly (e.g. --exclude=".txt" --exclude="*.png"))
+		#grep
 		#append
 			cat file1 >> file2                                 #appends the output to the named file or creates the named file if it does not exist
 			cat file1 file2 > file3                            #concatenates two or more files to one. Will overwrite existing file!
