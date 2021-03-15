@@ -465,20 +465,22 @@ Cheatsheet for basic Linux commands
 #nano
 
 #vim
-   vi ~/.vimrc
-   set all        list all current vim settings
-   set         list vim settings set in vim config/runtime
+	vi ~/.vimrc
+	set all        list all current vim settings
+	set         list vim settings set in vim config/runtime
 
-   set autoindent noexpandtab tabstop=4 shiftwidth=4 softabstop=-1      #use tabs instead of spaces
-   set syntax=python       set syntax to specific language
-   set nu/nu!              turn on/off line numbers
-   set rnu/nornu           turn on/off relative line numbers
+	set autoindent noexpandtab tabstop=4 shiftwidth=4 softabstop=-1      #use tabs instead of spaces
+	set syntax=python       set syntax to specific language
+	set nu/nu!              turn on/off line numbers
+	set rnu/nornu           turn on/off relative line numbers
 
-   Note: ignorecase/smartcase affects substitutions!
-   set ignorecase          case-insensitive searching 
-   set smartcase           which will automatically switch to a case-sensitive search if you use any capital letters
-                           applies only when set ignorecase is already active
+	Note: ignorecase/smartcase affects substitutions!
+	set ignorecase          case-insensitive searching 
+	set smartcase           which will automatically switch to a case-sensitive search if you use any capital letters
+							   applies only when set ignorecase is already active
 	set foldmethod (fdm)		
+	set wrap/wrap!/nowrap	flip text wrapping
+	
 
    ESC to exit from current mode
    (shift+i or i to enter insert mode)
@@ -1124,82 +1126,130 @@ Cheatsheet for basic Linux commands
 #starting applications || setting window size location place placement 
 
 #tmux
-#TODO
-You can also show sessions using the shortcut ctrl–b–s.
+	#basics 
+		(all come after ctrl+b/ctrl+a)
+		? get help
+		:							Enter command mode
 
-$ tmux ls
+		:info						get info session, windows, panes, ...
+		:killall					kill tmux altogether
+		:set -g mouse on
+		:set -g mouse off
+		:setw -g mode-keys vi		use vi keys in buffer
+		set -g OPTION				Set OPTION for all sessions
+		setw -g OPTION				Set OPTION for all windows
+
+		bind-key T swap-window -t 0		~/.tmux.conf
+	#basics 
+	#sessions
+		(		move to previous session
+		)		move to next session
+		s		list sessions
+				  :ls
+				  :list-sessions
+		$		rename the current session
+		d		detach from the current session
+				  :attach -d
+
+		:a -t mysession
+			:at -t mysession
+			:attach -t mysession
+			:attach-session -t mysession
+
+		:new-session -s sessionName
+		:new -s sessionName
+
+		:kill-ses -t mysession			kill/delete session mysession
+		:kill-session -t mysession		kill/delete session mysession
+		:kill-session -a				kill/delete all sessions but the current
+
+		:kill-session -a -t mysession	kill/delete all sessions but mysession
+	#sessions
+	#windows
+		c 							create a new window
+		, 							rename the current window
+										:rename-window newName
+		&							close current window
+		w 							list windows
+		s							list sessions, windows, and panes
+		n 							change to the next window
+		p 							change to the previous window
+		0 							to 9 select windows 0 through 9
+		Ctrl+Shift Left/Right		move the current window to the left/right (no need to use the modifier)
+		
+		:move-window -t 1 -s 5					move window to available slot 
+		:swap-window -s source -t target		swap window numbers (must be by window number)
+		:swap-window -t 0						To swap the current window with the top window, do:
+		:swap-window -t -1						swap current window left by one position
+
+		:move-window -t session:window differentSession		move window to a different session
+		:link-window -t target -source						share a window betwen two sessions - useful when using the same file across different projects/work
+	#windows
+	#panes
+		% 			split pane vertically
+		" 			split pane horizontally "
+
+		h 			move to the left pane.
+		j 			move to the pane below
+		l 			move to the right pane
+		k 			move to the pane above
+
+		o 			switch to next pane
+		;			toggle last active pane
+		q 			show pane numbers
+		q 0...9		switch to a pane by number
+		z			toggle pane zoom
+		!			convert pane into a window
+		
+		:break-pane		break the paneback out to being a window from it''s own session
+		#resize
+			command key then arrow keys
+			can use command key then ctrl+arrows to move with more precision
+			
+			by holding the arrow key it will continue to resize
+		#resize
+
+		{ 			swap with pane on the left
+		} 			swap with pane on the right
+		! 			break the pane out of the window
+		x 			kill the current pane
+		arrow		switch to pane in the direction of the arrow
+						can also use vim bindings to do so! (e.g. ctrl+b j to switch to the pane below
+		spacebar	toggle pane layouts
+
+		:setw synchronize-panes		toggle the ability to send commands to all panes at the same time
+	#panes
+	#copy mode
+		Ctrl + b [				Enter copy mode
+		Ctrl + b PgUp			Enter copy mode and scroll one page up
+		q						Quit mode
+		g						Go to top line
+		G						Go to bottom line
+		arrow					Scroll up
+		arrow					Scroll down
+		h						Move cursor left
+		j						Move cursor down
+		k						Move cursor up
+		l						Move cursor right
+		w						Move cursor forward one word at a time
+		b						Move cursor backward one word at a time
+		/						Search forward
+		?						Search backward
+		n						Next keyword occurance
+		N						Previous keyword occurance
+		Spacebar				Start selection
+		Esc						Clear selection
+		Enter					Copy selection
+		Ctrl + b ]				Paste contents of buffer_0
 
 
-The session names start at 0 and increment upwards.
-
-$ tmux attach -t 0
-
-tmux a will connect you to the first available session.
-
-$ tmux attach -t session-name
-
-
-
-$ tmux kill-session -t session-name
-
-You can also kill tmux altogether with killall tmux.
-
-Tmux supports both emacs and vim shortcuts,
-
-:set -g mouse on
-:set -g mouse off
-
-
-
-Basics (all come after ctrl+b/ctrl+a)
-
-    ? get help
-
-Session management
-
-    s list sessions
-    $ rename the current session
-    d detach from the current session
-
-Windows
-
-    c create a new window
-    , rename the current window
-    w list windows
-    % split horizontally
-    " split vertically
-    n change to the next window
-    p change to the previous window
-    0 to 9 select windows 0 through 9
-
-Panes
-
-    % create a horizontal pane
-    " create a vertical pane
-    h move to the left pane. *
-    j move to the pane below *
-    l move to the right pane *
-    k move to the pane above *
-    q show pane numbers
-    o toggle between panes
-    } swap with next pane
-    { swap with previous pane
-    ! break the pane out of the window
-    x kill the current pane
-
-
-
-
-
-
-
-$ ctrl–b–d
-
-$ tmux detach
-
-
-
-$ tmux new -s session-name			Creating named sessions lets you reattach more easily.	
+		:show-buffer				display buffer_0 contents
+		:capture-pane			copy entire visible contents of pane to a buffer
+		:list-buffers			Show all buffers
+		:choose-buffer			Show all buffers and paste selected
+		:save-buffer buf.txt 	Save buffer contents to buf.txt
+		:delete-buffer -b 1  	delete buffer_1
+	#copy mode
 #tmux
 
 #Apache2
