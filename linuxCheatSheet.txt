@@ -522,6 +522,9 @@ Cheatsheet for basic Linux commands
 			s     Remove the character under the cursor and start Insert mode.
 			X     delete the character before the current location
 			x     delete the character under the current location
+			#combine line trick
+			shift+j		takes the next line and appends it to the end of the current line (separated with a new space)
+			#combine line trick
 		#modify
 		#search
 			ignorecase and smartcase are currently set in .vimrc, so case is ignore by default unless an upercase letter is used
