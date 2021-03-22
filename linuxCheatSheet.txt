@@ -77,7 +77,8 @@ Cheatsheet for basic Linux commands
 		cp file.txt copy_file.txt
 		cp -a /folder/. /destinationfolder/                #copies the contents of one folder to another.
 				-a is a recursive flag that preserves all file attributes
-				. is a cp syntax that allow it to copy all files and folders, including hidden ones
+				-R is a recursive flag
+				. 	copy all files and folders directly from one dir to the next (instead of copying a dir into a dir)
 		cat > txtFile                                              #directs input (typed words) into file
 		
 		mv file.txt home/jared/Downloads
@@ -1204,7 +1205,8 @@ Cheatsheet for basic Linux commands
 		z			toggle pane zoom
 		!			convert pane into a window
 		
-		:break-pane		break the paneback out to being a window from it''s own session
+		:break-pane				break the pane into it''s own window
+		:join-pane -s -t		join a pane into the selected window/session
 		#resize
 			command key then arrow keys
 			can use command key then ctrl+arrows to move with more precision
