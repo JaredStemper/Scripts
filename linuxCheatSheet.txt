@@ -539,16 +539,35 @@ Cheatsheet for basic Linux commands
 		#search
 		#replace
 			Note: ignorecase/smartcase affects substitutions!
-			:,+2s/\[0:4\]/.find(',')/g searches from current position +2 lines and replaces all instances of "[0:4]" with .find(',')
-			(equivalent to ":.,.+2s" but the . is unnecessary
-			other useful ranges:    
-			% for the whole file.
-			'<,'> for the lines of visually selected block. 
-			This might get you more than you want of the visual selection starts or ends in the middle of a line. 
-			The whole line is included.
-			'a,'b from mark a to mark b.
-			.,$ from the current line to the end of the file.
-			note: for regex s/// replaces first instance of every line, s///g replaces all instances
+			:,+2s/\[0:4\]/.find(',')/ searches from current position +2 lines and replaces all instances of "[0:4]" with .find(',')
+				(equivalent to ":.,.+2s" but the . is unnecessary
+			takes first character as delimiter
+				e.g. ~file/name/~file/newName~g		would replace all occurences of "file/name" in the file
+			Save typing by using \zs and \ze to set the start and end of a pattern. 
+				For example:
+					:s/Copyright 2007 All Rights Reserved/Copyright 2008 All Rights Reserved/
+				becomes:
+					:s/Copyright \zs2007\ze All Rights Reserved/2008/
+
+			#symbols
+				%/foo/bar/				searches entire file unless a specific range is given
+				/foo/bar/g				global. each occurrence in the line is changed, rather than just the first
+				/foo/bar/c				confirm. asks to confirm each match before replacing
+				/foo/bar/i				case insensitive
+				/foo/bar/I				case sensitive
+				'a,'bs/foo/bar/g 		Change each 'foo' to 'bar' for all lines from mark a to mark b inclusive
+				'<,'>s/foo/bar/g 		change each 'foo' to 'bar' for all lines within a visual selection (When compiled with +visual). 
+											Vim automatically appends the visual selection range ('<,'>) for any ex command when you select an area and enter ":"
+				g/^baz/s/foo/bar/g 		Change each 'foo' to 'bar' in each line starting with 'baz'
+				%s//bar/g 				Replace each match of the last search pattern with 'bar'.
+				*\zsfoo/bar/ 			On each line, replace the last occurrence of "foo" with "bar".
+			#symbols
+			#special
+				\0 		inserts the text matched by the entire pattern
+				\r 		newline, \n is a null byte (0x00).
+    			\& 		ampersand (& is the text that matches the search pattern).
+    			\1 		inserts the text of the first backreference. \2 inserts the second backreference, and so on.
+			#special
 		#replace
 		#indent
 			5>>      indent 5 lines (from current)
@@ -741,6 +760,10 @@ Cheatsheet for basic Linux commands
 			#remove characters
 				highlight all lines to delete from; press x or use the delete key
 			#remove characters
+			#append
+				after highlighting the block you want to append text to, simple press $ to extend to the end of the line and then press A to put text at the end
+					after typing, still hit Escape like usual
+			#append
 			#comment
 				comment selection
 				put cursor on first # or //, go down to last commented line and press x (deletes all # characters vertically)
@@ -755,6 +778,12 @@ Cheatsheet for basic Linux commands
 		#block
 	#visual
 	#misc
+		#norm
+			:%norm A*
+			# % 	= ever line
+			# norm  = type the following commands
+			# A*	= append the character "*" to the current line
+		#norm
 		#macro
 			#set name
 				'q' and then a single letter/number to set macro name
