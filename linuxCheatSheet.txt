@@ -538,6 +538,15 @@ Cheatsheet for basic Linux commands
 			/copyright\c   is case sensitive
 		#search
 		#replace
+			#whitespace
+				# used to replace all whitespace
+				:%s/\s\+$//e
+					%s 		to run :substitute over the range %, which is the entire buffer.
+					\s 		to match all whitespace characters.
+					\+ 		to match 1 or more of them.
+					$ 		to anchor at the end of the line.
+					e		to not give an error if there is no match (i.e. the file is already without trailing whitespace).
+			#whitespace
 			Note: ignorecase/smartcase affects substitutions!
 			:,+2s/\[0:4\]/.find(',')/ searches from current position +2 lines and replaces all instances of "[0:4]" with .find(',')
 				(equivalent to ":.,.+2s" but the . is unnecessary
