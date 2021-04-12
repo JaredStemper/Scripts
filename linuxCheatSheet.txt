@@ -1602,10 +1602,13 @@ Cheatsheet for basic Linux commands
 		docker stop [options] CONTAINER
 	#start
 	#manage
-		Manage containers using ps/kill.
 		ps
 		ps -a
 		kill $ID
+		docker rmi				Deletes images.
+		network ls
+		network rm networkId
+		network prune
 	#manage
 	#images
 		docker images -a		show images (-a to include intermediate)
