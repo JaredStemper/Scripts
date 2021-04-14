@@ -1293,6 +1293,13 @@ Cheatsheet for basic Linux commands
 		:save-buffer buf.txt 	Save buffer contents to buf.txt
 		:delete-buffer -b 1  	delete buffer_1
 	#copy mode
+	#logging
+		alt + c					Clear pane history with prefix + 
+		shift + p				Toggle (start/stop) logging in the current pane.
+		alt + p					Save visible text, in the current pane
+		alt + shift + p 		Save complete pane history to a file. Convenient if you retroactively remember you need to log/save all work. 
+									NOTE: history limit is 50,000.
+	#logging
 #tmux
 
 #Apache2
