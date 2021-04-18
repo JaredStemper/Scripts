@@ -20,10 +20,11 @@
 
 	#every usage of nano is (S)mooth scrolling, can use the (m)ouse to set cursor, is ($)oft-wrapped, and does not show help men(u)
 	alias nano="nano -xSm$"
-
+	
 	alias lbash="nano ~/.bash_aliases; src"
 	alias vbash="vim ~/Coding/Scripts/bash_aliases; src"
 	alias nnbash="nano ~/.bash_aliases; src"
+	
 	alias open="xdg-open "
 
 	#executes contents of the file passed as arguments, in the CURRENT shell
@@ -31,6 +32,9 @@
 
 	#sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
 	alias rm=trash
+
+	alias cdlog='cd ~/.tmux/logging/'
+	alias vtmux='vim ~/.tmux.conf'
 
 	#xclip to X clipboard shortcut
 	alias x="xclip"

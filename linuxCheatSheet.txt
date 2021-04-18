@@ -1182,6 +1182,9 @@ Cheatsheet for basic Linux commands
 		setw -g OPTION				Set OPTION for all windows
 
 		bind-key T swap-window -t 0		~/.tmux.conf
+
+		shift + i			reload current session of tmux
+		r					reload ~/.tmux.conf (self-made hotkey)
 	#basics 
 	#sessions
 		(		move to previous session
@@ -1611,6 +1614,7 @@ Cheatsheet for basic Linux commands
 	#manage
 		ps
 		ps -a
+		stop containerName		stop given container
 		kill $ID
 		docker rmi				Deletes images.
 		network ls
