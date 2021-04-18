@@ -1614,6 +1614,9 @@ Cheatsheet for basic Linux commands
 	#manage
 		ps
 		ps -a
+		CTRL-P CTRL-Q			Detach current running container (provided it was started it -it)
+		attach containerID		Re-attach container
+									can also use $ docker attach --name containerName
 		stop containerName		stop given container
 		kill $ID
 		docker rmi				Deletes images.
