@@ -1108,6 +1108,7 @@ Cheatsheet for basic Linux commands
 		#Aliases
 		#functions
 			declare {-F}            #prints all available functions declared in the current shell. with -F the code will NOT appear
+			unset -f functionName	#remove function definitions 
 			#while loops
 				#infinite while loop. every 10 seconds, clear screen, ls, and show tail of file
 				while :; do  l; tail test.txt; sleep 10s; done

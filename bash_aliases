@@ -1,7 +1,7 @@
 #standard shortcuts
 
 	#allows for reverse ctrl+r with ctrl+s and a whole bunch of other things
-	stty -ixon
+	stty -ixon;
 
 	#modifies profile/directory description that shows at every command line
 	#export PS1='\u@\W'	#\u == username && \W == working directory (instead of full path)
@@ -25,9 +25,6 @@
 	alias nnbash="nano ~/.bash_aliases; src"
 	
 	alias open="xdg-open "
-
-	#executes contents of the file passed as arguments, in the CURRENT shell
-	alias src="source ~/.bashrc && source ~/.bash_aliases && source ~/Coding/Scripts/bash_aliases"
 
 	#sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
 	alias rm=trash
@@ -55,6 +52,14 @@
 	alias dark='chp 2'
 
 	###Functions############################
+
+	#resets all defined functions and variables in the current shell
+	function src(){
+		#remove user-defined functions
+		unset -f "$( declare -F | cut -c 12- | grep --invert-match -P \"_.*\" )";
+		#executes contents of the file passed as arguments, in the CURRENT shell
+		source ~/.bashrc && source ~/.bash_aliases && source ~/Coding/Scripts/bash_aliases
+	} #src
 
 	#change bash profile
 	function chp(){
@@ -106,7 +111,6 @@
 			vim ~/Coding/Scripts/bash_aliases; src;
 	    fi;
 	    if [ $# -eq 1 ]; then
-			echo $1 $2
 	        if [ "$1" != "2" ]; then
 	            old_directory=$(pwd);
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
@@ -126,14 +130,14 @@
 	            echo 'Enter gitc commit message'; read var1; gitc bash_aliases $var1;
 	            cs $old_directory;
 	        fi;
-	    fi
+	    fi;
 	} #vbash
 
 	#make a copy of the given data zoom_0.mp4 into the csc drive with a given name
 	function mvz() { 
 		if [ $# -eq 0 ]; then
 	        echo "please input correct arguments";
-			echo "	 mvz (date of lab with format 01-28) [lab name]";
+			echo '	 mvz (date of lab with format 01-28) [lab name]'
 	    fi;
 	    if [ $# -eq 1 ]; then
 			old_directory=$(pwd);
@@ -144,7 +148,7 @@
 			old_directory=$(pwd);
 			cs "/home/jared/snap/zoom-client/134/Documents/Zoom"; cs "`gls "$1"`"; cp zoom_0.mp4 /home/jared/Classwork/CSC/materials/zooms/$2.mp4;
 			cs $old_directory;
-	    fi
+	    fi;
 	} #mvz
 	
 	#used to modify the cheatsheet with additional params to automatically push with gitc
@@ -171,7 +175,7 @@
 	            echo 'Enter gitc commit message'; read var1; gitc linuxCheatSheet.txt $var1;
 		    cs $old_directory;
 	        fi;
-	    fi
+	    fi;
 	} #vcheat
 
 	#used to modify the security cheatsheet with additional params to automatically push with gitc
@@ -198,7 +202,7 @@
 	            echo 'Enter gitc commit message'; read var1; gitc securityCheatSheet.txt $var1;
 		    cs $old_directory;
 	        fi;
-	    fi
+	    fi;
 	} #scheat
 		
 	#grep the cheat sheet (different arguments allow for more precise parsing)
@@ -301,7 +305,7 @@
 	#grep a functions full contents 
 	function gf() {
 			if [ $# -eq 0 ]; then
-				cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function() [\w\-]*\(\)";
+				cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function\(\) [\w\-]*\(\)";
 			fi;
 			if [ $# -eq 1 ]; then
 					cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
@@ -383,46 +387,47 @@
 		returnValue=0
 		if [[ $1 =~ $re ]] ; then
 		   returnValue=1
-		fi
+		fi;
 	} #isNumber
+
 	#function to quickly use the https://github.com/chubin/cheat.sh cheat sheet
-        function cht() {
+	function cht() {
 		if [ $# -eq 1 ]; then
 			p1=$(echo $1 | sed 's/ *$//')	#strips all whitespaces to avoid two separate curl commands (e.g. curl cht.sh/python/ global)
 			curl cht.sh/python/$p1
-                fi;
-                if [ $# -eq 2 ]; then	        
+		fi;
+		if [ $# -eq 2 ]; then	        
 			p1=$(echo $1 | sed 's/ *$//')
 			p2=$(echo $2 | sed 's/ *$//')
 
-		        #test if number or letter
+			#test if number or letter
 			isNumber $2	
 
 			#if number, show the corresponding python query (shows next option)
 			if [ $returnValue -eq 1 ]; then
 				curl cht.sh/python/$p1/$p2
-	                fi;
+			fi;
 			#if not a number, use $1 to access other programming languages
 			if [ $returnValue -eq 0 ]; then
 				curl cht.sh/$p1/$p2
-	                fi;
-                fi;
-                if [ $# -eq 3 ]; then
+			fi;
+		fi;
+		if [ $# -eq 3 ]; then
 			p1=$(echo $1 | sed 's/ *$//')
 			p2=$(echo $2 | sed 's/ *$//')
 			p3=$(echo $3 | sed 's/ *$//')
 			curl cht.sh/$p1/$p2/$p3
-                fi;
-        } #cht
+		fi;
+	} #cht
 
 	#system stuff (uses Python file TODO: included in this repo)
-        alias screenSize='cd /home/jared/Downloads/cheats/scripts; python3 screenSize.py'
+	alias screenSize='cd /home/jared/Downloads/cheats/scripts; python3 screenSize.py'
 
 	#irc 
-        alias ebooks="cd /home/jared/snap/konversation/3/Downloads/; open .;"
+	alias ebooks="cd /home/jared/snap/konversation/3/Downloads/; open .;"
 
 	#elvis exit (i.e. slow exit)
-        alias EXIT='echo ""; echo ""; echo "GEEZ, no need to yell ya know?"; echo ""; echo ""; sleep 2; exit;'
+	alias EXIT='echo ""; echo ""; echo "GEEZ, no need to yell ya know?"; echo ""; echo ""; sleep 2; exit;'
 
   #yt
 	alias songLength='for i in *.mp3; do echo $(ffmpeg -i "$i" 2>&1 | grep -oP "(?<=Duration: )[0-9:]*"), >> test.txt; done'
@@ -435,38 +440,40 @@
 
 	#unzip zip files into a directory of their own name
 	function unzip_d() {
-	zipfile="$1"
-	zipdir=${1%.zip}
-	unzip -d "$zipdir" "$zipfile"
+		zipfile="$1"
+		zipdir=${1%.zip}
+		unzip -d "$zipdir" "$zipfile"
 	} #unzip_d
 
 	#youtube-dl ##  --playlist-end ###
-        function update-yt() {
-                sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl;
-                sudo chmod a+rx /usr/local/bin/youtube-dl;
-        } #update-yt
-        #automatically set playlist-end value through user input
-        function yt() {
-                cdyt
-                if [ "$#" -eq 1 ]; then
-                   sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-end ${1} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
-                elif [ "$#" -eq 2 ]; then
-                   sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-end ${1} --playlist-end ${2} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
-                else
-                   echo "Too many parameters. 1 parameter to set last song # in playlist, 2 parameters to set first and then last song";
-                fi
-        } #yt
-  #yt
-        #searches through a repository for all pdfs and returns the absolute path
-        function itsbooktime() { 
-                nice find /l/www/classes/ -type d ! \( -readable -executable \) -prune -o -name '*.pdf' | awk -F "/" '{ if(!seen[$NF]++) print $0 }' > paths.txt; }
+	function update-yt() {
+			sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl;
+			sudo chmod a+rx /usr/local/bin/youtube-dl;
+	} #update-yt
+
+	#automatically set playlist-end value through user input
+	function yt() {
+			cdyt
+			if [ "$#" -eq 1 ]; then
+			   sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-end ${1} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
+			elif [ "$#" -eq 2 ]; then
+			   sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-end ${1} --playlist-end ${2} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
+			else
+			   echo "Too many parameters. 1 parameter to set last song # in playlist, 2 parameters to set first and then last song"
+			fi;
+	} #yt
+#yt
+	#searches through a repository for all pdfs and returns the absolute path
+	function itsbooktime() { 
+			nice find /l/www/classes/ -type d ! \( -readable -executable \) -prune -o -name '*.pdf' | awk -F "/" '{ if(!seen[$NF]++) print $0 }' > paths.txt; 
+	} #itsbooktime
 #               ^easy on cpu              ^ avoids reading files without read permission^       ^any pdf      ^fields      ^if the last part of has not been seen (unique name)
 #                                                                                                         are designated           then return the whole directory name
 #                
-                                                                                                 #by the "/" mark
-        #itsbooktime
-        #function to filter out all pdfs that contain any key words that grep picks up
-        function bookfilter() { awk -F "/" '{print $NF}' paths.txt | grep -E '(exam|study|guide|final)'; } #bookfilter
+																							 #by the "/" mark
+	#itsbooktime
+	#function to filter out all pdfs that contain any key words that grep picks up
+	function bookfilter() { awk -F "/" '{print $NF}' paths.txt | grep -E '(exam|study|guide|final)'; } #bookfilter
 #misc
 
 #local bash shortcuts
