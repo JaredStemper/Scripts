@@ -37,6 +37,8 @@
 	alias vkmux='vim ~/.tmuxinator/kir.yml'
 	alias kmux='mux start kir'
 
+	alias gits='git status'
+
 	#xclip to X clipboard shortcut
 	alias x="xclip"
 	#xclip to clipboard shortcut
