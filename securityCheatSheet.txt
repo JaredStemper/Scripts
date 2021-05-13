@@ -32,7 +32,6 @@ Cheatsheet for pentesting tools/techniques
 	#enumeration
 #general
 
-
 #sublist3r
 	"""fast subdomain enumeration tool"""
 	python3 sublist3r.py -d DOMAIN [-p PORTS] [-o OUTPUT] [-v VERBOSE]

@@ -186,7 +186,7 @@
 
 				vim ~/Coding/Scripts/securityCheatSheet.txt;
 
-	            echo 'Enter gitc commit message'; read var1; gitc $var1;
+	            echo 'Enter gitc commit message'; read var1; gitc securityCheatSheet.txt $var1;
 	            cs $old_directory;
 	        fi;
 	        if [ $1 -eq 2 ]; then
