@@ -1,0 +1,43 @@
+==========================================
+Cheatsheet for pentesting tools/techniques
+==========================================
+
+#general
+	#targetvalidation
+		whois
+		nslookup
+		dnsrecon
+	#targetvalidation
+	#subdomains
+		google-fu
+		dig
+		nmap
+		sublist3r
+		bluto
+		crt.sh
+	#subdomains
+	#fingerprinting
+		nmap
+		wappalyzer
+		whatweb
+		builtwith
+		netcat
+	#fingerprinting
+	#databreaches
+		haveibeenpwned
+	#databreaches
+	#test
+		"""test"""
+		python3 sublist3r.py -d DOMAIN [-p PORTS] [-o OUTPUT] [-v VERBOSE]
+	#test
+	#scanning
+	#scanning
+	#enumeration
+	#enumeration
+#general
+
+
+#sublist3r
+	"""fast subdomain enumeration tool"""
+	python3 sublist3r.py -d DOMAIN [-p PORTS] [-o OUTPUT] [-v VERBOSE]
+#sublist3r
