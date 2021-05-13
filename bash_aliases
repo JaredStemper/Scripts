@@ -64,7 +64,15 @@
 
 	#runs git pull/add/commit/push in one command with the $* argument used as the commit message
 	function gitc() {  
-		git pull; git add --all :/; git commit -m "$*"; git push
+	    if [ $# -eq 0 ]; then
+			git pull; git add --all :/; git commit -m "small updates"; git push
+	    fi;
+	    if [ $# -eq 2 ]; then
+			git pull; git add $1; git commit -m "$2"; git push
+		fi;
+	    if [ $# -ne 2 ] && [$# -ne 0 ]; then
+			git pull; git add --all :/; git commit -m "$*"; git push
+		fi;
 	} #gitc
 
         #automatically uses clear; ls; after "cd"ing. overrides cd
