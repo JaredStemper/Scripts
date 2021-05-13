@@ -966,6 +966,12 @@ Cheatsheet for basic Linux commands
         magick -density 300 1.pdf 2.pdf a-third.pdf  final-combined.pdf                   
         gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=temp.pdf pdf1.pdf pdf2.pdf #combine pdfs
         #combine pdfs
+
+		#extract range
+		gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dFirstPage=1 -dLastPage=10 -sOutputFile=output.pdf input.pdf
+
+		for more complicated extractions, it would be recommended to use a tool such as QPDF
+		#extract range
 #PDFs
 
 #Pics/Monitor
