@@ -528,5 +528,6 @@
         alias syn="cd /home/jared/Classwork/synopsys"
 	alias practice="cd /home/jared/Coding/practice"
 	alias at="cd /home/jared/Coding/practice/amazon";
+	alias practice="cd /home/jared/rsm/studying/practice";
 #local bash shortcuts
 
