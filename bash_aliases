@@ -118,9 +118,9 @@
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
 
 	            cs $new_directory;
-	            vim ~/Coding/Scripts/bash_aliases; src
+	            vim ~/Coding/Scripts/bash_aliases; src;
 
-	            echo 'Enter gitc commit message'; read var1; gitc bash_aliases $var1;
+	            echo 'Enter gitc commit message'; read var1; gitc bash_aliases "$var1";
 	            cs $old_directory;
 	        fi;
 	        if [ "$1" == "2" ]; then
@@ -129,7 +129,7 @@
 
 	            cs $new_directory;
 
-	            echo 'Enter gitc commit message'; read var1; gitc bash_aliases $var1;
+	            echo 'Enter gitc commit message'; read var1; gitc bash_aliases "$var1";
 	            cs $old_directory;
 	        fi;
 	    fi;
