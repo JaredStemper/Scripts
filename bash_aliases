@@ -22,7 +22,6 @@
 	alias nano="nano -xSm$"
 	
 	alias lbash="nano ~/.bash_aliases; src"
-	alias vbash="vim ~/Coding/Scripts/bash_aliases; src"
 	alias nnbash="nano ~/.bash_aliases; src"
 	
 	alias open="xdg-open "
@@ -104,22 +103,24 @@
 	#used to modify the cheatsheet with additional params to automatically push with gitc
 	function vbash() { 
 	    if [ $# -eq 0 ]; then
-	        vim ~/Coding/Scripts/bash_aliases; src;
+			vim ~/Coding/Scripts/bash_aliases; src;
 	    fi;
 	    if [ $# -eq 1 ]; then
-	        if [ $1 -ne 2 ]; then
+			echo $1 $2
+	        if [ "$1" != "2" ]; then
 	            old_directory=$(pwd);
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
 
 	            cs $new_directory;
-	            vim ~/Coding/Scripts/bash_aliases; src;
+	            vim ~/Coding/Scripts/bash_aliases; src
 
 	            echo 'Enter gitc commit message'; read var1; gitc bash_aliases $var1;
 	            cs $old_directory;
 	        fi;
-	        if [ $1 -eq 2 ]; then
+	        if [ "$1" == "2" ]; then
 	            old_directory=$(pwd);
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
+
 	            cs $new_directory;
 
 	            echo 'Enter gitc commit message'; read var1; gitc bash_aliases $var1;
@@ -161,7 +162,7 @@
 
 	            echo 'Enter gitc commit message'; read var1; gitc linuxCheatSheet.txt $var1;
 	            cs $old_directory;
-	        fi;
+	       fi;
 	        if [ $1 -eq 2 ]; then
 	            old_directory=$(pwd);
 	            new_directory=$(cs ~/Coding/Scripts/; pwd);
