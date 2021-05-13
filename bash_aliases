@@ -165,6 +165,33 @@
 	    fi
 	} #vcheat
 
+	#used to modify the security cheatsheet with additional params to automatically push with gitc
+	function scheat() { 
+	    if [ $# -eq 0 ]; then
+	        vim ~/Coding/Scripts/securityCheatSheet.txt;
+	    fi;
+	    if [ $# -eq 1 ]; then
+	        if [ $1 -ne 2 ]; then
+	            old_directory=$(pwd);
+	            new_directory=$(cs ~/Coding/Scripts/; pwd);
+	            cs $new_directory;
+
+				vim ~/Coding/Scripts/securityCheatSheet.txt;
+
+	            echo 'Enter gitc commit message'; read var1; gitc $var1;
+	            cs $old_directory;
+	        fi;
+	        if [ $1 -eq 2 ]; then
+	            old_directory=$(pwd);
+	            new_directory=$(cs ~/Coding/Scripts/; pwd);
+	            cs $new_directory;
+
+	            echo 'Enter gitc commit message'; read var1; gitc $var1;
+		    cs $old_directory;
+	        fi;
+	    fi
+	} #scheat
+		
         #grep the cheat sheet (different arguments allow for more precise parsing)
         function galias() {
                 if [ $# -eq 0 ]; then
