@@ -2,37 +2,62 @@
 Cheatsheet for pentesting tools/techniques
 ==========================================
 
-#general
-	#targetvalidation
-		whois
-		nslookup
-		dnsrecon
-	#targetvalidation
+#info gathering
+	#target validation
+		whois, nslookup, dnsrecon
+	#target validation
 	#subdomains
-		google-fu
-		dig
-		nmap
-		sublist3r
-		bluto
-		crt.sh
+		google-fu, dig, nmap, sublist3r, bluto, crt.sh
 	#subdomains
 	#fingerprinting
-		nmap
-		wappalyzer
-		whatweb
-		builtwith
-		netcat
+		nmap, wappalyzer, whatweb, builtwith, netcat
 	#fingerprinting
 	#databreaches
 		haveibeenpwned
 	#databreaches
-	#scanning
-	#scanning
-	#enumeration
-	#enumeration
-#general
+#info gathering
+
+#scanning
+#enumeration
+
+#scanning
+#enumeration
+
+#exploitation
+#exploitation
+
+#maintaining access
+#maintaining access
+
+#cleanup
+#cleanup
+
+#tools
+	#burpsuite 
+		(pro)
+	#burpsuite 
+	#nikto
+	#nikto
+	#dirbuster
+	#dirbuster
+#tools
+
+#attacks
+#attacks
+
+#misc
+#misc
+
+#resources
+	Owasp testing guides
+	owasp.org/images/1/19/OTGv4.pdf
+	github.com/tanprathan/OWASP-Testing-Checklist
+	Webapp hacker’s handbook (might have it already?)
+#resources
+
 
 #sublist3r
 	"""fast subdomain enumeration tool by https://github.com/aboul3la/Sublist3r"""
 	python3 sublist3r.py -d DOMAIN [-p PORTS] [-o OUTPUT] [-v VERBOSE]
 #sublist3r
+
