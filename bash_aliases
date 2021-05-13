@@ -35,6 +35,11 @@
 
 	alias cdlog='cd ~/.tmux/logging/'
 	alias vtmux='vim ~/.tmux.conf'
+	alias vmux='vim ~/.tmux.conf'
+	alias mux='tmuxinator'
+	alias cmux='cd ~/.tmuxinator/'
+	alias vkmux='vim ~/.tmuxinator/kir.yml'
+	alias kmux='mux start kir'
 
 	#xclip to X clipboard shortcut
 	alias x="xclip"
@@ -176,24 +181,25 @@
                 fi;
         } #galias
 
-        #grep the cheat sheet (different arguments allow for more precise parsing)
+        #grep the linux cheat sheet (different arguments allow for more precise parsing)
         function tcheat() {
+				notesDir="/home/jared/Coding/Scripts/linuxCheatSheet.txt"
                 if [ $# -eq 0 ]; then
-					#return list of groups with tab-ed subsections
-					sort ~/Coding/Scripts/linuxCheatSheet.txt | uniq -d | grep -xf - ~/Coding/Scripts/linuxCheatSheet.txt | grep "#" | grep -f - ~/Coding/Scripts/linuxCheatSheet.txt | awk '!seen[$0]++';
+					#return list of groups with tabbed subsections
+					sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | awk '!seen[$0]++';
                 fi;
                 if [ $# -eq 1 ]; then
 					#returns a single group and all subsections
-					cat ~/Coding/Scripts/linuxCheatSheet.txt | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n";
+					cat $notesDir | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n";
                 fi;
                 if [ $# -eq 2 ]; then
 					if [ "$2" == "0" ]; then
 						#return list of subsections under a group
-						sort ~/Coding/Scripts/linuxCheatSheet.txt | uniq -d | grep -xf - ~/Coding/Scripts/linuxCheatSheet.txt | grep "#" | grep -f - ~/Coding/Scripts/linuxCheatSheet.txt | grep -Pzoi "[ \t]*#$1[\S\s]*#$1" | awk '!seen[$0]++';
+						sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | grep -Pzoi "[ \t]*#$1[\S\s]*#$1" | awk '!seen[$0]++';
 					fi;
 					if [ "$2" !=  "0" ]; then
 						#if a word, search forreturns a grep-ed subsection
-						cat ~/Coding/Scripts/linuxCheatSheet.txt | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" | grep -Pzoi "[ \t]*#$2\h*\n[\S\s]*#$2\h*\n"
+						cat $notesDir | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" | grep -Pzoi "[ \t]*#$2\h*\n[\S\s]*#$2\h*\n"
 						#if nothing found, just returns all subsections of $1
 					fi;
                 fi;
@@ -201,25 +207,60 @@
 
         #grep the cheat sheet (different arguments allow for more precise parsing)
         function gcheat() {
+                notesDir="/home/jared/Coding/Scripts/linuxCheatSheet.txt"
                 if [ $# -eq 0 ]; then
-                        cat ~/Coding/Scripts/linuxCheatSheet.txt;
+                        cat $notesDir;
                 fi;
                 if [ $# -eq 1 ]; then
-                        cat ~/Coding/Scripts/linuxCheatSheet.txt | grep $1;
+                        cat $notesDir | grep $1;
                 fi;
                 if [ $# -eq 2 ]; then
-                        cat ~/Coding/Scripts/linuxCheatSheet.txt | grep -A $2 $1;
+                        cat $notesDir | grep -A $2 $1;
                 fi;
                 if [ $# -eq 3 ]; then
                         if [ $3 -eq 0]; then
-                                cat ~/Coding/Scripts/linuxCheatSheet.txt | grep $1 $2;
+                                cat $notesDir | grep $1;
+                                cat $notesDir | grep $2;
                         fi;
                         if [ $# -ne 0 ]; then
-                                cat ~/Coding/Scripts/linuxCheatSheet.txt | grep $1;
-                                cat ~/Coding/Scripts/linuxCheatSheet.txt | grep $2;
+                                cat $notesDir | grep $1 $2 $3;
                         fi;
                 fi;
         } #gcheat
+
+        #grep the pentesting cheat sheet (different arguments allow for more precise parsing)
+        function pcheat() {
+				notesDir="/home/jared/rsm/studying/practice/notes"
+                if [ $# -eq 0 ]; then
+					#return list of groups with tabbed subsections
+					sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | awk '!seen[$0]++';
+                fi;
+                if [ $# -eq 1 ]; then
+					if [ "$1" == "1" ]; then
+						#if "0" then show each header that has a """full description"""
+						grep -Pzoi '.*[.\s]*""".*"""\n' $notesDir;
+					fi;
+					if [ "$1" !=  "1" ]; then
+						#returns a single group and all subsections
+						grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" $notesDir;
+					fi;
+                fi;
+                if [ $# -eq 2 ]; then
+					if [ "$2" == "0" ]; then
+						#return list of subsections under a group
+						sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | grep -Pzoi "[ \t]*#$1[\S\s]*#$1" | awk '!seen[$0]++';
+					fi;
+					if [ "$2" == "1" ]; then
+						#if "0" then show each header that has a """full description"""
+						grep -Pzoi "#$1[\s.]*\"\"\".*\"\"\"\n" $notesDir;
+					fi;
+					if [ "$2" !=  "0" ]; then
+						#if a word, search for returns a grep-ed subsection
+						grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" $notesDir | grep -Pzoi "[ \t]*#$2\h*\n[\S\s]*#$2\h*\n";
+						#if nothing found, just returns all subsections of $1
+					fi;
+                fi;
+		} #pcheat
 
         #grep a functions full contents 
         function gf() {
@@ -355,6 +396,13 @@
 
 	#add/modify song metadata (e.g. Title/Artist)
 	alias songRename='ffmpeg -loglevel quiet -i test.mov -codec copy -metadata title="My title" out.mov' 
+
+	#unzip zip files into a directory of their own name
+	function unzip_d() {
+	zipfile="$1"
+	zipdir=${1%.zip}
+	unzip -d "$zipdir" "$zipfile"
+	} #unzip_d
 
 	#youtube-dl ##  --playlist-end ###
         function update-yt() {
