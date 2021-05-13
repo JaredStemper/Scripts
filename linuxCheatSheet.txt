@@ -1125,14 +1125,15 @@ Cheatsheet for basic Linux commands
 			#for loops
 			#ifs
 				count=5
-				if [ $count == 5 ]
-				then
-				echo "$count"
-				elif [ $count = 4 ]
-				then
-				echo "$count"
-				else
-				echo "count is not 4 or 5"
+				stri="meh"
+				if [ $count == 5 ];	then
+					echo "$count"
+				elif [ $count = 4 ] && [ $stri == "meh" ]; then
+					echo "$count"
+				elif [ $count = 4 ]; then
+					echo "$count"
+				else;
+					echo "count is not 4 or 5"
 				#fi denotes the end of a complex expression in base scripting language
 				fi
 			#ifs
