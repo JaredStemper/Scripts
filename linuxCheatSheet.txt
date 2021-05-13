@@ -1133,7 +1133,7 @@ Cheatsheet for basic Linux commands
 				elif [ $count = 4 ]; then
 					echo "$count"
 				else;
-					echo "count is not 4 or 5"
+					echo "count is not 4 or 5";
 				#fi denotes the end of a complex expression in base scripting language
 				fi
 			#ifs
