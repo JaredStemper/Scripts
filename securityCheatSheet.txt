@@ -26,10 +26,6 @@ Cheatsheet for pentesting tools/techniques
 	#databreaches
 		haveibeenpwned
 	#databreaches
-	#test
-		"""test"""
-		python3 sublist3r.py -d DOMAIN [-p PORTS] [-o OUTPUT] [-v VERBOSE]
-	#test
 	#scanning
 	#scanning
 	#enumeration
