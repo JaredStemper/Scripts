@@ -8,7 +8,7 @@
 	export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;34m\]\W\[\033[00m\]\: '
 	export EDITOR='vim'
 	#general terminal laziness/movement shortcuts
-	alias l="clear;ls"
+	alias l="clear;ls;"
 	alias s="clear;ls -Alh"
 	alias a="clear;ls -A"
 	alias k="clear;ls -lh"
@@ -59,7 +59,7 @@
 
 	#change bash profile
 	function chp(){
-		xdotool key --clearmodifiers Shift+F10 r $1
+		xdotool key --clearmodifiers Shift+F10 r $1;
 	} #chp
 
 	#runs git pull/add/commit/push in one command with the $* argument used as the commit message
@@ -70,25 +70,25 @@
 	    if [ $# -eq 2 ]; then
 			git pull; git add $1; git commit -m "$2"; git push
 		fi;
-	    if [ $# -ne 2 ] && [$# -ne 0 ]; then
+	    if [ $# -ne 2 ] && [ $# -ne 0 ]; then
 			git pull; git add --all :/; git commit -m "$*"; git push
 		fi;
 	} #gitc
 
-        #automatically uses clear; ls; after "cd"ing. overrides cd
+	#automatically uses clear; ls; after "cd"ing. overrides cd
 	function cd() { 
 	    new_directory="$*";
 	    if [ $# -eq 0 ]; then
-	        new_directory=${HOME};
-	        builtin cd "${new_directory}" && l;
+			new_directory=${HOME};
+			builtin cd "${new_directory}" && l
 	    fi;
 	    if [ $# -eq 1 ]; then
-	        new_directory=$1;
-	        builtin cd "${new_directory}" && l;
+			new_directory=$1;
+			builtin cd "${new_directory}" && l
 	    fi;
-        } #cd
+	} #cd
 
-        #same as cd but doesn't clear text
+	#same as cd but doesn't clear text
 	function cs() { 
 	    new_directory="$*";
 	    if [ $# -eq 0 ]; then
@@ -99,7 +99,7 @@
 	        new_directory=$1;
 	        builtin cd "${new_directory}";
 	    fi;
-        } #cs
+	} #cs
 	
 	#used to modify the cheatsheet with additional params to automatically push with gitc
 	function vbash() { 
@@ -200,154 +200,154 @@
 	    fi
 	} #scheat
 		
-        #grep the cheat sheet (different arguments allow for more precise parsing)
-        function galias() {
-                if [ $# -eq 0 ]; then
-                        cat ~/.bash_aliases | grep "alias";
-                        cat ~/Coding/Scripts/bash_aliases | grep "alias";
-                fi;
-                if [ $# -eq 1 ]; then
-                        cat ~/.bash_aliases | grep $1;
-                        cat ~/Coding/Scripts/bash_aliases | grep $1;
-                fi;
-                if [ $# -eq 2 ]; then
-                        cat ~/.bash_aliases | grep $1 $2;
-                        cat ~/Coding/Scripts/bash_aliases | grep $1 $2;
-                fi;
-        } #galias
+	#grep the cheat sheet (different arguments allow for more precise parsing)
+	function galias() {
+			if [ $# -eq 0 ]; then
+					cat ~/.bash_aliases | grep "alias";
+					cat ~/Coding/Scripts/bash_aliases | grep "alias";
+			fi;
+			if [ $# -eq 1 ]; then
+					cat ~/.bash_aliases | grep $1;
+					cat ~/Coding/Scripts/bash_aliases | grep $1;
+			fi;
+			if [ $# -eq 2 ]; then
+					cat ~/.bash_aliases | grep $1 $2;
+					cat ~/Coding/Scripts/bash_aliases | grep $1 $2;
+			fi;
+	} #galias
 
-        #grep the linux cheat sheet (different arguments allow for more precise parsing)
-        function tcheat() {
-				notesDir="/home/jared/Coding/Scripts/linuxCheatSheet.txt"
-                if [ $# -eq 0 ]; then
-					#return list of groups with tabbed subsections
-					sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | awk '!seen[$0]++';
-                fi;
-                if [ $# -eq 1 ]; then
+	#grep the linux cheat sheet (different arguments allow for more precise parsing)
+	function tcheat() {
+			notesDir="/home/jared/Coding/Scripts/linuxCheatSheet.txt"
+			if [ $# -eq 0 ]; then
+				#return list of groups with tabbed subsections
+				sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | awk '!seen[$0]++';
+			fi;
+			if [ $# -eq 1 ]; then
+				#returns a single group and all subsections
+				cat $notesDir | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n";
+			fi;
+			if [ $# -eq 2 ]; then
+				if [ "$2" == "0" ]; then
+					#return list of subsections under a group
+					sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | grep -Pzoi "[ \t]*#$1[\S\s]*#$1" | awk '!seen[$0]++';
+				fi;
+				if [ "$2" !=  "0" ]; then
+					#if a word, search forreturns a grep-ed subsection
+					cat $notesDir | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" | grep -Pzoi "[ \t]*#$2\h*\n[\S\s]*#$2\h*\n"
+					#if nothing found, just returns all subsections of $1
+				fi;
+			fi;
+	} #tcheat
+
+	#grep the cheat sheet (different arguments allow for more precise parsing)
+	function gcheat() {
+			notesDir="/home/jared/Coding/Scripts/linuxCheatSheet.txt"
+			if [ $# -eq 0 ]; then
+					cat $notesDir;
+			fi;
+			if [ $# -eq 1 ]; then
+					cat $notesDir | grep $1;
+			fi;
+			if [ $# -eq 2 ]; then
+					cat $notesDir | grep -A $2 $1;
+			fi;
+			if [ $# -eq 3 ]; then
+					if [ $3 -eq 0]; then
+							cat $notesDir | grep $1;
+							cat $notesDir | grep $2;
+					fi;
+					if [ $# -ne 0 ]; then
+							cat $notesDir | grep $1 $2 $3;
+					fi;
+			fi;
+	} #gcheat
+
+	#grep the pentesting cheat sheet (different arguments allow for more precise parsing)
+	function pcheat() {
+			notesDir="/home/jared/rsm/studying/practice/notes"
+			if [ $# -eq 0 ]; then
+				#return list of groups with tabbed subsections
+				sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | awk '!seen[$0]++';
+			fi;
+			if [ $# -eq 1 ]; then
+				if [ "$1" == "1" ]; then
+					#if "0" then show each header that has a """full description"""
+					grep -Pzoi '.*[.\s]*""".*"""\n' $notesDir;
+				fi;
+				if [ "$1" !=  "1" ]; then
 					#returns a single group and all subsections
-					cat $notesDir | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n";
-                fi;
-                if [ $# -eq 2 ]; then
-					if [ "$2" == "0" ]; then
-						#return list of subsections under a group
-						sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | grep -Pzoi "[ \t]*#$1[\S\s]*#$1" | awk '!seen[$0]++';
-					fi;
-					if [ "$2" !=  "0" ]; then
-						#if a word, search forreturns a grep-ed subsection
-						cat $notesDir | grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" | grep -Pzoi "[ \t]*#$2\h*\n[\S\s]*#$2\h*\n"
-						#if nothing found, just returns all subsections of $1
-					fi;
-                fi;
-		} #tcheat
+					grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" $notesDir;
+				fi;
+			fi;
+			if [ $# -eq 2 ]; then
+				if [ "$2" == "0" ]; then
+					#return list of subsections under a group
+					sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | grep -Pzoi "[ \t]*#$1[\S\s]*#$1" | awk '!seen[$0]++';
+				fi;
+				if [ "$2" == "1" ]; then
+					#if "0" then show each header that has a """full description"""
+					grep -Pzoi "#$1[\s.]*\"\"\".*\"\"\"\n" $notesDir;
+				fi;
+				if [ "$2" !=  "0" ]; then
+					#if a word, search for returns a grep-ed subsection
+					grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" $notesDir | grep -Pzoi "[ \t]*#$2\h*\n[\S\s]*#$2\h*\n";
+					#if nothing found, just returns all subsections of $1
+				fi;
+			fi;
+	} #pcheat
 
-        #grep the cheat sheet (different arguments allow for more precise parsing)
-        function gcheat() {
-                notesDir="/home/jared/Coding/Scripts/linuxCheatSheet.txt"
-                if [ $# -eq 0 ]; then
-                        cat $notesDir;
-                fi;
-                if [ $# -eq 1 ]; then
-                        cat $notesDir | grep $1;
-                fi;
-                if [ $# -eq 2 ]; then
-                        cat $notesDir | grep -A $2 $1;
-                fi;
-                if [ $# -eq 3 ]; then
-                        if [ $3 -eq 0]; then
-                                cat $notesDir | grep $1;
-                                cat $notesDir | grep $2;
-                        fi;
-                        if [ $# -ne 0 ]; then
-                                cat $notesDir | grep $1 $2 $3;
-                        fi;
-                fi;
-        } #gcheat
+	#grep a functions full contents 
+	function gf() {
+			if [ $# -eq 0 ]; then
+				cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function() [\w\-]*\(\)";
+			fi;
+			if [ $# -eq 1 ]; then
+					cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
+			fi;
+	} #gf
 
-        #grep the pentesting cheat sheet (different arguments allow for more precise parsing)
-        function pcheat() {
-				notesDir="/home/jared/rsm/studying/practice/notes"
-                if [ $# -eq 0 ]; then
-					#return list of groups with tabbed subsections
-					sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | awk '!seen[$0]++';
-                fi;
-                if [ $# -eq 1 ]; then
-					if [ "$1" == "1" ]; then
-						#if "0" then show each header that has a """full description"""
-						grep -Pzoi '.*[.\s]*""".*"""\n' $notesDir;
-					fi;
-					if [ "$1" !=  "1" ]; then
-						#returns a single group and all subsections
-						grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" $notesDir;
-					fi;
-                fi;
-                if [ $# -eq 2 ]; then
-					if [ "$2" == "0" ]; then
-						#return list of subsections under a group
-						sort $notesDir | uniq -d | grep -xf - $notesDir | grep "#" | grep -f - $notesDir | grep -Pzoi "[ \t]*#$1[\S\s]*#$1" | awk '!seen[$0]++';
-					fi;
-					if [ "$2" == "1" ]; then
-						#if "0" then show each header that has a """full description"""
-						grep -Pzoi "#$1[\s.]*\"\"\".*\"\"\"\n" $notesDir;
-					fi;
-					if [ "$2" !=  "0" ]; then
-						#if a word, search for returns a grep-ed subsection
-						grep -Pzoi "[ \t]*#$1\h*\n[\S\s]*#$1\h*\n" $notesDir | grep -Pzoi "[ \t]*#$2\h*\n[\S\s]*#$2\h*\n";
-						#if nothing found, just returns all subsections of $1
-					fi;
-                fi;
-		} #pcheat
-
-        #grep a functions full contents 
-        function gf() {
-                if [ $# -eq 0 ]; then
-					cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function() [\w\-]*\(\)";
-                fi;
-                if [ $# -eq 1 ]; then
-                        cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
-                fi;
-        } #gf
-
-        #searches for a string in a pdf
-        function gpdf() {
-                if [ $# -eq 1 ]; then
-                        find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color '$1'' \;
-                fi;
-                if [ $# -eq 2 ]; then
-                        find $2 -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color '$1'' \;
-                fi;
-        } #gpdf
-        #gman - searches a man page of a tool for a string
-        function gman() {
-                if [ $# -eq 2 ]; then
-                        man $1 | grep "$2"
-                fi;
-                if [ $# -eq 3 ]; then
-                        man $1 | grep $2 "$3"
-                fi;
-        } #gman
-        #greps current directory for string (additional params will set directory and flags to grep)
-        function gls() {
-                if [ $# -eq 1 ]; then
-                        ls | grep "$1"
-                fi;
-                if [ $# -eq 2 ]; then
-                        ls | grep $1 "$2"
-                fi;
-                if [ $# -eq 3 ]; then
-                        ls $3 | grep $1 "$2"
-                fi;
-        } #gls
-        #greps the unit test file for a specific target and then runs it
-        function atest() {
-                if [ $# -eq 0 ]; then
-			cs /home/jared/Coding/practice/amazon;
-			/home/jared/Coding/practice/amazon/autoTest;
-                fi;
-                if [ $# -eq 1 ]; then
-			cs /home/jared/Coding/practice/amazon;
-			$(grep -Pzo "(?<=#$1[\W\w])python3[\w -.]*" /home/jared/Coding/practice/amazon/autoTest);
-                fi;
-        } #atest
+	#searches for a string in a pdf
+	function gpdf() {
+			if [ $# -eq 1 ]; then
+					find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color '$1'' \;
+			fi;
+			if [ $# -eq 2 ]; then
+					find $2 -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color '$1'' \;
+			fi;
+	} #gpdf
+	#gman - searches a man page of a tool for a string
+	function gman() {
+			if [ $# -eq 2 ]; then
+					man $1 | grep "$2"
+			fi;
+			if [ $# -eq 3 ]; then
+					man $1 | grep $2 "$3"
+			fi;
+	} #gman
+	#greps current directory for string (additional params will set directory and flags to grep)
+	function gls() {
+			if [ $# -eq 1 ]; then
+					ls | grep "$1"
+			fi;
+			if [ $# -eq 2 ]; then
+					ls | grep $1 "$2"
+			fi;
+			if [ $# -eq 3 ]; then
+					ls $3 | grep $1 "$2"
+			fi;
+	} #gls
+	#greps the unit test file for a specific target and then runs it
+	function atest() {
+			if [ $# -eq 0 ]; then
+		cs /home/jared/Coding/practice/amazon;
+		/home/jared/Coding/practice/amazon/autoTest;
+			fi;
+			if [ $# -eq 1 ]; then
+		cs /home/jared/Coding/practice/amazon;
+		$(grep -Pzo "(?<=#$1[\W\w])python3[\w -.]*" /home/jared/Coding/practice/amazon/autoTest);
+			fi;
+	} #atest
 
 #standard shortcuts
 #misc
