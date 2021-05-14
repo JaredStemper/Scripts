@@ -10,11 +10,16 @@ Cheatsheet for pentesting tools/techniques
 		google-fu, dig, nmap, sublist3r, bluto, crt.sh
 	#subdomains
 	#fingerprinting
-		nmap, wappalyzer, whatweb, builtwith, netcat
+		nmap, wappalyzer, whatweb, builtwith.com, netcat
 	#fingerprinting
 	#databreaches
-		haveibeenpwned
+		haveibeenpwned, weleakinfo.com
 	#databreaches
+	#employee info
+		weleakinfo.com is good for tying an employee who uses similar passphrases across websites
+		hunter.io is good for finding the general pattern a company uses for emails
+			e.g. {f}{last}@irobot.com
+	#employee info
 #info gathering
 
 #scanning
@@ -35,8 +40,21 @@ Cheatsheet for pentesting tools/techniques
 #tools
 	#burpsuite 
 		(pro)
+		warning: if you manually create a number of users and create a number of logs/request, running an active scan against those requests will repeat those requests...
+			this could easily lead to a number of spam users created or even a deleted database!
 	#burpsuite 
+	#nmap
+		#ssl
+			scan for ssl and look at the ciphers
+			nmap -p 443 --script=ssl-enum-ciphers IPADDRESS
+		#ssl
+	#nmap
 	#nikto
+		vulnerability scanner
+		nikto -h siteUrl
+			should return initial results almost instantly, and then a super long time for the rest of the scan
+		here's target IP, ssl cert info (wildcard certification is important), header info
+		well known vuln scanning suite--which means it's highly likely for a WAF to detect/block it
 	#nikto
 	#dirbuster
 	#dirbuster
@@ -46,6 +64,26 @@ Cheatsheet for pentesting tools/techniques
 #attacks
 
 #misc
+	securityheaders.com				Analyse your HTTP response headers and gives rough grading
+
+	#vocab
+		credential stuffing: using leaked info and spamming them to a bunch of different logins at different sites
+		WAF (web application firewall): protects web applications by filtering/monitoring HTTP traffic between a web application and the Internet.
+			typically protects web applications from attacks such as cross-site forgery, cross-site-scripting (XSS), file inclusion, and SQL injection, among others
+			a protocol layer 7 defense, that is not designed to defend against all types of attacks
+
+			While a proxy server protects a client machine’s identity by using an intermediary, a WAF is a type of reverse-proxy, protecting the server from exposure by having clients pass through the WAF before reaching the server.
+			can be network-, host-, or cloud-based
+				network:
+					generally hardware based. installed locally, low latency. most expensive option since they require storage/maintenance
+				host:
+					pros: may be fully integrated into the app's software. less expensive than ^ and offers more customizability.
+					cons: the consumption of local server resources, implementation complexity, and maintenance costs. 
+						These components typically require engineering time, and may be costly.
+				cloud:
+					pros: cheap, easy to implement. sometimes as simple as a change in DNS to redirect traffic. consistently updated/maintained without any additional work
+					cons: users hand over the responsibility to a third-party, therefore some features of the WAF may be a black box to them
+	#vocab
 #misc
 
 #resources
@@ -55,6 +93,9 @@ Cheatsheet for pentesting tools/techniques
 	Webapp hacker’s handbook (might have it already?)
 #resources
 
+#xss
+
+#xss
 
 #sublist3r
 	"""fast subdomain enumeration tool by https://github.com/aboul3la/Sublist3r"""
