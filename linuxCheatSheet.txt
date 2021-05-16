@@ -592,6 +592,18 @@ Cheatsheet for basic Linux commands
 				set expandtab
 				retab!
 			#fix tabs
+			#spaces to tabs
+				(leading spaces, of course)
+				:set tabstop=2
+				:set noexpandtab				# tabs, not spaces
+				:%retab!						# used to retabulate the whole file
+			#spaces to tabs
+			#tabs to spaces
+				:set expandtab					#insert spaces whenever a tab is pressed
+				:set tabstop=4
+				:retab							#change existing tab characters to match current tab settings
+				:set shiftwidth=4				#change the number of space characters for indentation
+			#tabs to spaces
 		#indent
 		#copy
 			yy    copy the current line, including the newline character.
@@ -1004,9 +1016,11 @@ Cheatsheet for basic Linux commands
 		chmod +0755 /path/to/yourscript.sh       #Give w/r/execute permission to your script
 		./path/to/yourscript.sh               #And to run your script
 		bash bashFile   or  ./bashfilename.bash
+
 		^uniqueCommandTxet^uniqueCommandText
-		!!		replaces with previous command
-					^can also be used for caret substitution when replacing more than one word 
+		^x^y	caret substitution trick that takes the last command and replaces the first instance of "x" with "y"
+		!!		runs the previous command
+					^can also be used for substitution when replacing more than one word 
 						!!:gs/foo/bar/
 	#general
 	#bash prompt
@@ -1130,12 +1144,21 @@ Cheatsheet for basic Linux commands
 				echo "$i";
 				done
 			#for loops
-			#ifs
+			#if
+				#square brackets
+				# Single [] are posix shell compliant condition tests
+				# Double [[]] are an extension to []. they support additional operations,
+					|| instead of -o
+					regex matching with =~
+				#square brackets
 				count=5
+				regex="[0-9]"
 				stri="meh"
 				if [ $count == 5 ];	then
 					echo "$count"
 				elif [ $count = 4 ] && [ $stri == "meh" ]; then
+					echo "$count"
+				elif [[ $count =~ $regex ]]; then
 					echo "$count"
 				elif [ $count = 4 ]; then
 					echo "$count"
@@ -1143,7 +1166,7 @@ Cheatsheet for basic Linux commands
 					echo "count is not 4 or 5";
 				#fi denotes the end of a complex expression in base scripting language
 				fi
-			#ifs
+			#if
 			#case
 				case "$count" in
 				5)
