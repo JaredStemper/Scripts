@@ -53,6 +53,8 @@
 	alias light='chp 1'
 	alias dark='chp 2'
 
+	alias python='python3'
+
 	###Functions############################
 
 	#resets all defined functions and variables in the current shell
