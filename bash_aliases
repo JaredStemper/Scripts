@@ -53,7 +53,7 @@
 	alias light='chp 1'
 	alias dark='chp 2'
 
-	alias python='python3'
+	alias python='python3.9'
 
 	###Functions############################
 
