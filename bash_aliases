@@ -36,6 +36,8 @@
 	alias cmux='cd ~/.tmuxinator/'
 	alias vkmux='vim ~/.tmuxinator/kir.yml'
 	alias kmux='mux start kir'
+	alias vdmux='vim ~/.tmuxinator/dad.yml'
+	alias dmux='mux start dad'
 
 	alias gits='git status'
 
