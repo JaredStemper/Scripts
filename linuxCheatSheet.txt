@@ -1295,6 +1295,7 @@ Cheatsheet for basic Linux commands
 		spacebar	toggle pane layouts
 
 		:setw synchronize-panes		toggle the ability to send commands to all panes at the same time
+										hotkey set to Ctrl+s
 	#panes
 	#copy mode
 		Ctrl + b [				Enter copy mode
