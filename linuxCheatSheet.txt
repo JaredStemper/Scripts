@@ -93,6 +93,7 @@ Cheatsheet for basic Linux commands
 						deletes at a certain line repeatedly LAST_RUN many times
 		echo 'Hello' >newFile.txt                          #create a new text file (with given input)
 		ln -s targetfile optionalNameChange                #creates symbolic link (symlink) (-s) file in pwd
+				# often likes the full path to the target file. good method is $ ln -s $(pwd)/targetFile newDirectory/optionalNameChange
 		#grep
 			grep -H "..."						#output includes filename
 			grep -n "..."						#output includes line number
