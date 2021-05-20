@@ -40,6 +40,8 @@
 	alias dmux='mux start dad'
 
 	alias gits='git status'
+	alias gita='git add'
+	alias gitm='git commit -m'
 
 	#xclip to X clipboard shortcut
 	alias x="xclip"
