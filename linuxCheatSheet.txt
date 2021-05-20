@@ -108,7 +108,8 @@ Cheatsheet for basic Linux commands
 					-a, --append: to append to the given files, does not overwrite
 			cat -e -t -v Makefile                              #cats file with \t marking tabs and $ signifying endlines. Useful for debugging tabs/spaces issues
 		#append
-		xdg-open filename.png                              #will open a file (equivalent of double-clicking on it)
+		xdg-open filename.png                              		#will open a file (equivalent of double-clicking on it)
+		sudo chmod +x /etc/cron.daily/mlocate					#disable chron job from running mlocate every day TODO
 	#standard tips
 	#shred
 			shred -s 10 - > fileNameInCurrentDir               #writes 10 random bytes of data to stdout and redirects it to a file
