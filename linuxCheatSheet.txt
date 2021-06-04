@@ -1337,6 +1337,10 @@ Cheatsheet for basic Linux commands
 		alt + shift + p 		Save complete pane history to a file. Convenient if you retroactively remember you need to log/save all work. 
 									NOTE: history limit is 50,000.
 	#logging
+	#tmuxinator
+		prefix + ctrl-s			save
+		prefix + ctrl-r			restore
+	#tmuxinator
 #tmux
 
 #Apache2
