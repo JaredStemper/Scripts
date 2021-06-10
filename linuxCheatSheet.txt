@@ -1595,6 +1595,15 @@ Cheatsheet for basic Linux commands
 
 		ffmpeg -i videoThing.mp4 -filter:v "setpts=0.5*PTS" newVideoThing.mp4
 	#speed up video  
+	#extract WAV
+		ffmpeg -i input.mp4 output.wav		#wav files are uncompressed, so it is already at the highest saved quality
+	#extract WAV
+	#split file
+		# will split large files into smaller chunks of the same interval
+		# out%02d means that the output file(s) will have the format: 
+			# out01.wav out02.wav out03.wav ...
+		ffmpeg -i input.wav -f segment -segment_time 59 -c copy parts/out%02d.wav
+	#split file
 	
 	#Avoid dropped frames by specifying a higher output frame rate than the input
 	#For example, to go from an input of 4 FPS to one that is sped up to 4x that (16 FPS):
