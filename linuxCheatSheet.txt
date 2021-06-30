@@ -5,15 +5,15 @@ Cheatsheet for basic Linux commands
 #General Linux
 
 	#OS configs
-			neofetch                                   #nice gui system properties
-			uname -or                                  #kernel detection
-			lsb_release -irc                           #a way to check the release version (with it the codename of the distribution)
-			ls /sys/firmware/efi/                      # if the folder does not exist, then you are using BIOS. i could see it, thus i am using UEFI
+		neofetch                                   #nice gui system properties
+		uname -or                                  #kernel detection
+		lsb_release -irc                           #a way to check the release version (with it the codename of the distribution)
+		ls /sys/firmware/efi/                      # if the folder does not exist, then you are using BIOS. i could see it, thus i am using UEFI
 	#OS configs
 	#vendor/model
-	To find the vendor and model name of the processor, search the /proc/cpuinfo file with the grep command.       
-			cat /proc/cpuinfo | grep vendor | uniq
-						 ...  | grep 'model name' | ...
+	   To find the vendor and model name of the processor, search the /proc/cpuinfo file with the grep command.
+		cat /proc/cpuinfo | grep vendor | uniq
+				...  | grep 'model name' | ...
 	#vendor/model
 	#architecture
 			sudo lshw                                  #pretty much tells you everything
@@ -32,15 +32,15 @@ Cheatsheet for basic Linux commands
 			scp /local/file r_host:path/remote/file            #Copy a local file to a remote host
 	#network
 	#system
-			systemctl reboot --firmware-setup                  #boot directly into firmware setup (boot order BIOS system info). also shift, ESC, f2, del, are all common hotkeys to enter the BIOS during system setup, but the delay is currently set to zero, so you need to hold it down immediately
-			#to run command at startup start up put in the file: /etc/rc.local
-			lspci                                              #lists information about all PCI buses in the system and all devices connected to them
-			fdisk -l                                           #displays all partioned devices (e.g. usb sticks/drive) (inlcuding those not mounted)
-			speedtest-cli                                      #performs a speedtest in terminal using speedtest.net API
-			dconf-editor                                       #Graphical editor for gsettings and dconf
-			gparted                                            #GNOME partition editor for viewing, creating, reorganizing, and deleting disk partitions
-			dpkg -l                                            #list all installed packages dpkg==debian package manager
-			 sensors -f														 #display CPU temperature
+		systemctl reboot --firmware-setup                  #boot directly into firmware setup (boot order BIOS system info). also shift, ESC, f2, del, are all common hotkeys to enter the BIOS during system setup, but the delay is currently set to zero, so you need to hold it down immediately
+		#to run command at startup start up put in the file: /etc/rc.local
+		lspci                                              #lists information about all PCI buses in the system and all devices connected to them
+		fdisk -l                                           #displays all partioned devices (e.g. usb sticks/drive) (inlcuding those not mounted)
+		speedtest-cli                                      #performs a speedtest in terminal using speedtest.net API
+		dconf-editor                                       #Graphical editor for gsettings and dconf
+		gparted                                            #GNOME partition editor for viewing, creating, reorganizing, and deleting disk partitions
+		dpkg -l                                            #list all installed packages dpkg==debian package manager
+		sensors -f														 #display CPU temperature
 	#system
 	#tasks
 			fuser /path/to/.nfs||other file                    #identifies process using files
@@ -124,7 +124,6 @@ Cheatsheet for basic Linux commands
 		cat file | xclip -selection clipboard
    #xclip
 
-
    #tar
         tar -xzvf archive.tar.gz                           #decompress a tar.gz file
                 -x extract
@@ -136,94 +135,103 @@ Cheatsheet for basic Linux commands
                         Ex. tar -czvf archive.tar.gz /home/ubuntu --exclude=/home/ubuntu/Downloads --exclude=/home/ubuntu/.cache
                 Ex. of a similar format to extract the contents of the archive to a specific directory: tar -xzvf archive.tar.gz -C /tmp
    #tar
+
+	#screen
+		#brightness
+			xrandr -q | grep " connected"				view the connected video devices to computer (e.g. usb/hdmi)
+			
+			#external monitor
+				# since the HDMI-1 was the connection that i wanted to change on my external monitor, i used it here
+				xrandr --output HDMI-1 --brightness 0.5
+			#external monitor
+		#brightness
+	#screen
 #General Linux
 
 
 #tips and tricks
-   tldr package (e.g. man)                         #gives succinct explanation of tool command and a short list of common uses and examples
-   ^incorrect^correct                              #caret used to replace misspelling in previous command
+	tldr package (e.g. man)                         #gives succinct explanation of tool command and a short list of common uses and examples
+	^incorrect^correct                              #caret used to replace misspelling in previous command
 
-   #sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
-         # other commands in the trash-cli package are trash-list, trash-empty, and restore-trash
-   alias rm=trash
+	# sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
+		# other commands in the trash-cli package are trash-list, trash-empty, and restore-trash
+	alias rm=trash
 
-   unalias $someAlias                        #used to remove an alias in the current shell. can be used in bashrc/bash_aliases to permanently "remove" an alias
+	unalias $someAlias                        #used to remove an alias in the current shell. can be used in bashrc/bash_aliases to permanently "remove" an alias
 
-   #sed 
-      (Stream EDitor - perform operations on a text file and display result)  
-        sed [option] '{script}' [text file]
+	#sed 
+		(Stream EDitor - perform operations on a text file and display result)  
+		sed [option] '{script}' [text file]
 
-                -i directly edit input file (as opposed to using > || >> to write to the file)
-                '2,4 d'  deletes lines 2-4
-                '/^#/ d' deletes all lines that start with # (removes comments from code, or ruins a c program lol)
-                        '/regex/ d' test.ex
-                        '/regex1/,/regex2/ d' removes lines between the two regex
-                -re 's/^# */bob/' replace # with bob (if at start of line, think comments in code)
+		-i directly edit input file (as opposed to using > || >> to write to the file)
+		'2,4 d'  deletes lines 2-4
+		'/^#/ d' deletes all lines that start with # (removes comments from code, or ruins a c program lol)
+		'/regex/ d' test.ex
+		'/regex1/,/regex2/ d' removes lines between the two regex
+		-re 's/^# */bob/' replace # with bob (if at start of line, think comments in code)
 
-                's/foo/bar/'             # replaces only 1st instance in a line
-                's/foo/bar/4'            # replaces only 4th instance in a line
-                's/foo/bar/g'            # replaces ALL instances in a line
-                's/foo/bar/I'            # replaces with case sensitive pattern 
-   #sed - Stream EDitor - perform operations on a text file and display result
-	
-   #sorting
-          Using < you can redirect the input to come from a file rather than the keyboard. For example, to sort the list of fruit, type
+		's/foo/bar/'             # replaces only 1st instance in a line
+		's/foo/bar/4'            # replaces only 4th instance in a line
+		's/foo/bar/g'            # replaces ALL instances in a line
+		's/foo/bar/I'            # replaces with case sensitive pattern 
+	#sed	
+	#sorting
+		Using < you can redirect the input to come from a file rather than the keyboard. For example, to sort the list of fruit, type
+			% sort < biglist
 
-               % sort < biglist
+		and the sorted list will be output to the screen.
 
-         and the sorted list will be output to the screen.
+		To output the sorted list to a file, type,
+			% sort < biglist > slist
+	#sorting
 
-         To output the sorted list to a file, type,
+	#latex        
+		pdflatex file.tex #then hit enter and run
+	#latex        
 
-         % sort < biglist > slist
-   #sorting
+	#cht.sh     
+		(https://github.com/chubin/cheat.sh cheat sheet cheatsheet)
+		curl cht.sh/python/dictionary                #get examples and description of a tool through the repository of answers or automatic searching in stackoverflow
+		curl cht.sh/python/dictionary/1                 #views additional answer (1,2,3,etc.)
+		\?Q                           #only code, no comments (e.g. curl cht.sh/python/dictionary\?Q)
+	#cht.sh
 
-   #latex        
-	   pdflatex file.tex #then hit enter and run
-   #latex        
-
-   #cht.sh     
-	   (https://github.com/chubin/cheat.sh cheat sheet cheatsheet)
-	   curl cht.sh/python/dictionary                #get examples and description of a tool through the repository of answers or automatic searching in stackoverflow
-	   curl cht.sh/python/dictionary/1                 #views additional answer (1,2,3,etc.)
-	   \?Q                           #only code, no comments (e.g. curl cht.sh/python/dictionary\?Q)
-   #cht.sh
-   
 #tips and tricks
+
 #regex
 	#characters
-	\h			match horizontal whitespace (any tab/space from ascii set, non-breaking space from extended ASCII, or a number of Unicode characters)
-	\v			match verical space (matches next line (not caught by \s), line separator, paragraph separator, carriage return, line feed, line tabulation, form feed
-				NOTE: \h and \v only work on the languages which supports PCRE, such as Perl
+		\h			match horizontal whitespace (any tab/space from ascii set, non-breaking space from extended ASCII, or a number of Unicode characters)
+		\v			match verical space (matches next line (not caught by \s), line separator, paragraph separator, carriage return, line feed, line tabulation, form feed
+					NOTE: \h and \v only work on the languages which supports PCRE, such as Perl
 
-	\d			Most engines: one digit from 0 to 9	file_\d\d											
-				.NET, Python 3: one Unicode digit in any script	file_\d\d	
-					matches: file_25
-					matches: file_9੩
-	\w			Most engines: "word character": ASCII letter, digit or underscore	\w-\w\w\w	
-	\w			.Python 3: "word character": Unicode letter, ideogram, digit, or underscore	\w-\w\w\w	
-	\w			.NET: "word character": Unicode letter, ideogram, digit, or connector	\w-\w\w\w	
-					matches: A-b_1
-					matches: 字-ま_۳
-					matches: 字-ま‿۳
-	\s			Most engines: "whitespace character": space, tab, newline, carriage return, vertical tab	a\sb\sc	
-	\s			.NET, Python 3, JavaScript: "whitespace character": any Unicode separator	a\sb\sc	
-					matches: a b	c
-					matches: a b	c
-	\D			One character that is not a digit as defined by your engine's \d	\D\D\D	ABC
-	\W			One character that is not a word character as defined by your engine's \w	\W\W\W\W\W	*-+=)
-	\S			One character that is not a whitespace character as defined by your engine's \s	\S\S\S\S	Yoyo
+		\d			Most engines: one digit from 0 to 9	file_\d\d											
+					.NET, Python 3: one Unicode digit in any script	file_\d\d	
+						matches: file_25
+						matches: file_9੩
+		\w			Most engines: "word character": ASCII letter, digit or underscore	\w-\w\w\w	
+		\w			.Python 3: "word character": Unicode letter, ideogram, digit, or underscore	\w-\w\w\w	
+		\w			.NET: "word character": Unicode letter, ideogram, digit, or connector	\w-\w\w\w	
+						matches: A-b_1
+						matches: 字-ま_۳
+						matches: 字-ま‿۳
+		\s			Most engines: "whitespace character": space, tab, newline, carriage return, vertical tab	a\sb\sc	
+		\s			.NET, Python 3, JavaScript: "whitespace character": any Unicode separator	a\sb\sc	
+						matches: a b	c
+						matches: a b	c
+		\D			One character that is not a digit as defined by your engine''s \d	\D\D\D	ABC
+		\W			One character that is not a word character as defined by your engine''s \w	\W\W\W\W\W	*-+=)
+		\S			One character that is not a whitespace character as defined by your engine''s \s	\S\S\S\S	Yoyo
 
-	.			Any character except line break	
-					a.c	abc
-	.			Any character except line break	
-					.*	whatever, man.
-	\.			A period (special character: needs to be escaped by a \)	
-					a\.c	a.c
-	\			Escapes a special character	
-					\.\*\+\?    \$\^\/\\	.*+?    $^/\
-	\			Escapes a special character	
-					\[\{\(\)\}\]	[{()}]
+		.			Any character except line break	
+						a.c	abc
+		.			Any character except line break	
+						.*	whatever, man.
+		\.			A period (special character: needs to be escaped by a \)	
+						a\.c	a.c
+		\			Escapes a special character	
+						\.\*\+\?    \$\^\/\\	.*+?    $^/\
+		\			Escapes a special character	
+						\[\{\(\)\}\]	[{()}]
 	#characters
 	#character classes
 		-			Range indicator	
@@ -243,7 +251,7 @@ Cheatsheet for basic Linux commands
 		[^x-y]		One of the characters not in the range from x to y	
 						[^ -~]+	Characters that are not in the printable section of the ASCII table.
 		[\d\D]		One character that is a digit or a non-digit	
-						[\d\D]+		Any characters, inc\nluding new lines, which the regular dot doesn't match
+						[\d\D]+		Any characters, inc\nluding new lines, which the regular dot doesn''t match
 		[\x41]		Matches the character at hexadecimal position 41 in the ASCII table, 
 						i.e. A
 		#operations
@@ -485,8 +493,8 @@ Cheatsheet for basic Linux commands
 	set wrap/wrap!/nowrap	flip text wrapping
 	
 
-   ESC to exit from current mode
-   (shift+i or i to enter insert mode)
+	ESC to exit from current mode
+	(shift+i or i to enter insert mode)
 	#open
       vi +$lineNumber file          start vim at specific line number
       vi +/searchTermHere file.c       start vim at location of first instance of search (escape characters with \ )
@@ -586,6 +594,8 @@ Cheatsheet for basic Linux commands
 			=%    Reindent a braced or bracketed block (cursor on brace)
 			<%    Decrease indent of a braced or bracketed block (cursor on brace)
 			]p    Paste text, aligning indentation with surroundings
+
+			set foldignore=					when foldmethod=indent, makes sure that default character '#' is not skipped for indenting
 			#fix tabs
 				retab                     redoes all spaces in file according to rules set for spaces/tabs
 				(Note: sometimes this will not work. A workaround was to run 4 separate commands)
