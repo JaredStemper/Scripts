@@ -1289,8 +1289,11 @@ Cheatsheet for basic Linux commands
 		z			toggle pane zoom
 		!			convert pane into a window
 		
+		
 		:break-pane				break the pane into it''s own window
 		:join-pane -s -t		join a pane into the selected window/session
+		:mark-pane 				marks the current pane; used to set default pane on join-pane/swap-pane/swap-window
+			prefix m
 		#resize
 			command key then arrow keys
 			can use command key then ctrl+arrows to move with more precision
