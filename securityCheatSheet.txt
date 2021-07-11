@@ -22,22 +22,11 @@ Cheatsheet for pentesting tools/techniques
 	#employee info
 #info gathering
 
-#scanning
-#enumeration
-
-#scanning
-#enumeration
-
-#exploitation
-#exploitation
-
-#maintaining access
-#maintaining access
-
-#cleanup
-#cleanup
-
 #tools
+	#sublist3r
+		"""fast subdomain enumeration tool by https://github.com/aboul3la/Sublist3r"""
+		python3 sublist3r.py -d DOMAIN [-p PORTS] [-o OUTPUT] [-v VERBOSE]
+	#sublist3r
 	#burpsuite 
 		(pro)
 		warning: if you manually create a number of users and create a number of logs/request, running an active scan against those requests will repeat those requests...
@@ -60,117 +49,29 @@ Cheatsheet for pentesting tools/techniques
 	#dirbuster
 #tools
 
-#attacks
-#attacks
-
-#juiceshop
-	#enumerate
-	add juiceshop url to target scope
-		show only in scope
-	click on buttons, try to submit stuff, look at different parts of the site, search
-	scan and crawl (can manipulate resource usage)
-	robots.txt (what can't be crawled by a web crawlers)
-		response says disallow /ftp
-	look at source code
-		any comments, hardcoded elements, etc.
-	#enumerate
-	#challenges
-		#trivial challenges
-			#two flags that should always be set:
-				SSL cookie secure flag. used to prevent cookies from being observed
-				HTTPonly. if set the cookie cannot be accessed through a client-side script
-			#finding scoreboard
-				in web developer, search main.js for various keywords
-				'score' (last result) is found in path: 'score-board'
-				solved.
-			#finding scoreboard
-			#find confidential document
-				ftp folder. quarantine, juicy malware is interesting, downloading aquisitions.md will give the flag
-			#find confidential document
-			#redirects
-				inspect element. debugger, ctrl+f for 'redirect'
-				bitcoin address and a redireect page. copy url. paste it after juiceshop url and get the flag
-			#redirects
-			#repetitive registration
-				DRY principle means Don't Repeat Yourself
-					every single piece of information must have representation within a system
-					the opposite of DRY is WET (write everything twice, wasting everyone's time, etc.)
-				go to login. not yet a customer.
-				there is a way to test this password authentication (password1, password2)
-				after matching the two passphrases. change the first password (keeping length)
-				check what password it took (first one. second was never checked again)
-			#repetitive registration
-			#zero stars
-				contact; customer feedback
-				wants a rating set before submitting
-				going to inspect element, submit type is set to disable on button
-				set it to enable... boom!
-			#zero stars
-			#error handling
-				login page. testing for sql injection with an apostraphe (throws an error, which is a good sign (for us))
-				inspect element to see further issues
-				sqllite (from error message)
-			#error handling
-			#xss tier 0
-				reflected attack.
-				search for an order. try and inject <h1>test</h1> and it works!
-				just using <script>alert(1)</script> will do the trick
-			#xss tier 0
-			#xss tier 1
-				reflected, stored, and dom
-					reflected. not going into the server; only client side
-					stored. putting it into a comment, whoever clicks on it gets an injection on their side
-						stored in db until removed
-					dom. document object model. provides object orientation of html elements (generating dynamic content)
-						when a user puts in malicious input, that goes into the "source". where it's executed is the 'sink'
-						scip.ch. good example of dom based xss
-						similar to reflected, but not the same
-				submitting given xss to various inputs. 
-				searching shows the url is url/search?q=test
-				to prove that it is interacting with the DOM, search for <h1>text</br></br> and see if it shows dynamic changes according to the dom
-				pasting the given alert javascript will give the flag
-				xss-header can prevent this particular attack
-			#xss tier 1
-			#privacy policy
-				go to privacy/security, and it's pretty easy to find. 
-				this is about enumeration. makeing sure you're clicking on all of them
-			#privacy policy
-		#trivial challenges
-	#challenges
-#juiceshop
-
-#misc
-	securityheaders.com				Analyse your HTTP response headers and gives rough grading
-
-	#vocab
-		credential stuffing: using leaked info and spamming them to a bunch of different logins at different sites
-		WAF (web application firewall): protects web applications by filtering/monitoring HTTP traffic between a web application and the Internet.
-			typically protects web applications from attacks such as cross-site forgery, cross-site-scripting (XSS), file inclusion, and SQL injection, among others
-			a protocol layer 7 defense, that is not designed to defend against all types of attacks
-
-			While a proxy server protects a client machine’s identity by using an intermediary, a WAF is a type of reverse-proxy, protecting the server from exposure by having clients pass through the WAF before reaching the server.
-			can be network-, host-, or cloud-based
-				network:
-					generally hardware based. installed locally, low latency. most expensive option since they require storage/maintenance
-				host:
-					pros: may be fully integrated into the app's software. less expensive than ^ and offers more customizability.
-					cons: the consumption of local server resources, implementation complexity, and maintenance costs. 
-						These components typically require engineering time, and may be costly.
-				cloud:
-					pros: cheap, easy to implement. sometimes as simple as a change in DNS to redirect traffic. consistently updated/maintained without any additional work
-					cons: users hand over the responsibility to a third-party, therefore some features of the WAF may be a black box to them
-	#vocab
-#misc
+#vocab
+	credential stuffing: using leaked info and spamming them to a bunch of different logins at different sites
+	WAF (web application firewall): protects web applications by filtering/monitoring HTTP traffic between a web application and the Internet.
+		typically protects web applications from attacks such as cross-site forgery, cross-site-scripting (XSS), file inclusion, and SQL injection, among others
+		a protocol layer 7 defense, that is not designed to defend against all types of attacks
+		While a proxy server protects a client machine’s identity by using an intermediary, a WAF is a type of reverse-proxy, protecting the server from exposure by having clients pass through the WAF before reaching the server.
+		can be network-, host-, or cloud-based
+			network:
+				generally hardware based. installed locally, low latency. most expensive option since they require storage/maintenance
+			host:
+				pros: may be fully integrated into the app's software. less expensive than ^ and offers more customizability.
+				cons: the consumption of local server resources, implementation complexity, and maintenance costs. 
+					These components typically require engineering time, and may be costly.
+			cloud:
+				pros: cheap, easy to implement. sometimes as simple as a change in DNS to redirect traffic. consistently updated/maintained without any additional work
+				cons: users hand over the responsibility to a third-party, therefore some features of the WAF may be a black box to them
+#vocab
 
 #resources
+	securityheaders.com				Analyse your HTTP response headers and gives rough grading
 	Owasp testing guides
 	owasp.org/images/1/19/OTGv4.pdf
 	github.com/tanprathan/OWASP-Testing-Checklist
 	Webapp hacker’s handbook (might have it already?)
 #resources
-
-#sublist3r
-	"""fast subdomain enumeration tool by https://github.com/aboul3la/Sublist3r"""
-	python3 sublist3r.py -d DOMAIN [-p PORTS] [-o OUTPUT] [-v VERBOSE]
-#sublist3r
 
