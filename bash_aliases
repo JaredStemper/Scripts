@@ -28,6 +28,25 @@
 
 	#sudo apt-get install trash-cli  #command-line interface to the same trash can that GNOME (can be recovered)
 	alias rm=trash
+	
+	alias eMB='/home/jared/Coding/Scripts/Misc/externalMonitorBrightness.sh'
+	alias dMB='/home/jared/Coding/Scripts/Misc/defaultMonitorBrightness.sh'
+	# the brightness function aMB is in the function section below
+	#change brightness of external monitor
+	alias ema2='eMB .2'
+	alias ems2='eMB -.2'
+	alias ema5='eMB .5'
+	alias ems5='eMB -.5'
+	#change brightness of default monitor
+	alias dma2='dMB .2'
+	alias dms2='dMB -.2'
+	alias dma5='dMB .5'
+	alias dms5='dMB -.5'
+	#change brightness of both monitors (only works for two)
+	alias ama2='eMB .2 && dMB .2'
+	alias ams2='eMB -.2 && dMB -.2'
+	alias ama5='eMB .5 && dMB .5'
+	alias ams5='eMB -.5 && dMB -.5'
 
 	alias cdlog='cd ~/.tmux/logging/'
 	alias vtmux='vim ~/.tmux.conf'
@@ -61,6 +80,11 @@
 	alias python3='python3.9'
 
 	###Functions############################
+
+	#set specific brightness level for both monitors
+	function aMB(){
+		eMB $1 && dMB $1
+	} #aMB
 
 	#resets all defined functions and variables in the current shell
 	function src(){
@@ -313,12 +337,12 @@
 
 	#grep a functions full contents 
 	function gf() {
-			if [ $# -eq 0 ]; then
-				cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function\(\) [\w\-]*\(\)";
-			fi;
-			if [ $# -eq 1 ]; then
-					cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
-			fi;
+		if [ $# -eq 0 ]; then
+			cat ~/Coding/Scripts/bash_aliases | grep -Po "^[ \t]*function [\w\-]*\(\)";
+		fi;
+		if [ $# -eq 1 ]; then
+				cat ~/Coding/Scripts/bash_aliases | grep -Pzoi "[ \t]*#.*?\n[\t ]*function $1[\S\s]*#$1\n";
+		fi;
 	} #gf
 
 	#searches for a string in a pdf
