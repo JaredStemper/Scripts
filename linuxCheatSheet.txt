@@ -833,6 +833,7 @@ Cheatsheet for basic Linux commands
 			#example
 		#macro
 		#fold
+			set foldignore=								when foldmethod=indent, makes sure that default character '#' is not skipped for indenting
 			set foldmethod=value || set fdm=value
 			#values
 				manual		folds must be defined by entering commands (such as zf)
