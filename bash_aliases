@@ -366,7 +366,7 @@
 	#greps current directory for string (additional params will set directory and flags to grep)
 	function gls() {
 			if [ $# -eq 1 ]; then
-					ls | grep "$1"
+					ls | grep -i "$1"
 			fi;
 			if [ $# -eq 2 ]; then
 					ls | grep $1 "$2"
@@ -490,7 +490,7 @@
 			if [ "$#" -eq 1 ]; then
 			   sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-end ${1} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
 			elif [ "$#" -eq 2 ]; then
-			   sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-end ${1} --playlist-end ${2} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
+			   sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-start ${1} --playlist-end ${2} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
 			else
 			   echo "Too many parameters. 1 parameter to set last song # in playlist, 2 parameters to set first and then last song"
 			fi;
