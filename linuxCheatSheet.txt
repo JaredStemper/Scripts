@@ -164,16 +164,36 @@ Cheatsheet for basic Linux commands
 		sed [option] '{script}' [text file]
 
 		-i directly edit input file (as opposed to using > || >> to write to the file)
-		'2,4 d'  deletes lines 2-4
-		'/^#/ d' deletes all lines that start with # (removes comments from code, or ruins a c program lol)
-		'/regex/ d' test.ex
-		'/regex1/,/regex2/ d' removes lines between the two regex
-		-re 's/^# */bob/' replace # with bob (if at start of line, think comments in code)
+		'2,4d'  				deletes lines 2-4
+		'/^#/d' 				deletes all lines that start with # (removes comments from code, or ruins a c program lol)
+		'/regex/d' test.ex		deletes line containing regex match
+		'/regex1/,/regex2/d' 	removes lines between the two regex
+		-re 's/^# */bob/' replace '#' with bob (if at start of line, think comments in code)
 
 		's/foo/bar/'             # replaces only 1st instance in a line
 		's/foo/bar/4'            # replaces only 4th instance in a line
 		's/foo/bar/g'            # replaces ALL instances in a line
 		's/foo/bar/I'            # replaces with case sensitive pattern 
+
+		#see modified text
+			# example given is line deletion
+			$ cat test.dat
+				1 First line
+				2 Second line
+				3 Third line
+				A Keep this one
+			$ cat code/sed/delete-verbose.sed
+				/^[0-9]/{
+				w ./deleted.dat
+				d
+				}
+			$ sed -f code/sed/delete-verbose.sed test.dat
+				A Keep this one
+			$ cat ./deleted.dat
+				1 First line
+				2 Second line
+				3 Third line
+		#see modified text
 	#sed	
 	#sorting
 		Using < you can redirect the input to come from a file rather than the keyboard. For example, to sort the list of fruit, type
@@ -507,7 +527,9 @@ Cheatsheet for basic Linux commands
 			:q!      	quit without saving
 			:wq      	save and quit (q also works to close a singular screen of vim)
 			:w file     save the file as filename
-			:e || e!	load the latest version, and :e! will do that even if you have unsaved changes.
+			:e || :edit fileName			load the latest version of a file (reloads current file if not given anything)
+													very useful if viewing and modifying a file to see the changes
+							
 		#saving
 		#modify
 			A     start appending text to the end of the curr line
