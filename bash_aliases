@@ -79,6 +79,9 @@
 	alias python='python3.9'
 	alias python3='python3.9'
 
+	#stop all running docker containers
+	alias dstop="docker stop $(docker ps -a -q)"
+
 	###Functions############################
 
 	#set specific brightness level for both monitors
