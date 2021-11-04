@@ -87,7 +87,7 @@
 
 	#stops all running containers; builds and runs currDir's html-server using input of tag number
 	function dweb(){
-	    if [ $# -neq 1 ]; then
+	    if [ $# -ne 1 ]; then
 			echo "$ dweb [tag number]"
 	    fi;
 	    if [ $# -eq 1 ]; then
