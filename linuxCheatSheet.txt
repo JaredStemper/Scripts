@@ -1692,23 +1692,28 @@ Cheatsheet for basic Linux commands
 
 		docker stop [options] CONTAINER
 	#start
-	#manage
-		ps
-		ps -a
-		CTRL-P CTRL-Q			Detach current running container (provided it was started it -it)
-		attach containerID		Re-attach container
-									can also use $ docker attach --name containerName
-		stop containerName		stop given container
-		kill $ID
-		docker rmi				Deletes images.
+	#network
 		network ls
 		network rm networkId
 		network prune
-	#manage
+	#network
+	#container
+		ps
+		ps -a
+		CTRL-P CTRL-Q			Detach current running container (provided it was started it -it)
+		kill $ID
+		attach containerID		Re-attach container
+									can also use $ docker attach --name containerName
+		docker container start containerName
+		docker container stop containerName
+		docker container prune
+	#container
 	#images
 		docker images -a		show images (-a to include intermediate)
 		docker rmi				Deletes images.
 								docker rmi b750fe78269d
+		docker rmi -f $(docker images -f "reference=html-server-image")
+			# removes all images that match the repository tag (which can also include wildcard characters, such as *)
 	#images
 #docker
 
