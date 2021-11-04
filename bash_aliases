@@ -79,8 +79,11 @@
 	alias python='python3.9'
 	alias python3='python3.9'
 
+	#alias dstop="docker stop $(docker ps -q)"
 	#stop all running docker containers
-	alias dstop="docker stop $(docker ps -q)"
+	function dockstop(){
+		docker stop $(docker ps -q)
+	} #dstop
 
 	###Functions############################
 
