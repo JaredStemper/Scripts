@@ -85,6 +85,18 @@
 		docker stop $(docker ps -a -q)
 	} #dockstop
 
+	#stops all running containers; builds and runs currDir's html-server using input of tag number
+	function dweb(){
+	    if [ $# -neq 1 ]; then
+			echo "$ dweb [tag number]"
+	    fi;
+	    if [ $# -eq 1 ]; then
+			dockstop
+			docker build -t html-server-image:v$1 .
+			docker run -d -p 80:80 html-server-image:v$1
+		fi;
+	} #dweb
+	
 	###Functions############################
 
 	#set specific brightness level for both monitors
