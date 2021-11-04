@@ -82,7 +82,7 @@
 	#alias dstop="docker stop $(docker ps -q)"
 	#stop all running docker containers
 	function dockstop(){
-		docker stop $(docker ps -q)
+		docker stop $(docker ps -a -q)
 	} #dockstop
 
 	###Functions############################
