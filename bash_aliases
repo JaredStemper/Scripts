@@ -83,7 +83,7 @@
 	#stop all running docker containers
 	function dockstop(){
 		docker stop $(docker ps -q)
-	} #dstop
+	} #dockstop
 
 	###Functions############################
 
