@@ -1271,6 +1271,7 @@ Cheatsheet for basic Linux commands
 		d		detach from the current session
 				  :attach -d
 
+		tmux attach						#attach to server persistent session
 		:a -t mysession
 			:at -t mysession
 			:attach -t mysession
