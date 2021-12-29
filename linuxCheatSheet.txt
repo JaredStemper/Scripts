@@ -110,6 +110,16 @@ Cheatsheet for basic Linux commands
 		#append
 		xdg-open filename.png                              		#will open a file (equivalent of double-clicking on it)
 		sudo chmod +x /etc/cron.daily/mlocate					#disable chron job from running mlocate every day TODO
+		#compare files
+			#comm
+				Produce three tab-separated columns: lines only in first file, lines only in second file and common lines
+					comm 1.txt 2.txt
+				Show only common lines
+					comm -12 1.txt 2.txt
+				Print only lines common to both files, reading one file from stdin:
+					cat file1 | comm -12 - file2
+			#comm
+		#compare files
 	#standard tips
 	#shred
 			shred -s 10 - > fileNameInCurrentDir               #writes 10 random bytes of data to stdout and redirects it to a file
@@ -215,6 +225,7 @@ Cheatsheet for basic Linux commands
 		curl cht.sh/python/dictionary/1                 #views additional answer (1,2,3,etc.)
 		\?Q                           #only code, no comments (e.g. curl cht.sh/python/dictionary\?Q)
 	#cht.sh
+	
 
 #tips and tricks
 
