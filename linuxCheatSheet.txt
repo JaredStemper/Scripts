@@ -1734,3 +1734,22 @@ Cheatsheet for basic Linux commands
 		#root certificates of Firefox can be shared with the Citrix receiver with only one command via symbolic links. The whole works as follows:
 		sudo ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts
 #citrix
+
+#ruby
+	#install
+		https://github.com/rbenv/rbenv#basic-github-checkout
+		^ use to install ruby env manager
+		^ ensure that ruby-build is also downloaded for sake of ease of installation
+		
+		gem install bundler				#uses rbenv local to install the gems (note that you don't neeed sudo, but it depends where you choose to install them)
+		bundle install
+
+	#install
+
+	#update
+		cd ~/.rbenv
+		git pull
+	#update
+	rbenv --list-all				#list all versions
+	gem env home					#location where gems are being installed
+#ruby
