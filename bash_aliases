@@ -76,8 +76,8 @@
 	alias light='chp 1'
 	alias dark='chp 2'
 
-	alias python='python3.9'
-	alias python3='python3.9'
+	alias python='/usr/bin/python3'
+	alias python3='/usr/bin/python3'
 
 	#alias dstop="docker stop $(docker ps -q)"
 	#stop all running docker containers
@@ -267,8 +267,8 @@
 					cat ~/Coding/Scripts/bash_aliases | grep $1;
 			fi;
 			if [ $# -eq 2 ]; then
-					cat ~/.bash_aliases | grep $1 $2;
-					cat ~/Coding/Scripts/bash_aliases | grep $1 $2;
+				cat ~/.bash_aliases | grep $1 $2;
+				cat ~/Coding/Scripts/bash_aliases | grep $1 $2;
 			fi;
 	} #galias
 
@@ -481,7 +481,31 @@
 	alias EXIT='echo ""; echo ""; echo "GEEZ, no need to yell ya know?"; echo ""; echo ""; sleep 2; exit;'
 
   #yt
-	alias songLength='for i in *.mp3; do echo $(ffmpeg -i "$i" 2>&1 | grep -oP "(?<=Duration: )[0-9:]*"), >> test.txt; done'
+	#create list of all songs 
+	function songLength() {
+		shopt -s globstar #used for proper globbing with **/*.mp3
+		currFile="/home/jared/virtboxVMs/vbox memory/window/newestMusic/test.py";
+		for i in **/*.mp3; 
+			do echo "$i"; 
+			echo \ \ \ \ \"$(ffmpeg -i "$i" 2>&1 | grep -oP "(?<=Duration: )[0-9:]*")\", >> "$currFile";
+		done
+		echo ] >> "$currFile"
+		echo timeSum\(lis\) >> "$currFile"
+	} #songLength
+
+	#search OG playlist (youtube.com) playlist vs currPlaylist (downloaded content)
+	function searchPlaylists() {
+		echo "Current Playlist: "; grep "$1" "/home/jared/virtboxVMs/vbox memory/window/newestMusic/zcurrentLIST.txt"
+		echo "";
+		echo "OG Playlist: "; grep "$1" "/home/jared/virtboxVMs/vbox memory/window/newestMusic/zogPlayLIST.txt"
+	} #searchPlaylists
+
+	#search current directory and all subdirectories for given string with wildcards on both ends
+	function findSong() {
+		clear
+		local myVar="$@"
+		find . -name "*$myVar*"
+	} #findSong
 
 	#removes all text with () around key phrase (e.g. (lyrics))
 	alias songRename='for i in *.mp3; do mv "$i" "`echo $i | sed "s/ ([a-z A-Z0-9_]*video[a-zA-Z0-9_ ]*)//i"`"; done' 
@@ -508,9 +532,13 @@
 			if [ "$#" -eq 1 ]; then
 			   sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-end ${1} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
 			elif [ "$#" -eq 2 ]; then
-			   sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-start ${1} --playlist-end ${2} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
-			else
-			   echo "Too many parameters. 1 parameter to set last song # in playlist, 2 parameters to set first and then last song"
+				#if first arg is "i", then download individual items (expected format is "1,3,5,6,8,9")
+				if [ "$1" == "i" ]; then
+					sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-items ${2} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
+				#otherwise, download from first arg to second (e.g. $1 == 2,$2 == 5; 2,3,4,5)
+				else
+					sudo youtube-dl -U; youtube-dl --extract-audio --audio-format mp3 -i -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata --audio-quality 0 --playlist-start ${1} --playlist-end ${2} https://www.youtube.com/playlist?list=PLw9tOEvRg20cBy10SEwKCClDm8ds3mrsi;
+				fi;
 			fi;
 	} #yt
 #yt
