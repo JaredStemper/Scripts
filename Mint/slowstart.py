@@ -11,13 +11,13 @@ TODOs:
 	begin researching using Mint's REST API to get the CSV
 
 """
-def appendCSV(SPREADSHEET_ID,rangeName,csvPath,service):
+def appendCSV(spreadsheetID,rangeName,csvPath,service):
 	with open(csvPath, newline='') as f:
 		reader = csv.reader(f)
 		next(reader)
 		values = list(reader)
 
-	service.spreadsheets().values().append(spreadsheetId=SPREADSHEET_ID, body={"values": values}, range=rangeName, valueInputOption='USER_ENTERED').execute()
+	service.spreadsheets().values().append(spreadsheetId=spreadsheetID, body={"values": values}, range=rangeName, valueInputOption='USER_ENTERED').execute()
 
 	return 1
 
@@ -32,15 +32,14 @@ def main():
 	except OSError as e:
 		print(e)
 
-	SPREADSHEET_ID = '1HVFFG53488za0lrGzk0Z39pC2Y5h7ezJH7J3PLB2aeA'
 	rangeName = 'Mint Input'
 
 	#if worksheet doesn't exist, create it with appropriate headers
-	SPREADSHEET_ID = '1HVFFG53488za0lrGzk0Z39pC2Y5h7ezJH7J3PLB2aeA'
+	spreadsheetID = '1HVFFG53488za0lrGzk0Z39pC2Y5h7ezJH7J3PLB2aeA'
 	worksheetName = 'Mint Input'
 	rangeName = 'Mint Input'
 	csvPath = '/home/jared/virtboxVMs/vbox memory/window/gsheets/transactions.csv'
-	appendCSV(SPREADSHEET_ID,rangeName,csvPath,service)
+	appendCSV(spreadsheetID,rangeName,csvPath,service)
 
 
 
