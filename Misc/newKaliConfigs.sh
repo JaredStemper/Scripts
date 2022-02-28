@@ -1,4 +1,6 @@
 #TODO: figure out why ~/.SwitchCaps doesn't affect input?
+#temp solution to swap escape and caps lock:
+setxkbmap -option caps:swapescape
 
 #zsh doesn't treat # as a comment start on the command line by default, only in scripts (including .zshrc and such)
 setopt interactive_comments
