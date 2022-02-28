@@ -1,7 +1,3 @@
-#TODO: figure out why ~/.SwitchCaps doesn't affect input?
-#temp solution to swap escape and caps lock:
-setxkbmap -option caps:swapescape
-
 #zsh doesn't treat # as a comment start on the command line by default, only in scripts (including .zshrc and such)
 setopt interactive_comments
 #allow certain wildcard patterns (e.g. (foo|bar) and more)
@@ -41,14 +37,15 @@ sed -i '/unset -f/d' bash_aliases
 sed -i '/unset -f/d' bash_aliases
 sed -i 's-source ~/.bashrc && source ~/.bash_aliases && source ~/Coding/Scripts/bash_aliases-source ~/.zshrc-' bash_aliases
 sed 's#~/\.bash_aliases#~/.zshrc#' bash_aliases
-
-#TODO: need to verify if these are correct/refactor; had bash history problems, so I couldn't verify immediately 
 sed 's#~/\Coding/Scripts/bash_aliases#~/.zshrc#' bash_aliases
 sed 's#~/\Coding/Scripts/#~#' bash_aliases
 sed 's#~linuxCheatSheet#~/linuxCheatSheet#' bash_aliases
 sed 's#~securityCheatSheet#~/securityCheatSheet#' bash_aliases
 sed 's#/home/jared/Coding/Scripts/linuxCheatSheet#~/linuxCheatSheet#' bash_aliases
-#END TODO
+
+#TODO: figure out why ~/.SwitchCaps doesn't affect input?
+#temp solution to swap escape and caps lock:
+echo "setxkbmap -option caps:swapescape" >> bash_aliases
 
 sed -i '/^#local bash shortcuts/,/^#local bash shortcuts/d' bash_aliases
 echo "#####NEW ALIASES/FUNCTIONS#####" >> ~/.zshrc
