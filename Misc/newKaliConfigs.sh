@@ -46,6 +46,7 @@ sed 's#/home/jared/Coding/Scripts/linuxCheatSheet#~/linuxCheatSheet#' bash_alias
 #TODO: figure out why ~/.SwitchCaps doesn't affect input?
 #temp solution to swap escape and caps lock:
 echo "setxkbmap -option caps:swapescape" >> bash_aliases
+#NOTE: have to manually go into VScode to register updated keyboard mapping. Use File->Preferences->Settings->Application->Keyboard and change the value set in "Dispatch" to "keyCode"
 
 sed -i '/^#local bash shortcuts/,/^#local bash shortcuts/d' bash_aliases
 echo "#####NEW ALIASES/FUNCTIONS#####" >> ~/.zshrc
