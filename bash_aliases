@@ -78,6 +78,9 @@
 
 	alias python='/usr/bin/python3'
 	alias python3='/usr/bin/python3'
+	
+	#grab external IP and basic geographical information (useful for sanity checking vpn)
+	alias myExtIP='curl --silent "https://ipinfo.io/ip"; echo ""; echo `curl --silent "https://ipinfo.io/city"`,`curl --silent "https://ipinfo.io/region"`,`curl --silent "https://ipinfo.io/country"`'
 
 	#alias dstop="docker stop $(docker ps -q)"
 	#stop all running docker containers
