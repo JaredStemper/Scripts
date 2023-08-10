@@ -5,7 +5,8 @@
 
 	#modifies profile/directory description that shows at every command line
 	#export PS1='\u@\W'	#\u == username && \W == working directory (instead of full path)
-	export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;34m\]\W\[\033[00m\]\: '
+	export PS1="\033[38;5;209m\]┌──[\033[38;5;141m\]\u\033[38;5;209m\]:\033[01;34m\]\w\033[38;5;209m\]]\n\033[38;5;209m\]└─\\[\033[38;5;209m\]$\[\033[37m\] "
+		# change \w to \W if you want current dir vs full dir path
 	export EDITOR='vim'
 	#general terminal laziness/movement shortcuts
 	alias l="clear;ls;"
